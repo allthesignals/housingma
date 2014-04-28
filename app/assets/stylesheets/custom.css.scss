@@ -34,13 +34,22 @@ p { font-size: 16px; }
   margin: 0 auto;
 }
 
-.nav-center {
-  margin: 0;
-  float:  none;
+.navbar {
+  max-height: 50px;
 }
 
-.navbar-inner {
+.navbar-header {
+  float:      left;
+  padding:    15px;
   text-align: center;
+  width:      100%;
+}
+
+.navbar-brand { float: none; }
+
+.navbar-nav {
+  position: relative;
+  top: -50px;
 }
 
 .highlighted {
