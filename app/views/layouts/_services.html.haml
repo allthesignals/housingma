@@ -1,0 +1,12 @@
+%ul.nav.navbar-nav.navbar-left
+  %li.dropdown
+    %a.dropdown-toggle{data:{toggle: 'dropdown'}}
+      Services
+      %b.caret
+    %ul.dropdown-menu
+      %li
+        =link_to 'SimpleHPP', simple_municipality_path
+      %li
+        =link_to 'Profile',   profile_municipality_path
+      %li
+        =link_to 'Download',  download_municipality_path

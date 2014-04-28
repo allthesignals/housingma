@@ -4,9 +4,18 @@ Housingma::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources :static_pages
+  match 'munis'   => 'static_pages#munis'
+  match 'guide'   => 'static_pages#guide'
+  match 'help'    => 'static_pages#help'
+  match 'contact' => 'static_pages#contact'
+  match 'terms'   => 'static_pages#terms'
 
-  match '/munis', to: 'static_pages#munis'
+  resources :static_pages
+  resources :municipalities, except: [:index], path: '' do
+    get 'simple',   on: :member
+    get 'profile',  on: :member
+    get 'download', on: :member
+  end
 
   root to: 'static_pages#index'
 

@@ -3,11 +3,15 @@
   %div.row
     %div.col-xs-12
       %div.links
-        %a{href: '#'} Help
-        %a{href: '#'} Contact
-        %a{href: '#'} Terms of Service
-        %a{href: '#'} User Guide
-        %a{href: '#'} Download
+        %a{href: help_path}    Help
+        %a{href: contact_path} Contact
+        %a{href: terms_path}   Terms of Service
+        %a{href: guide_path}   User Guide
+
+        - if @muni
+          %a{href: download_municipality_path(@muni.downcase)} Download
+        - else
+          %a{href: download_municipality_path('boston')} Download
 
   %div.row
     %div.col-xs-4.col-xs-offset-4

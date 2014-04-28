@@ -1,7 +1,5 @@
 // Provide title
 
-%div.header-pad
-
 %h1.center.title    Housing MA
 %h3.center.subtitle Simple housing production plans and data<br/>for Massachusetts
 
@@ -9,14 +7,13 @@
   %div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2.col-xs-12
     %form
       %div.input-group.input-group-lg
-        %input{class: 'form-control', type: 'text', placeholder: 'Type in your town to'}
+        %input{class: 'form-control typeahead', type: 'text', placeholder: 'Type in your town and'}
         %span.input-group-btn
           %button.btn.btn-success.btn-default Get started!
 
 %div.row.features
   %div.col-lg-4.feature
-    %h4
-      Simple plans
+    %h4 Simple plans
 
     %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/efc043d0d7d8b238848951324e866c8b/what-is-trello1.png'}
 
@@ -25,9 +22,10 @@
        U.S. Census American Community Survey (ACS), |
        complete with graphs of critical trends in   |
        your city or town.                           |
+  
+
   %div.col-lg-4.feature
-    %h4
-      Open Data
+    %h4 Open Data
 
     %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/0c91be28312f6e79a7eecac6d182d399/what-is-trello2.png'}
 
@@ -35,9 +33,10 @@
        your town to do your own analysis and graphic. |
        Pair that with our metadata and user guide to  |
        fully interpret the hard numbers.              |
+  
+
   %div.col-lg-4.feature
-    %h4
-      Easy Use
+    %h4 Easy Use
 
     %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/c897d8c6b5e7eefb6d058a04b4d8d739/what-is-trello3.png'}
 
