@@ -13,6 +13,8 @@ describe CommunityType do
   it { should respond_to :abbr }
 
   it { should respond_to :community_subtypes }
+
+  it { should respond_to :municipalities }
   
   it { should be_valid }
 end

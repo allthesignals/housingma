@@ -14,5 +14,7 @@ describe CommunitySubtype do
 
   it { should respond_to :community_type }
   
+  it { should respond_to :municipalities }
+  
   it { should be_valid }
 end
