@@ -28,6 +28,17 @@ commondata:
   postgis_extension: true
   schema_search_path: "public,postgis"
 
+# TEMPORARY.
+# This database connection should only be used
+# for a short dev period. Should not be in
+# production.
+
+hppbackup:
+  adapter:  postgresql
+  encoding: unicode
+  database: hppbackup
+  pool: 5
+
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.

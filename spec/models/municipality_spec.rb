@@ -15,6 +15,8 @@ describe Municipality do
   it { should respond_to :subregions }
   it { should respond_to :subregion_name }
 
+  it { should respond_to :housing_data }
+
   it { should be_valid }
 
 end
