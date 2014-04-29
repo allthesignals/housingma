@@ -11,13 +11,13 @@ class Municipality < ActiveRecord::Base
   # Prevent :geom from being selected
   #   call Municipality.unscoped to get
   #   access to :geom
-  default_scope select([:id,
-                        :name,
-                        :muni_id,
-                        :community_subtype_id,
-                        :created_at,
-                        :updated_at,
-                        :county_id])
+  default_scope select(['municipalities.id',
+                        'municipalities.name',
+                        'municipalities.muni_id',
+                        'municipalities.community_subtype_id',
+                        'municipalities.created_at',
+                        'municipalities.updated_at',
+                        'municipalities.county_id'])
   
   def to_param
     name.downcase
