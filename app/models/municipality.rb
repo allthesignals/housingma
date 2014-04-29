@@ -7,6 +7,17 @@ class Municipality < ActiveRecord::Base
   belongs_to :community_subtype
   
   has_and_belongs_to_many :subregions
+
+  # Prevent :geom from being selected
+  #   call Municipality.unscoped to get
+  #   access to :geom
+  default_scope select([:id,
+                        :name,
+                        :muni_id,
+                        :community_subtype_id,
+                        :created_at,
+                        :updated_at,
+                        :county_id])
   
   def to_param
     name.downcase
