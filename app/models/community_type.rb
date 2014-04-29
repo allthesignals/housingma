@@ -4,4 +4,6 @@ class CommunityType < ActiveRecord::Base
   has_many :community_subtypes
 
   has_many :municipalities, through: :community_subtypes
+
+  include Aggregations
 end
