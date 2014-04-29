@@ -1,19 +1,19 @@
 class MunicipalitiesController < ApplicationController
 
   def show
-    @muni = params[:id].titleize
+    @muni = Municipality.find_by_name(params[:id].titleize)
   end
 
   def simple
-    @muni = params[:id].titleize
+    @muni = Municipality.find_by_name(params[:id].titleize)
   end
 
   def profile
-    @muni = params[:id].titleize
+    @muni = Municipality.find_by_name(params[:id].titleize)
   end
 
   def download
-    @muni = params[:id].titleize
+    @muni = Municipality.find_by_name(params[:id].titleize)
   end
 
 end

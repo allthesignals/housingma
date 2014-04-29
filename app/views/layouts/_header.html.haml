@@ -3,7 +3,7 @@
     %div.navbar-header
       %div.nav-center
       -if @muni
-        =link_to "Housing #{@muni} MA",municipality_path(@muni.downcase), class: 'navbar-brand'
+        =link_to "Housing #{@muni.name} MA",municipality_path(@muni), class: 'navbar-brand'
       -else
         =link_to "Housing MA", root_path, class: 'navbar-brand'
     -if @muni

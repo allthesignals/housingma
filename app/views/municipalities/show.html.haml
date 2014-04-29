@@ -1,5 +1,5 @@
 %div.container
-  %h1= @muni.titleize
+  %h1= @muni.name
   
   %h3
     Select a service to assist your housing
@@ -15,7 +15,7 @@
       %ul
         %li
           Automatically generate a housing needs assessment for
-          = @muni
+          = @muni.name
         %li
           Report includes narrative and visualizations of
           critical housing indicators
@@ -41,7 +41,7 @@
           View statistics on demographics, affordability, tenure, and more in a single set of tables.
         %li
           Compare
-          = @muni
+          = @muni.name
           to its neighbors, similar cities, the region,
           and the state.
       %a.btn.btn-default{href: profile_municipality_path}

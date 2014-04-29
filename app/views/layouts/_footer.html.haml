@@ -9,7 +9,7 @@
         %a{href: guide_path}   User Guide
 
         - if @muni
-          %a{href: download_municipality_path(@muni.downcase)} Download
+          %a{href: download_municipality_path(@muni)} Download
         - else
           %a{href: download_municipality_path('boston')} Download
 
