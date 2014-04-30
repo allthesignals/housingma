@@ -20,7 +20,11 @@ class MunicipalitiesController < ApplicationController
 
   def form
     @muni = Municipality.find_by_name(params[:id].titleize)
-    redirect_to municipality_path(@muni)
+    if @muni 
+      redirect_to municipality_path(@muni)
+    else
+      redirect_to root_path
+    end
   end
 
 end
