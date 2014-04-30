@@ -1,0 +1,49 @@
+=render @topics
+
+
+_topic.html.haml
+=render @topic.subtopics
+
+
+_subtopic.html.haml
+=render @subtopic.fields
+
+
+_profile_field.html.haml
+%tr
+  %td @field.alias
+  %td @profile.muni_housing.send(@field.name.to_sym)
+
+
+_simplehpp_field.html.haml
+%tr
+  %td @field.alias
+  %td @profile.muni_housing.send(@field.name.to_sym)
+
+
+_userguide_field.html.haml
+%tr
+  %p  @field.alias
+  %p  @field.explanation
+
+
+
+
+
+
+
+
+
+
+Store the following as a subtopic narrative (in HAML):
+
+  %h3 Key Findings
+
+  Lexington’s population is projected to increase by
+  = muni.pop_increase
+  residents
+  = signed_pct_helper(muni.pop_increase)
+  between 2010 and 2030.
+  The largest increase will be in people
+  = max_age_bracket(muni)
+  .

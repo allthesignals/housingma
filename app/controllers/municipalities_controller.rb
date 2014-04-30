@@ -9,7 +9,8 @@ class MunicipalitiesController < ApplicationController
   end
 
   def profile
-    @muni = Municipality.find_by_name(params[:id].titleize)
+    @muni    = Municipality.find_by_name(params[:id].titleize)
+    @profile = Profile.new( @muni )
   end
 
   def download

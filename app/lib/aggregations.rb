@@ -18,8 +18,8 @@ module Aggregations
 
   def median(attribute)
     sorted = municipalities.includes(:housing_data).map {|m| m.housing_data.send(attribute)}.sort
-
     length = sorted.length
-    return (sorted[(length - 1) / 2] + sorted[length / 2]) / 2.0
+
+    (sorted[(length - 1) / 2] + sorted[length / 2]) / 2.0
   end
 end

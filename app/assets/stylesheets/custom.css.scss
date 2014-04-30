@@ -214,6 +214,9 @@ table {
     padding: 10px;
     border: $light-border;
   }
+  th {
+    text-align: center;
+  }
 }
 
 span.geography {

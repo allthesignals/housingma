@@ -1,0 +1,47 @@
+Need:
+
+= hierarchy of topics,( subtopics,) fields
+= Vermont has 3 levels of nesting: is 2 acceptable?
+= THREE: Topic, Subtopic, Subsubtopic
+
+= list of priority visualizations: BY END OF FRIDAY
+= report content: END OF NEXT WEEK
+= migrate in: WEEK AFTER
+
+= do narratives : ALL HIERARCHY LEVELS
+= are there duplicate fields across tables? : YES
+
+= do visualizations go under subtopics, with a single subtopic?: INTO ANY LEVEL, AT BOTTOM
+  = can they go just at the end or might we need to intersperse: NO INTERSPERSE
+
+= would like to use a report as a template
+  = should we use Lexington? MAYBE
+  = need agreement on the structure not changing significantly CONDITIONAL ON COMMUNITY TYPE
+
+
+= equity focus in narrative
+= is there only one narrative template, filled in with fields & helpers?
+    helper example: increasing(field) => "increasing" : "decreasing"
+
+
+Build agreement on:
+  = topic, subtopic, field structure for profile
+  = topic, subtopic        structure for simplehpp
+  = date for priority viz deadline
+  = date for content deadline
+  = single narrative template: VIZ AT END
+
+
+
+Store the following as a subtopic narrative:
+
+  %h3 Key Findings
+
+  Lexington’s population is projected to increase by
+  = muni.pop_increase
+  residents
+  = signed_pct_helper(muni.pop_increase)
+  between 2010 and 2030.
+  The largest increase will be in people
+  = max_age_bracket(muni)
+  .
