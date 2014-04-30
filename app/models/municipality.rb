@@ -21,7 +21,7 @@ class Municipality < ActiveRecord::Base
                         'municipalities.community_subtype_id',
                         'municipalities.created_at',
                         'municipalities.updated_at',
-                        'municipalities.county_id'])
+                        'municipalities.county_id']).order('municipalities.id')
   
   def to_param
     name.downcase

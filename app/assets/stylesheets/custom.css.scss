@@ -206,17 +206,25 @@ p { font-size: 16px; }
 }
 
 
+
 table {
   thead {
-    background-color: #EEE;
+    border-top:    $light-border;
+    border-bottom: $light-border;
   }
+  th { font-weight: 500; }
   td, th {
     padding: 10px;
     border: $light-border;
+    text-align: right;
+    &.attr {
+      text-align: left;
+    }
   }
-  th {
-    text-align: center;
-  }
+}
+
+.borderless td, .borderless th {
+  border: none;
 }
 
 span.geography {

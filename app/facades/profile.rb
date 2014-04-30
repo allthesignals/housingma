@@ -4,12 +4,10 @@ class Profile
     @muni = municipality
   end
 
+  # Names
+
   def muni_name
     @muni.name
-  end
-
-  def muni_housing
-    @muni.housing_data
   end
 
   def region_name
@@ -17,13 +15,18 @@ class Profile
   end
 
   def county_name
-    @muni.county.name
+    @muni.county.short_name
   end
 
   def community_type_name
     @muni.community_type.name
   end
 
+  # Housing Data
+
+  def muni_housing
+    @muni.housing_data
+  end
 
   def region
     @muni.regions.first
@@ -40,6 +43,7 @@ class Profile
   # def state_name
   #   @muni.state.name
   # end
+  
   private
 
     attr_reader :muni

@@ -5,27 +5,35 @@
     Housing Data Profile:
     = @profile.muni_name
 
-  %table
+  %h2 Supply
+
+  %h3 Tenure
+
+  %table.borderless
     %thead
-      %th Attribute
+      %th.attr Attribute
       %th= @profile.muni_name
       %th
         %a Nearest Neighbors (10)
       %th
-        %span.geography Community Type<br/>
         %span.defined=  @profile.community_type_name
+        <br/>
+        %span.geography Community Type
       %th
-        %span.geography RPA<br/>
         %span.defined=  @profile.region_name
+        <br/>
+        %span.geography Region
       %th
-        %span.geography County<br/>
         %span.defined=  @profile.county_name
+        <br/>
+        %span.geography County
       %th
-        %span.geography State<br/>
         %span.defined   Massachusetts
+        <br/>
+        %span.geography State
 
     %tr
-      %td Average Agro Five
+      %td.attr Average Agro Five
       %td= trim @profile.muni_housing.ag_ro5
       %td   --
       %td= trim @profile.community_type.average_ag_ro5
@@ -33,7 +41,7 @@
       %td= trim @profile.county.average_ag_ro5
       %td   --
     %tr
-      %td Agro Five Through Eight
+      %td.attr Agro Five Through Eight
       %td= trim @profile.muni_housing.ag_ro58
       %td   --
       %td= trim @profile.community_type.total_ag_ro58
@@ -41,7 +49,7 @@
       %td= trim @profile.county.total_ag_ro58
       %td   --
     %tr
-      %td Median Agro Eight
+      %td.attr Median Agro Eight
       %td= trim @profile.muni_housing.ag_ro8
       %td   --
       %td= trim @profile.community_type.median_ag_ro8

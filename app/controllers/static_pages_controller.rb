@@ -12,7 +12,6 @@ class StaticPagesController < ApplicationController
 
 
   def munis
-    @munis = ['Ashmont', 'Alewife', 'Bedford', 'Boxboro', 'Boston']
-    render json: @munis
+    render json: Municipality.unscoped.order(:id).pluck(:name)
   end
 end
