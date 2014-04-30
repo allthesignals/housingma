@@ -10,6 +10,8 @@ Housingma::Application.routes.draw do
   match 'contact' => 'static_pages#contact'
   match 'terms'   => 'static_pages#terms'
 
+  match 'form'    => 'municipalities#form'
+
   resources :static_pages
   resources :municipalities, except: [:index], path: '' do
     get 'simple',   on: :member

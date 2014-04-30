@@ -5,9 +5,9 @@
 
 %div.row#town-select
   %div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2.col-xs-12
-    %form
+    %form{action: form_path, method: 'post'}
       %div.input-group.input-group-lg
-        %input{class: 'form-control typeahead', type: 'text', placeholder: 'Type in your town and'}
+        %input{class: 'form-control typeahead', type: 'text', placeholder: 'Type in your town and', name: 'id'}
         %span.input-group-btn
           %button.btn.btn-success.btn-default Get started!
 
