@@ -17,6 +17,8 @@ describe Municipality do
 
   it { should respond_to :housing_data }
 
+  it { should respond_to :state }
+
   it { should be_valid }
 
 end

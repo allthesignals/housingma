@@ -8,6 +8,7 @@ class Municipality < ActiveRecord::Base
   
   belongs_to :community_subtype
   belongs_to :county
+  belongs_to :state
   
   has_and_belongs_to_many :regions
   has_and_belongs_to_many :subregions
