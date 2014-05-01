@@ -15,7 +15,7 @@
 development:
   adapter:  postgresql
   encoding: unicode
-  database: hppbackup
+  database: housingma_dev
   pool: 5
 
 commondata:
@@ -60,11 +60,5 @@ hppbackup:
 test:
   adapter: postgresql
   encoding: unicode
-  database: hppbackup
-  pool: 5
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: housingma_production
+  database: housingma_test
   pool: 5

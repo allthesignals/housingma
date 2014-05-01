@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140430212350) do
+ActiveRecord::Schema.define(:version => 20140430212342) do
 
   create_table "subtopics", :force => true do |t|
     t.string   "title"
     t.string   "narrative"
     t.string   "sort_order"
+    t.integer  "topic_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -33,8 +34,9 @@ ActiveRecord::Schema.define(:version => 20140430212350) do
     t.string   "title"
     t.string   "narrative"
     t.string   "sort_order"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "topic_area_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

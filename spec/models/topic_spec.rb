@@ -6,10 +6,11 @@ describe Topic do
   subject { @topic }
 
   it { should respond_to :title }
-  it { should be_valid }
+  it { should respond_to :narrative }
+  it { should respond_to :sort_order }
 
-  before do 
-  	@subtopic = Subtopic.new(title: 'Household Something')
-  	@topic_area = Topic.new(title: 'Population')
-  end
+  it { should respond_to :topic_area }
+  it { should respond_to :subtopics }
+
+  it { should be_valid }
 end
