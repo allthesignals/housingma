@@ -17,22 +17,20 @@
           %th.attr Attribute
           %th= @profile.muni_name
           %th
-            %a Nearest Neighbors (10)
+            %a{data: {toggle: 'modal', target: '#neighbors'}} Nearest Neighbors (10)
           %th
-            %span.defined=  @profile.community_type_name
-            <br/>
+            %span.defined
+              %a{data: {toggle: 'modal', target: '#community-type'}}
+                = @profile.community_type_name
             %span.geography Community Type
           %th
             %span.defined=  @profile.region_name
-            <br/>
             %span.geography Region
           %th
             %span.defined=  @profile.county_name
-            <br/>
             %span.geography County
           %th
             %span.defined   Massachusetts
-            <br/>
             %span.geography State
 
         %tr
@@ -65,3 +63,31 @@
           %td= trim @profile.region.median_ag_ro8
           %td= trim @profile.county.median_ag_ro8
           %td   --
+
+
+%div.modal.fade#neighbors
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}} &times;
+        %h4.modal-title
+          Nearest Neighbors to
+          = @profile.muni_name
+      %div.modal-body
+        %ul.neighbors
+          =render partial: 'similar', collection: @profile.neighbors
+
+
+%div.modal.fade#community-type
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}} &times;
+        %h4.modal-title
+          Other
+          = @profile.community_type_name
+          Cities and Towns
+      %div.modal-body
+        %ul.similar
+          =render partial: 'similar', collection: @profile.similar_munis
+

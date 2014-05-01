@@ -3,15 +3,17 @@
   %div.row
     %div.col-xs-12
       %div.links
-        %a{href: help_path}    Help
-        %a{href: contact_path} Contact
-        %a{href: terms_path}   Terms of Service
-        %a{href: guide_path}   User Guide
+        =link_to 'Help',             help_path
+        =link_to 'Contact',          contact_path
+        =link_to 'Terms of Service', terms_path
+        =link_to 'User Guide',       guide_path
 
         - if @muni
-          %a{href: download_municipality_path(@muni)} Download
+          =link_to 'Download', download_municipality_path(@muni)
         - else
-          %a{href: download_municipality_path('boston')} Download
+          =link_to 'Download', download_municipality_path('boston')
+
+        =link_to 'Contribute', 'http://github.com/MAPC/housingma', target: '_blank'
 
   %div.row
     %div.col-xs-4.col-xs-offset-4

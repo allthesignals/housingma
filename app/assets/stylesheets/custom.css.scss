@@ -238,10 +238,25 @@ span.moe {
   float:       right;
 }
 span.geography {
+  display: block;
   color: #AAA;
 }
 span.defined {
+  display: block;
   color: $text-light;
+}
+
+ul.similar, ul.neighbors {
+  list-style:    none;
+  margin-left:   20px;
+  padding-left:  1em;
+
+  li:before {
+    display:     inline-block;
+    content:     "-";
+    width:       1em;
+    margin-left:-1em;
+  }
 }
 
 .footer {

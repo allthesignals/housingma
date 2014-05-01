@@ -32,13 +32,22 @@ class Profile
     @muni.regions.first
   end
 
+  def county
+    @muni.county
+  end
+
   def community_type
     @muni.community_type
   end
 
-  def county
-    @muni.county
+  def neighbors
+    Municipality.find((1..351).to_a.sample(10))
   end
+
+  def similar_munis
+    community_type.municipalities
+  end
+
 
   # def state_name
   #   @muni.state.name
