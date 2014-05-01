@@ -8,6 +8,7 @@ describe Subtopic do
   it { should respond_to :title }
   it { should respond_to :narrative }
   it { should respond_to :sort_order }
+  it { should respond_to :fields }
 
   it { should respond_to :topic_area }
   it { should respond_to :topic }
