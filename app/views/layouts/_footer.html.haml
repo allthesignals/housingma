@@ -6,14 +6,14 @@
         =link_to 'Help',             help_path
         =link_to 'Contact',          contact_path
         =link_to 'Terms of Service', terms_path
-        =link_to 'User Guide',       guide_path
 
         - if @muni
           =link_to 'Download', download_municipality_path(@muni)
         - else
           =link_to 'Download', download_municipality_path('boston')
 
-        =link_to 'Contribute', 'http://github.com/MAPC/housingma', target: '_blank'
+        =link_to 'Support',  support_path
+        =link_to 'Github',  'http://github.com/MAPC/housingma', target: '_blank'
 
   %div.row
     %div.col-xs-4.col-xs-offset-4

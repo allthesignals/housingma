@@ -9,6 +9,7 @@ Housingma::Application.routes.draw do
   match 'help'    => 'static_pages#help'
   match 'contact' => 'static_pages#contact'
   match 'terms'   => 'static_pages#terms'
+  match 'support' => 'static_pages#support'
 
   match 'form'    => 'municipalities#form'
 
