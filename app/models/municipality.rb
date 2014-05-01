@@ -24,7 +24,7 @@ class Municipality < ActiveRecord::Base
                         'municipalities.county_id']).order('municipalities.id')
   
   def to_param
-    name.downcase
+    name.downcase.parameterize
   end
 
   GEOFACTORY = RGeo::Geographic.spherical_factory(srid: 4326)
