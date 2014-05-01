@@ -230,9 +230,12 @@ table {
 
 
 span.moe {
-  color: #AAA;
+  color:       #AAA;
   margin-left: 2px;
-  font-size: 90%;
+  font-size:   90%;
+  // prevent +/- and number from splitting
+  display:     block;
+  float:       right;
 }
 span.geography {
   color: #AAA;

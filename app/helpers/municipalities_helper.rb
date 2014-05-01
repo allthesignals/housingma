@@ -5,6 +5,6 @@ module MunicipalitiesHelper
 
   def moe_or_blank(object, field_name)
     moe = object.send "#{field_name}_me"
-    "&plusmn; #{ "%.0f" % moe }".html_safe unless moe.nil?
+    "&plusmn; #{ "%.0f" % moe }".html_safe unless moe.nil? # format or nil
   end
 end
