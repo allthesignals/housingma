@@ -3,7 +3,7 @@ class CreateTopics < ActiveRecord::Migration
     create_table :topics do |t|
       t.string  :title
       t.string  :narrative
-      t.string  :sort_order
+      t.integer :sort_order
       t.integer :topic_area_id
 
       t.timestamps

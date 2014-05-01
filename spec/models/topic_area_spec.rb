@@ -14,9 +14,53 @@ describe TopicArea do
 
   it { should be_valid }
 
-  describe "relates" do
-    context "topics" do
+  describe "default scope" do
+    let!(:middle_child)  { TopicArea.create(title: 'Houses', sort_order: 2) }
+    let!(:last_in_line)  { TopicArea.create(title: 'Supply', sort_order: 3) }
+    let!(:first_in_line) { TopicArea.create(title: 'Demand', sort_order: 1) }
+    
+    it "returns the smallest sort_order first" do
+      TopicArea.all.first.should == first_in_line
+    end
 
+    it "returns the largest sort_order last" do
+      TopicArea.all.last.should == last_in_line
+    end
+  end
+
+  describe "#title" do
+    context "when absent" do
+      before { @topic_area.title = " " }
+      it { should_not be_valid }
+    end
+    context "when too short" do
+      before { @topic_area.title = "a" * 2 }
+      it { should_not be_valid }
+    end
+    context "when too long" do
+      before { @topic_area.title = "a" * 141 }
+      it { should_not be_valid }
+    end
+  end
+
+  describe "#narrative" do
+    context "when absent" do
+      before { @topic_area.narrative = " " }
+      it { should be_valid }
+    end
+    context "when too short" do
+      before { @topic_area.narrative = "a" * 2 }
+      it { should_not be_valid }
+    end
+    context "when too long" do
+      before { @topic_area.narrative = "a" * 8001 }
+      it { should_not be_valid }
+    end
+  end
+
+  describe "relates to" do
+
+    context "topics" do
       let(:hh)   { Topic.new(title: 'Household') }
       let(:race) { Topic.new(title: 'Race')      }
 
@@ -32,7 +76,6 @@ describe TopicArea do
       end 
 
       context "subtopics" do
-
         before do
           hh.save
           hh.subtopics.create(title: 'By Type')
