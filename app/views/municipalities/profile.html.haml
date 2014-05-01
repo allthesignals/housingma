@@ -37,7 +37,9 @@
 
         %tr
           %td.attr Average Agro Five
-          %td= trim @profile.muni_housing.ag_ro5
+          %td
+            = trim @profile.muni_housing.ag_ro5
+            %span.moe= moe_or_blank(@profile.muni_housing, :ag_ro5)
           %td   --
           %td= trim @profile.community_type.average_ag_ro5
           %td= trim @profile.region.average_ag_ro5
@@ -45,7 +47,9 @@
           %td   --
         %tr
           %td.attr Agro Five Through Eight
-          %td= trim @profile.muni_housing.ag_ro58
+          %td
+            = trim @profile.muni_housing.ag_ro58
+            %span.moe= moe_or_blank(@profile.muni_housing, :ag_ro58)
           %td   --
           %td= trim @profile.community_type.total_ag_ro58
           %td= trim @profile.region.total_ag_ro58
@@ -53,7 +57,9 @@
           %td   --
         %tr
           %td.attr Median Agro Eight
-          %td= trim @profile.muni_housing.ag_ro8
+          %td
+            = trim @profile.muni_housing.ag_ro8
+            %span.moe= moe_or_blank(@profile.muni_housing, :ag_ro8)
           %td   --
           %td= trim @profile.community_type.median_ag_ro8
           %td= trim @profile.region.median_ag_ro8
