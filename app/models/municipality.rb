@@ -22,6 +22,10 @@ class Municipality < ActiveRecord::Base
     name.downcase.parameterize
   end
 
+  def to_s
+    name
+  end
+
 
   # Prevent :geom from being selected
   #   call Municipality.unscoped to get

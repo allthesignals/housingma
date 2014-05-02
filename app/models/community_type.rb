@@ -8,5 +8,9 @@ class CommunityType < ActiveRecord::Base
     municipalities.map{|m| m.name}
   end
 
+  def to_s
+    name
+  end
+
   include Aggregations
 end

@@ -3,5 +3,9 @@ class State < ActiveRecord::Base
 
   has_many :municipalities
 
+  def to_s
+    name
+  end
+  
   include Aggregations
 end

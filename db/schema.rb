@@ -23,14 +23,6 @@ ActiveRecord::Schema.define(:version => 20140501205543) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "groupings", :force => true do |t|
-    t.string   "title"
-    t.string   "narrative"
-    t.string   "sort_order"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "subtopics", :force => true do |t|
     t.string   "title"
     t.string   "narrative"
