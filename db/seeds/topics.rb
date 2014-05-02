@@ -39,20 +39,20 @@ module Seeds
      {name: 'ooa8',     subtopic_id: 3,  alias: "OOUs Affordable to Households With Incomes Above 80% AMI"},
      {name: 'o',        subtopic_id: 4,  alias: "Occupied Units (OUs)"},
      {name: 'oa5',      subtopic_id: 4,  alias: "OUs Affordable to Households With Incomes Below 50% AMI"},
-     {name: 'oa58',     subtopic_id: 5,  alias:  "OUs Affordable to Households With Incomes Between 50-80% AMI"},
+     {name: 'oa58',     subtopic_id: 5,  alias: "OUs Affordable to Households With Incomes Between 50-80% AMI"},
      {name: 'oa8',      subtopic_id: 5,  alias: "OUs Affordable to Households With Incomes Above 80% AMI"},
      {name: 'ro_me',    subtopic_id: 5,  alias: "Margin of Error: Renter-Occupied Units (ROUs)"},
      {name: 'roa5_me',  subtopic_id: 6,  alias: "Margin of Error: ROUs Affordable to Households With Incomes Below 50% AMI"},
-     {name: 'roa58_me', subtopic_id: 7,  alias:  "Margin of Error: ROUs Affordable to Households With Incomes Between 50-80% AMI"},
+     {name: 'roa58_me', subtopic_id: 7,  alias: "Margin of Error: ROUs Affordable to Households With Incomes Between 50-80% AMI"},
      {name: 'roa8_me',  subtopic_id: 8,  alias: "Margin of Error: ROUs Affordable to Households With Incomes Above 80% AMI"},
      {name: 'oo_me',    subtopic_id: 8,  alias: "Margin of Error: Owner-Occupied Units (OOUs)"},
      {name: 'ooa5_me',  subtopic_id: 9,  alias: "Margin of Error: OOUs Affordable to Households With Incomes Below 50% AMI"},
-     {name: 'ooa58_me', subtopic_id: 9,  alias:  "Margin of Error: OOUs Affordable to Households With Incomes Between 50-80% AMI"},
+     {name: 'ooa58_me', subtopic_id: 9,  alias: "Margin of Error: OOUs Affordable to Households With Incomes Between 50-80% AMI"},
      {name: 'ooa8_me',  subtopic_id: 9,  alias: "Margin of Error: OOUs Affordable to Households With Incomes Above 80% AMI"},
-     {name: 'o_me',     subtopic_id: 9,  alias:  "Margin of Error: Occupied Units (OUs)"},
-     {name: 'oa5_me',   subtopic_id: 9,  alias:  "Margin of Error: OUs Affordable to Households With Incomes Below 50% AMI"},
+     {name: 'o_me',     subtopic_id: 9,  alias: "Margin of Error: Occupied Units (OUs)"},
+     {name: 'oa5_me',   subtopic_id: 9,  alias: "Margin of Error: OUs Affordable to Households With Incomes Below 50% AMI"},
      {name: 'oa58_me',  subtopic_id: 10, alias: "Margin of Error: OUs Affordable to Households With Incomes Between 50-80% AMI"},
-     {name: 'oa8_me',   subtopic_id: 10, alias:  "Margin of Error: OUs Affordable to Households With Incomes Above 80% AMI"}]
+     {name: 'oa8_me',   subtopic_id: 10, alias: "Margin of Error: OUs Affordable to Households With Incomes Above 80% AMI"}]
   end
 end
 

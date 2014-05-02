@@ -1,5 +1,5 @@
 class Field < Grouping
-  attr_accessible :name,  :description, :alias
+  attr_accessible :name,  :description, :alias, :subtopic_id, :id
   attr_accessor   :title, :narrative
 
   belongs_to :subtopic
@@ -7,6 +7,6 @@ class Field < Grouping
 
   validates :alias, presence: true, length: { minimum: 3, maximum: 140 }
 
-  alias_method :name, :title
-  alias_method :description, :narrative
+  alias_attribute :name, :title
+  alias_attribute :description, :narrative
 end
