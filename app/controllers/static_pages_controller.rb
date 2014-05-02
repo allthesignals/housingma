@@ -10,6 +10,9 @@ class StaticPagesController < ApplicationController
 
   def support ; end
 
+  def download
+    render 'municipalities/download'
+  end
   
 
 

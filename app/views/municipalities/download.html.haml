@@ -1,11 +1,11 @@
-=provide :title, @muni.name
+=provide :title, @muni.name if @muni
 
 %div.container
 
   %h1 
     Download housing data for
-    = @muni.name
-    <br/>and the region
+    = "#{@muni.name} </br> and".html_safe if @muni
+    the Commonwealth
 
   %h3
     A comprehensive set of value-added data       |
