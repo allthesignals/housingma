@@ -14,8 +14,3 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-typeahead-rails
-//= require_tree .
-
-$(document).ready(function () {
-  $('.typeahead').typeahead({ prefetch: '/munis.json' });
-})
