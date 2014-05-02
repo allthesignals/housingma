@@ -17,7 +17,6 @@ class MunicipalitiesController < ApplicationController
     @muni = Municipality.find_by_name(params[:id].titleize)
   end
 
-
   def form
     @muni = Municipality.find_by_name(params[:id].titleize)
     if @muni 
