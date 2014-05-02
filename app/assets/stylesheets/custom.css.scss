@@ -221,6 +221,7 @@ table {
     text-align: right;
     &.attr {
       text-align: left;
+      max-width: 200px;
     }
   }
 }

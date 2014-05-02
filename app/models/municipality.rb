@@ -32,11 +32,18 @@ class Municipality < ActiveRecord::Base
                         'municipalities.community_subtype_id',
                         'municipalities.created_at',
                         'municipalities.updated_at',
-                        'municipalities.county_id']).order('municipalities.id')
+                        'municipalities.county_id',
+                        'municipalities.state_id']).order('municipalities.id')
   
   # scope
-  def nearest
-    Municipality.where(id: (1..351).to_a.sample(10))
+  def nearest(lim=10)
+    scope = Municipality.unscoped
+    scope = scope.where("muni_id != #{self.muni_id}")
+    scope = scope.order("ST_Centroid(geom) <-> (
+                          SELECT ST_Centroid(geom)
+                          FROM municipalities
+                          WHERE muni_id = #{self.muni_id})")
+    scope = scope.limit(lim)
   end
 
   # object

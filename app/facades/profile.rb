@@ -41,7 +41,15 @@ class Profile
   end
 
   def neighbors
-    Municipality.find((1..351).to_a.sample(10))
+    @muni.neighbors
+  end
+
+  def state
+    @muni.state
+  end
+
+  def neighboring
+    neighbors.municipalities.sort_by {|m| m.name}
   end
 
   def similar_munis
