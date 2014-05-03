@@ -1,36 +1,12 @@
 = provide :title, "#{@profile.muni}"
 
 %div.container
-  %h1
-    Housing Data Profile: #{@profile.muni}
+  %h1 Housing Data Profile: #{@profile.muni}
 
   %div.row
     %div.col-md-10
-
       %table.borderless
         = render partial: 'topic_area', collection: @profile.topic_areas
-
-        -# %tr
-        -#   %td.attr with Incomes Between 50-80% AMI
-        -#   %td
-        -#     = trim @profile.housing.ag_ro58
-        -#     %span.moe= moe_or_blank(@profile.housing, :ag_ro58)
-        -#   %td= trim @profile.neighbors.total_ag_ro58
-        -#   %td= trim @profile.community_type.total_ag_ro58
-        -#   %td= trim @profile.region.total_ag_ro58
-        -#   %td= trim @profile.county.total_ag_ro58
-        -#   %td= trim @profile.state.total_ag_ro58
-        -# %tr
-        -#   %td.attr with Incomes Above 80% AMI (median)
-        -#   %td
-        -#     = trim @profile.housing.ag_ro8
-        -#     %span.moe= moe_or_blank(@profile.housing, :ag_ro8)
-        -#   %td= trim @profile.neighbors.median_ag_ro8
-        -#   %td= trim @profile.community_type.median_ag_ro8
-        -#   %td= trim @profile.region.median_ag_ro8
-        -#   %td= trim @profile.county.median_ag_ro8
-        -#   %td= trim @profile.state.median_ag_ro8
-
 
 %div.modal.fade#neighbors
   %div.modal-dialog

@@ -213,6 +213,7 @@ table {
   thead {
     border-top:    $light-border;
     border-bottom: $light-border;
+    vertical-align: bottom;
   }
   th { font-weight: 500; }
   td, th {
