@@ -1,0 +1,4 @@
+%li
+  %a{href: "##{topic_area.slug}" } #{topic_area}
+  %ul
+    = render partial: 'scrollspy/topic', collection: topic_area.topics

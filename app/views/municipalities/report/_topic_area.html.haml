@@ -1,3 +1,5 @@
-%h2 #{topic_area}
-%p=   topic_area.narrative
+%h2{id: "#{topic_area.slug}"}
+  #{topic_area}
+%p= Haml::Engine.new(topic_area.narrative).render(self)
+
 = render partial: 'municipalities/report/topic', collection: topic_area.topics

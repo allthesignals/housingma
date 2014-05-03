@@ -4,4 +4,8 @@
   %h1
     Housing Needs Assessment for #{@report.muni}, MA
 
-    = render partial: 'municipalities/report/topic_area', collection: @report.topic_areas
+  %div.row
+    %div.col-md-10
+      = render partial: 'municipalities/report/topic_area', collection: @report.topic_areas
+    %div.col-md-2
+      = render partial: 'scrollspy/scrollspy', locals: { content: @report }

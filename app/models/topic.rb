@@ -10,4 +10,8 @@ class Topic < Grouping
   def has_subtopics?
     !subtopics.blank?
   end
+
+  def slug
+    "#{topic_area.slug}-" + super
+  end
 end

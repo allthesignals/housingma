@@ -1,2 +1,3 @@
-%h4 #{subtopic}
-%p=   subtopic.narrative
+%h4{id: "#{subtopic.slug}"}
+  #{subtopic}
+%p= Haml::Engine.new(subtopic.narrative).render(self)

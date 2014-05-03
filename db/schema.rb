@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140501205543) do
+ActiveRecord::Schema.define(:version => 20140503213045) do
 
   create_table "fields", :force => true do |t|
     t.string   "title"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20140501205543) do
 
   create_table "subtopics", :force => true do |t|
     t.string   "title"
-    t.string   "narrative"
+    t.text     "narrative"
     t.integer  "sort_order"
     t.integer  "topic_id"
     t.datetime "created_at", :null => false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20140501205543) do
 
   create_table "topic_areas", :force => true do |t|
     t.string   "title"
-    t.string   "narrative"
+    t.text     "narrative"
     t.integer  "sort_order"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20140501205543) do
 
   create_table "topics", :force => true do |t|
     t.string   "title"
-    t.string   "narrative"
+    t.text     "narrative"
     t.integer  "sort_order"
     t.integer  "topic_area_id"
     t.datetime "created_at",    :null => false

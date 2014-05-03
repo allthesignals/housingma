@@ -10,4 +10,8 @@ class Grouping < ActiveRecord::Base
   def to_s
     title
   end
+
+  def slug
+    title.parameterize
+  end
 end
