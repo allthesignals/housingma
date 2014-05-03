@@ -336,3 +336,47 @@ input { min-height: 44px; }
 .tt-hint {
   width: 100%;
 }
+
+
+
+
+
+
+
+/* scrollspy */
+
+.bs-sidenav ul > li { 
+  list-style-type: none;
+  margin-left: 10px;
+}
+
+.bs-sidenav a { padding-left: 10px; }
+
+.bs-sidenav {
+  color: #787878;
+  li {
+    font-weight: 400;
+    ul {
+      display: none;
+      padding-left: 10px;
+    }
+
+    &.active {
+      font-weight: 800;
+      ul {
+        display: block;
+        li.active {
+          font-weight: 800;
+          ul {
+            display: block;
+            li.active { }
+          }
+        }
+        li.active > a { 
+          border-left: 2px #5E8AC7 solid;
+        }
+      }
+    }
+  }
+}
+

@@ -1,2 +1,4 @@
-%ul
-  = render partial: 'scrollspy/topic_area', collection: content.topic_areas
+%div.col-md-2#scrollspy
+  %div.bs-sidebar.hidden-print.affix
+    %ul.nav.bs-sidenav
+      = render partial: 'scrollspy/topic_area', collection: content.topic_areas
