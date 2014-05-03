@@ -1,0 +1,5 @@
+-if topic.has_subtopics?
+  %thead.topic
+    %th{colspan: 7}
+      %h4 #{topic}
+  = render partial: 'subtopic', collection: topic.subtopics

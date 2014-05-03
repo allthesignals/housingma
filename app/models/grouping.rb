@@ -6,4 +6,8 @@ class Grouping < ActiveRecord::Base
   validates :narrative, allow_blank: true, length: { minimum: 3, maximum: 8000 }
 
   default_scope { order(:sort_order).order(:id) }
+
+  def to_s
+    title
+  end
 end

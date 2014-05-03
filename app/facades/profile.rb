@@ -6,6 +6,7 @@ class Profile
     @muni = municipality
   end
 
+
   # Housing Data
 
   def housing
@@ -32,12 +33,22 @@ class Profile
     @muni.state
   end
 
+
+  # Related
+
   def neighboring
     neighbors.municipalities.sort_by {|m| m.name}
   end
 
   def similar_munis
     community_type.municipalities
+  end
+
+
+  # Topic display
+
+  def topic_areas
+    TopicArea.all
   end
 
 end

@@ -15,6 +15,8 @@ describe Field do
   it { should respond_to :topic }
   it { should respond_to :subtopic }
 
+  it { should respond_to :to_s }
+
   it { should be_valid }
 
   describe "#title" do
@@ -22,9 +24,9 @@ describe Field do
       before { @field.title = " " }
       it { should_not be_valid }
     end
-    context "when too short" do
-      before { @field.title = "a" * 2 }
-      it { should_not be_valid }
+    context "when one character" do
+      before { @field.title = "o" }
+      it { should be_valid }
     end
     context "when too long" do
       before { @field.title = "a" * 141 }

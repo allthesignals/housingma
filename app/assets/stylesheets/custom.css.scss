@@ -230,6 +230,15 @@ table {
   border: none;
 }
 
+.topic-area, .topic, .subtopic {
+  h1, h2, h3, h4, h5, h6 {
+    text-align: left;
+  }
+}
+
+.topic-area { background-color: #DDD }
+.topic      { background-color: #EEE }
+.subtopic   { background-color: #FFF }
 
 span.moe {
   color:       #AAA;

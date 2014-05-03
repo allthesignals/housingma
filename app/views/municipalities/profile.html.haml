@@ -7,61 +7,29 @@
   %div.row
     %div.col-md-10
 
-      %h2 Supply
-
-      %h3 Tenure
-
       %table.borderless
-        %thead
-          %th.attr Attribute
-          %th      #{@profile.muni}
-          %th
-            %a{data: {toggle: 'modal', target: '#neighbors'}} Nearest Ten
-          %th
-            %span.defined
-              %a{data: {toggle: 'modal', target: '#community-type'}}
-                #{@profile.community_type}
-            %span.geography Community Type
-          %th
-            %span.defined   #{@profile.region}
-            %span.geography Region
-          %th
-            %span.defined   #{@profile.county}
-            %span.geography County
-          %th
-            %span.defined   Massachusetts
-            %span.geography State
+        = render partial: 'topic_area', collection: @profile.topic_areas
 
-        %tr
-          %td.attr Renter-Occupied Housing Units with Incomes Below 50% AMI (average)
-          %td
-            = trim @profile.housing.ag_ro5
-            %span.moe= moe_or_blank(@profile.housing, :ag_ro5)
-          %td= trim @profile.neighbors.average_ag_ro5
-          %td= trim @profile.community_type.average_ag_ro5
-          %td= trim @profile.region.average_ag_ro5
-          %td= trim @profile.county.average_ag_ro5
-          %td= trim @profile.state.average_ag_ro5
-        %tr
-          %td.attr with Incomes Between 50-80% AMI
-          %td
-            = trim @profile.housing.ag_ro58
-            %span.moe= moe_or_blank(@profile.housing, :ag_ro58)
-          %td= trim @profile.neighbors.total_ag_ro58
-          %td= trim @profile.community_type.total_ag_ro58
-          %td= trim @profile.region.total_ag_ro58
-          %td= trim @profile.county.total_ag_ro58
-          %td= trim @profile.state.total_ag_ro58
-        %tr
-          %td.attr with Incomes Above 80% AMI (median)
-          %td
-            = trim @profile.housing.ag_ro8
-            %span.moe= moe_or_blank(@profile.housing, :ag_ro8)
-          %td= trim @profile.neighbors.median_ag_ro8
-          %td= trim @profile.community_type.median_ag_ro8
-          %td= trim @profile.region.median_ag_ro8
-          %td= trim @profile.county.median_ag_ro8
-          %td= trim @profile.state.median_ag_ro8
+        -# %tr
+        -#   %td.attr with Incomes Between 50-80% AMI
+        -#   %td
+        -#     = trim @profile.housing.ag_ro58
+        -#     %span.moe= moe_or_blank(@profile.housing, :ag_ro58)
+        -#   %td= trim @profile.neighbors.total_ag_ro58
+        -#   %td= trim @profile.community_type.total_ag_ro58
+        -#   %td= trim @profile.region.total_ag_ro58
+        -#   %td= trim @profile.county.total_ag_ro58
+        -#   %td= trim @profile.state.total_ag_ro58
+        -# %tr
+        -#   %td.attr with Incomes Above 80% AMI (median)
+        -#   %td
+        -#     = trim @profile.housing.ag_ro8
+        -#     %span.moe= moe_or_blank(@profile.housing, :ag_ro8)
+        -#   %td= trim @profile.neighbors.median_ag_ro8
+        -#   %td= trim @profile.community_type.median_ag_ro8
+        -#   %td= trim @profile.region.median_ag_ro8
+        -#   %td= trim @profile.county.median_ag_ro8
+        -#   %td= trim @profile.state.median_ag_ro8
 
 
 %div.modal.fade#neighbors

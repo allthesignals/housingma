@@ -11,6 +11,11 @@ describe Topic do
 
   it { should respond_to :topic_area }
   it { should respond_to :subtopics }
+  it { should respond_to :fields }
+
+  it { should respond_to :lonely_fields }
+
+  it { should respond_to :to_s }
 
   it { should be_valid }
 
