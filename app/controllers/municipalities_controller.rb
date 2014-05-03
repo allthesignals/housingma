@@ -4,13 +4,12 @@ class MunicipalitiesController < ApplicationController
     @muni = Municipality.find_by_name(params[:id].titleize)
   end
 
-  def simple
-    @muni = Municipality.find_by_name(params[:id].titleize)
+  def report
+    @report = Report.new( Municipality.find_by_name(params[:id].titleize) )
   end
 
   def profile
-    @muni    = Municipality.find_by_name(params[:id].titleize)
-    @profile = Profile.new( @muni )
+    @profile = Profile.new( Municipality.find_by_name(params[:id].titleize) )
   end
 
   def download

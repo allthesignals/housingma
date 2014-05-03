@@ -16,7 +16,7 @@ Housingma::Application.routes.draw do
 
   resources :static_pages
   resources :municipalities, except: [:index], path: '' do
-    get 'simple',   on: :member
+    get 'report',   on: :member
     get 'profile',  on: :member
     get 'download', on: :member
   end
