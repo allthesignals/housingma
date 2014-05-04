@@ -19,6 +19,7 @@ Housingma::Application.routes.draw do
     get 'report',   on: :member
     get 'profile',  on: :member
     get 'download', on: :member
+    get 'export',   on: :member
   end
 
   root to: 'static_pages#index'

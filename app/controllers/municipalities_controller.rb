@@ -25,4 +25,21 @@ class MunicipalitiesController < ApplicationController
     end
   end
 
+  def export
+    @profile = Profile.new( Municipality.find_by_name(params[:id].titleize) )
+
+    # Initialize DocxReplace with my template
+    doc = DocxReplace::Doc.new("#{Rails.root}/lib/assets/template.docx", "#{Rails.root}/tmp")
+
+    # Replace some variables
+    doc.replace("$$var1$$", "#{@profile.region.to_s}")
+    doc.replace("$$var2$$", "#{@profile.county.average_ro}")
+
+    # Write the document back to a temporary file
+    tmp_file = Tempfile.new('word_template', "#{Rails.root}/tmp")
+    doc.commit(tmp_file)
+
+    send_file tmp_file.path, filename: "#{@profile.muni} Housing Needs Assessment.docx", disposition: 'attachment'
+  end
+
 end

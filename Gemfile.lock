@@ -32,7 +32,6 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.6)
     arel (3.0.3)
-    bluecloth (2.2.0)
     bootstrap-typeahead-rails (0.9.3.3)
       railties (>= 3.0)
     builder (3.0.4)
@@ -61,6 +60,8 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     diff-lcs (1.2.5)
+    docx_replace (1.0.1)
+      rubyzip (~> 1.1.0)
     dotenv (0.7.0)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -189,12 +190,12 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgis-adapter
-  bluecloth
   bootstrap-typeahead-rails
   capistrano (~> 2.0)
   capistrano-unicorn
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.1)
+  docx_replace
   foreman
   haml
   jquery-rails

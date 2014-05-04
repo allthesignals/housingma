@@ -16,9 +16,11 @@ gem 'rgeo-geojson'
 gem 'unicorn' 
 gem 'foreman'
 
-#    Render Markdown content for narratives
-gem 'bluecloth'
+#    Render HAML content for narratives
 gem 'haml'
+
+#    Export Word files
+gem 'docx_replace'
 
 #    Autocomplete
 gem 'twitter-typeahead-rails'   

@@ -7,4 +7,5 @@
   %div.row
     %div.col-md-10
       = render partial: 'municipalities/report/topic_area', collection: @report.topic_areas
+      %a{href: export_municipality_path(@report.muni)} Export to Word (.docx)
     = render partial: 'scrollspy/scrollspy', locals: { content: @report }
