@@ -7,7 +7,7 @@
     %div.col-md-10
       %table.borderless
         = render partial: 'municipalities/profile/topic_area', collection: @profile.topic_areas
-      = render partial: 'scrollspy/scrollspy', locals: { content: @profile }
+    = render partial: 'scrollspy/scrollspy', locals: { content: @profile }
 
 
 %div.modal.fade#neighbors
@@ -32,3 +32,5 @@
       %div.modal-body
         %ul.similar
           =render partial: 'similar', collection: @profile.similar_munis
+      %div.modal-footer
+        %button.btn.btn-default{type: 'button', data: {dismiss: 'modal'}} Close window

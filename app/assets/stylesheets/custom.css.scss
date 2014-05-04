@@ -53,6 +53,9 @@ p { font-size: 16px; }
   top: -50px;
 }
 
+
+.normal { top: 20px; }
+
 .highlighted {
   background-color: #F5F5F5;
   border: 20px solid #F5F5F5;
@@ -257,6 +260,8 @@ span.defined {
   display: block;
   color: $text-light;
 }
+
+.modal-dialog  { max-width: 400px; }
 
 ul.similar, ul.neighbors {
   list-style:    none;

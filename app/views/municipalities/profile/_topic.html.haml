@@ -1,5 +1,5 @@
 -if topic.has_subtopics?
-  %thead.topic
+  %thead.topic{id: "#{topic.slug}"}
     %th{colspan: 7}
       %h4 #{topic}
   = render partial: 'municipalities/profile/subtopic', collection: topic.subtopics
