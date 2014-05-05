@@ -7,4 +7,14 @@
   %div.row
     %div.col-md-10
       = render partial: 'municipalities/report/topic_area', collection: @report.topic_areas
-    = render partial: 'scrollspy/scrollspy', locals: { content: @report }
+    
+      %hr   
+      %h2{id: "export"}
+        Export
+      %p
+        Export the #{@report.muni} Housing Needs Assessment to Word.
+
+      %a.btn.btn-lg.btn-primary{href: export_municipality_path(@report.muni)}
+        Export to Word (.docx)
+
+    = render partial: 'scrollspy/scrollspy', locals: { content: @report, export: true }

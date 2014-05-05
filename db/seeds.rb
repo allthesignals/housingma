@@ -89,7 +89,7 @@ model_names.each do |model_name|
   print_and_flush "seeding #{model_name}"
 
   model   = Module.const_get model_name
-  records = eval "Seeds::#{model.table_name}"
+  records = Seeds.send "#{model.table_name}"
 
   records.each do |record|
     rec = model.create_or_update(record, without_protection: true)
@@ -97,17 +97,6 @@ model_names.each do |model_name|
 
   puts " -- DONE!"
 end
-
-
-
-
-
-
-
-
-
-
-
 
 
 
