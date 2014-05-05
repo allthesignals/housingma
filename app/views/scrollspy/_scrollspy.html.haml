@@ -2,3 +2,7 @@
   %div.bs-sidebar.hidden-print.affix
     %ul.nav.bs-sidenav
       = render partial: 'scrollspy/topic_area', collection: content.topic_areas
+      -if export
+        %hr
+        %li
+          %a{href: '#export'} Export

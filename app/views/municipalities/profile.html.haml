@@ -7,7 +7,7 @@
     %div.col-md-10
       %table.borderless
         = render partial: 'municipalities/profile/topic_area', collection: @profile.topic_areas
-    = render partial: 'scrollspy/scrollspy', locals: { content: @profile }
+    = render partial: 'scrollspy/scrollspy', locals: { content: @profile, export: false }
 
 
 %div.modal.fade#neighbors
