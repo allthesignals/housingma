@@ -1,0 +1,4 @@
+%li
+  %a{href: "##{topic.slug}" } #{topic}
+  %ul
+    =render partial: 'scrollspy/subtopic', collection: topic.subtopics

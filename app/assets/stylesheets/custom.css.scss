@@ -53,6 +53,9 @@ p { font-size: 16px; }
   top: -50px;
 }
 
+
+.normal { top: 20px; }
+
 .highlighted {
   background-color: #F5F5F5;
   border: 20px solid #F5F5F5;
@@ -213,6 +216,7 @@ table {
   thead {
     border-top:    $light-border;
     border-bottom: $light-border;
+    vertical-align: bottom;
   }
   th { font-weight: 500; }
   td, th {
@@ -221,6 +225,7 @@ table {
     text-align: right;
     &.attr {
       text-align: left;
+      max-width: 200px;
     }
   }
 }
@@ -229,6 +234,15 @@ table {
   border: none;
 }
 
+.topic-area, .topic, .subtopic {
+  h1, h2, h3, h4, h5, h6 {
+    text-align: left;
+  }
+}
+
+.topic-area { background-color: #DDD }
+.topic      { background-color: #EEE }
+.subtopic   { background-color: #FFF }
 
 span.moe {
   color:       #AAA;
@@ -246,6 +260,8 @@ span.defined {
   display: block;
   color: $text-light;
 }
+
+.modal-dialog  { max-width: 400px; }
 
 ul.similar, ul.neighbors {
   list-style:    none;
@@ -325,3 +341,47 @@ input { min-height: 44px; }
 .tt-hint {
   width: 100%;
 }
+
+
+
+
+
+
+
+/* scrollspy */
+
+.bs-sidenav ul > li { 
+  list-style-type: none;
+  margin-left: 10px;
+}
+
+.bs-sidenav a { padding-left: 10px; }
+
+.bs-sidenav {
+  color: #787878;
+  li {
+    font-weight: 400;
+    ul {
+      display: none;
+      padding-left: 10px;
+    }
+
+    &.active {
+      font-weight: 800;
+      ul {
+        display: block;
+        li.active {
+          font-weight: 800;
+          ul {
+            display: block;
+            li.active { }
+          }
+        }
+        li.active > a { 
+          border-left: 2px #5E8AC7 solid;
+        }
+      }
+    }
+  }
+}
+

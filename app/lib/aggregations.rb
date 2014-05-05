@@ -7,17 +7,18 @@ module Aggregations
 
 
   def total(attribute)
-    municipalities.includes(:housing_data).inject(0.0) {|sum, m| sum + m.housing_data.send(attribute)}
+    HousingData.sum(attribute, conditions: ['muni_id IN (?)', municipalities.pluck(:id)])
   end
 
 
   def average(attribute)
-    total(attribute) / municipalities.count
+    HousingData.average(attribute, conditions: ['muni_id IN (?)', municipalities.pluck(:id)])
   end
 
 
   def median(attribute)
-    sorted = municipalities.includes(:housing_data).map {|m| m.housing_data.send(attribute)}.sort
+    # Don't know if #sort or #order is the faster way
+    sorted = HousingData.where(muni_id: municipalities.pluck(:id)).pluck(attribute).sort
     length = sorted.length
 
     (sorted[(length - 1) / 2] + sorted[length / 2]) / 2.0

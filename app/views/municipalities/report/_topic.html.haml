@@ -1,0 +1,5 @@
+%h3{id: "#{topic.slug}"}
+  #{topic}
+%p= Haml::Engine.new(topic.narrative).render(self)
+
+= render partial: 'municipalities/report/subtopic', collection: topic.subtopics

@@ -1,0 +1,4 @@
+%thead.topic-area{id: "#{topic_area.slug}"}
+  %th{colspan: 7}
+    %h3 #{topic_area}
+= render partial: 'municipalities/profile/topic', collection: topic_area.topics

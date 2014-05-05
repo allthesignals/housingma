@@ -7,5 +7,9 @@ class County < ActiveRecord::Base
     name.gsub(/\scounty$/i, '')
   end
 
+  def to_s
+    short_name
+  end
+
   include Aggregations
 end

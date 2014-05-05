@@ -1,0 +1,19 @@
+%thead.subtopic{id: "#{subtopic.slug}"}
+  %th.attr #{subtopic}
+  %th      #{@profile.muni}
+  %th
+    %a{data: {toggle: 'modal', target: '#neighbors'}} Nearest Ten
+  %th
+    %span.defined
+      %a{data: {toggle: 'modal', target: '#community-type'}} #{@profile.community_type}
+    %span.geography Community Type
+  %th
+    %span.defined   #{@profile.region}
+    %span.geography Region
+  %th
+    %span.defined   #{@profile.county}
+    %span.geography County
+  %th
+    %span.defined   #{@profile.state}
+    %span.geography State
+= render partial: 'municipalities/profile/field', collection: subtopic.fields

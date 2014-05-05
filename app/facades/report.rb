@@ -1,0 +1,2 @@
+class Report < CommonFacade
+end
