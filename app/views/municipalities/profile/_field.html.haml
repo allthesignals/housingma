@@ -1,10 +1,10 @@
 %tr
-  %td.attr #{field.alias}
+  %td.attr #{field.full_alias}
   %td
-    = trim @profile.housing.send("#{field}")
+    = trim @profile.housing.send "#{field}"
     %span.moe= moe_or_blank(@profile.housing, "#{field}")
-  %td= trim @profile.neighbors.send("average_#{field}")
-  %td= trim @profile.community_type.send("average_#{field}")
-  %td= trim @profile.region.send("average_#{field}")
-  %td= trim @profile.county.send("average_#{field}")
-  %td= trim @profile.state.send("average_#{field}")
+  %td= trim @profile.neighbors.send      field.with_op
+  %td= trim @profile.community_type.send field.with_op
+  %td= trim @profile.region.send         field.with_op
+  %td= trim @profile.county.send         field.with_op
+  %td= trim @profile.state.send          field.with_op

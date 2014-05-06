@@ -13,6 +13,9 @@ describe Field do
   it { should respond_to :sort_order }
   it { should respond_to :operation }
 
+  it { should respond_to :full_alias }
+  it { should respond_to :with_op }
+
   it { should respond_to :topic }
   it { should respond_to :subtopic }
 
@@ -84,6 +87,24 @@ describe Field do
         it { should be_valid }
       end
     end
+  end
+
+  describe "#full_alias" do
+    before do
+      @field.title = "unit_per_vl"
+      @field.alias = "Units Per Volume"
+      @field.operation = "total"
+    end
+    its(:full_alias) { should == "Total Units Per Volume"}
+  end
+
+  describe "#with_op" do
+    before do
+      @field.title = "unit_per_vl"
+      @field.alias = "Units Per Volume"
+      @field.operation = "total"
+    end
+    its(:with_op) { should == "total_unit_per_vl" }
   end
 
 end

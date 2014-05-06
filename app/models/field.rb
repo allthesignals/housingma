@@ -20,6 +20,14 @@ class Field < ActiveRecord::Base
 
   default_scope { order(:sort_order).order(:id) }
 
+  def full_alias
+    "#{self.operation.titleize} #{self.alias}"
+  end
+
+  def with_op
+    "#{operation}_#{title}"
+  end
+
   def to_s
     title
   end
