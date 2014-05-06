@@ -16,6 +16,7 @@
 
 
 .DS_Store
+Gemfile.lock
 
 
 # Never commit a .env file
