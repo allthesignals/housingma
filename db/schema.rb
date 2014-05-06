@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140503213045) do
+ActiveRecord::Schema.define(:version => 20140506174633) do
 
   create_table "fields", :force => true do |t|
     t.string   "title"
@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(:version => 20140503213045) do
     t.string   "alias"
     t.integer  "sort_order"
     t.integer  "subtopic_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "operation",   :default => "average"
   end
 
   create_table "subtopics", :force => true do |t|
