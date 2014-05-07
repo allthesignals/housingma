@@ -11,6 +11,10 @@ describe Field do
   it { should respond_to :narrative }
   it { should respond_to :description }
   it { should respond_to :sort_order }
+  it { should respond_to :operation }
+
+  it { should respond_to :full_alias }
+  it { should respond_to :with_op }
 
   it { should respond_to :topic }
   it { should respond_to :subtopic }
@@ -63,4 +67,44 @@ describe Field do
       it { should_not be_valid }
     end
   end
+
+  describe "#operation" do
+    context "when absent" do
+      before { @field.operation = " " }
+      it { should_not be_valid }
+    end
+    context "when not in the list" do
+      wrong_operations = %w( log ln polarize )
+      wrong_operations.each do |wrong_op|
+        before { @field.operation = wrong_op }
+        it { should_not be_valid }
+      end
+    end
+    context "when in the list" do
+      operations = %w( average total median )
+      operations.each do |op|
+        before { @field.operation = op }
+        it { should be_valid }
+      end
+    end
+  end
+
+  describe "#full_alias" do
+    before do
+      @field.title = "unit_per_vl"
+      @field.alias = "Units Per Volume"
+      @field.operation = "total"
+    end
+    its(:full_alias) { should == "Total Units Per Volume"}
+  end
+
+  describe "#with_op" do
+    before do
+      @field.title = "unit_per_vl"
+      @field.alias = "Units Per Volume"
+      @field.operation = "total"
+    end
+    its(:with_op) { should == "total_unit_per_vl" }
+  end
+
 end

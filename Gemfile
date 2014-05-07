@@ -11,16 +11,17 @@ gem 'activerecord-postgis-adapter'
 gem 'rgeo'
 gem 'rgeo-geojson'
 
-
 #    app server
 gem 'unicorn' 
 gem 'foreman'
 
 #    Render HAML content for narratives
 gem 'haml'
+gem 'd3-rails'
+gem 'tufted-rails' # Terse D3 by Matt Gardner (allthesignals)
 
 #    Export Word files
-gem 'docx_replace'
+gem 'docx_replace', git: "git://github.com/beechnut/docx_replace.git"
 
 #    Autocomplete
 gem 'twitter-typeahead-rails'   

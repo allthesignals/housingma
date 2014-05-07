@@ -32,19 +32,9 @@ class MunicipalitiesController < ApplicationController
     doc = DocxReplace::Doc.new("#{Rails.root}/lib/assets/template.docx", "#{Rails.root}/tmp")
 
     # Replace some variables
-    doc.replace("$$var1$$", "#{@profile.region.to_s}")
-    doc.replace("$$var2$$", "#{@profile.county.average_ro}")
-    doc.replace("$$var1$$", "#{@profile.state}")
-    doc.replace("$$var2$$", "#{@profile.neighbors.median_ro}")
-    doc.replace("$$var2$$", "#{@profile.county.average_o}") # doesn't overwrite or throw
-
-=begin
-
-  pass in variables hash, so we can do:
-  variables.each {|var| doc.replace(var.placeholder, var.result)}
-
-=end
-
+    matches = doc.uniq_matches(/\{(\@[\w\.]*)\}/)
+    matches.each {|match| doc.replace("{#{match}}", "#{eval match}", true)}
+    
     # Write the document back to a temporary file
     tmp_file = Tempfile.new('word_template', "#{Rails.root}/tmp")
     doc.commit(tmp_file)
