@@ -3,16 +3,16 @@
   %div.row
     %div.col-xs-12
       %div.links
+        =link_to 'Home',             root_path
+        =link_to 'About',            about_path
         =link_to 'Help',             help_path
-        =link_to 'Contact',          contact_path
-        =link_to 'Terms of Service', terms_path
-
+        
         - if @muni
           =link_to 'Download', download_municipality_path(@muni)
         - else
           =link_to 'Download', download_path
 
-        =link_to 'Support',  support_path
+        =link_to 'Terms of Service', terms_path
         =link_to 'Github',  'http://github.com/MAPC/housingma', target: '_blank'
 
   %div.row
@@ -21,6 +21,7 @@
         %a{href: "http://bostonbuilt.org"} Built in Boston
         by
       %center
-        %img{src: 'http://www.mapc.org/sites/default/files/mapc_logo.png'}
+        %a{href:  'http://www.mapc.org'}
+          %img{src: 'http://www.mapc.org/sites/default/files/mapc_logo.png'}
 
     

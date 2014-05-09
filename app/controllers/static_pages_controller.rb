@@ -1,14 +1,18 @@
 class StaticPagesController < ApplicationController
 
-  def contact ; end
+  layout 'static_pages'
 
-  def guide ; end
+  def about ; end
 
   def help ; end
 
-  def index ; end
+  def index
+    render layout: 'application'
+  end
 
-  def support ; end
+  def guide
+    render layout: 'application'
+  end
 
   def download
     render 'municipalities/download'

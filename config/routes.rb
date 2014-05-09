@@ -7,9 +7,8 @@ Housingma::Application.routes.draw do
   match 'munis'    => 'static_pages#munis'
   match 'guide'    => 'static_pages#guide'
   match 'help'     => 'static_pages#help'
-  match 'contact'  => 'static_pages#contact'
+  match 'about'    => 'static_pages#about'
   match 'terms'    => 'static_pages#terms'
-  match 'support'  => 'static_pages#support'
   match 'download' => 'static_pages#download'
 
   match 'form'    => 'municipalities#form'

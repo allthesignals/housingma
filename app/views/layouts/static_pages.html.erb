@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Housing <%= yield :title %> MA</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body data-spy="scroll" data-offset="130" data-target="#scrollspy">
+
+  <%= render 'layouts/header' %>
+
+  <div class="container">
+    <h1 class="page-header">
+      <%= yield :page_name %>
+    </h1>
+
+    <div class="col-md-8 col-xs-12">
+      <%= yield %>
+    </div>
+  </div>
+
+  <%= render 'layouts/footer' %>
+
+</body>
+</html>

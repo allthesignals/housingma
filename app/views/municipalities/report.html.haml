@@ -17,4 +17,7 @@
       %a.btn.btn-lg.btn-primary{href: export_municipality_path(@report.muni)}
         Export to Word (.docx)
 
+      %a.btn.btn-lg.btn-success{href: '#export'}
+        Export charts to images (.zip)
+
     = render partial: 'scrollspy/scrollspy', locals: { content: @report, export: true }
