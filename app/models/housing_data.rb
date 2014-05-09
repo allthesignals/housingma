@@ -1,5 +1,5 @@
 class HousingData < ActiveRecord::Base
-  establish_connection 'hppbackup'
+  establish_connection 'housing_data'
   self.table_name        = 'hh_aff_gap_inc_ten'
   self.primary_key = :muni_id
 
