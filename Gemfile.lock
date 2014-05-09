@@ -201,7 +201,7 @@ DEPENDENCIES
   activerecord-postgis-adapter
   bootstrap-typeahead-rails
   capistrano (~> 2.0)
-  capistrano-unicorn
+  capistrano-unicorn (= 0.2.0)
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.1)
   d3-rails

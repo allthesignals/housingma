@@ -41,7 +41,7 @@ group :development do
   gem 'capistrano',      '~> 2.0'
   gem 'net-ssh',         '2.7.0'
   gem 'net-ssh-gateway', '1.2.0'
-  gem 'capistrano-unicorn', :require => false
+  gem 'capistrano-unicorn', '0.2.0', :require => false
 end
 
 group :development, :test do
