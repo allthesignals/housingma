@@ -12,6 +12,8 @@ describe Field do
   it { should respond_to :description }
   it { should respond_to :sort_order }
   it { should respond_to :operation }
+  it { should respond_to :source }
+  it { should respond_to :methodology }
 
   it { should respond_to :full_alias }
   it { should respond_to :with_op }

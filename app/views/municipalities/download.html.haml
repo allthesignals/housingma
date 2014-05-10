@@ -37,7 +37,10 @@
         %small (1.4 MB .zip)
       %p.center
         or,
-        %a go to the User Guide page
+        - if @muni
+          =link_to 'go to the User Guide page', guide_municipality_path(@muni)
+        - else
+          =link_to 'go to the User Guide page', guide_path
 
 
     %div.col-md-4.download-area.highlighted

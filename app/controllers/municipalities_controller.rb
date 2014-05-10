@@ -16,6 +16,11 @@ class MunicipalitiesController < ApplicationController
     @muni = Municipality.find_by_name(params[:id].titleize)
   end
 
+  def guide
+    @guide = OpenStruct.new(topic_areas: TopicArea.all)
+    @muni  = Municipality.find_by_name(params[:id].titleize)
+  end
+
   def form
     @muni = Municipality.find_by_name(params[:id].titleize)
     if @muni 

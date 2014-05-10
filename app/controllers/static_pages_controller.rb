@@ -11,7 +11,8 @@ class StaticPagesController < ApplicationController
   end
 
   def guide
-    render layout: 'application'
+    @guide = OpenStruct.new(topic_areas: TopicArea.all)
+    render 'municipalities/guide'
   end
 
   def download

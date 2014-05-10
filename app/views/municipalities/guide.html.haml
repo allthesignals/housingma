@@ -1,0 +1,18 @@
+- provide :title, @muni.name if @muni
+
+%div.container
+  %h1 User Guide
+
+  %div.row
+    %div.col-md-10
+      = render partial: 'static_pages/guide/topic_area', collection: @guide.topic_areas
+      %hr   
+        %h2{id: "export"}
+          Export
+        %p
+          Download the User Guide as a Word document.
+
+        %a.btn.btn-lg.btn-primary{href: '#'}
+          Export User Guide to Word (.docx)
+
+    = render partial: 'scrollspy/scrollspy', locals: { content: @guide, export: true }
