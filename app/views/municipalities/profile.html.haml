@@ -7,7 +7,16 @@
     %div.col-md-10
       %table.borderless
         = render partial: 'municipalities/profile/topic_area', collection: @profile.topic_areas
-    = render partial: 'scrollspy/scrollspy', locals: { content: @profile, export: false }
+    
+      %hr
+      %h2{id: "export"}
+        Export
+      %p
+        Export the #{@profile.muni} Housing Data Profile to CSV.
+      %a.btn.btn-lg.btn-primary{href: profile_municipality_path(@profile.muni, format: 'csv')}
+        Export to CSV (CSV)
+
+    = render partial: 'scrollspy/scrollspy', locals: { content: @profile, export: true }
 
 
 %div.modal.fade#neighbors

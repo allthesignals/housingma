@@ -7,5 +7,9 @@ class Neighbors
     @municipalities = muni.nearest
   end
 
+  def to_s
+    "Nearest Ten"
+  end
+
   include Aggregations
 end

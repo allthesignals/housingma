@@ -2,7 +2,10 @@
   %th.attr #{subtopic}
   %th      #{@profile.muni}
   %th
-    %a{data: {toggle: 'modal', target: '#neighbors'}} Nearest Ten
+    %span.defined
+      %a{data: {toggle: 'modal', target: '#neighbors'}} #{@profile.neighbors}
+    %span.geography
+      Municipalities
   %th
     %span.defined
       %a{data: {toggle: 'modal', target: '#community-type'}} #{@profile.community_type}
