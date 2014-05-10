@@ -39,7 +39,10 @@ default_environment["RUBY_VERSION"] = "ruby-2.0.0-p247"
 
 default_run_options[:shell] = 'bash'
 
-after 'deploy:update', 'foreman:export'
+# I found that the export was not occurring properly, so I set it manually.
+# If I need to export again, I should do it manually, and check it against
+# that of other apps' /etc/init/housing.ma*conf s
+# after 'deploy:update', 'foreman:export'
 after 'deploy:update', 'foreman:restart'
 
 namespace :deploy do
