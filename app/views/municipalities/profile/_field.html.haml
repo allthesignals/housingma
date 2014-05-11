@@ -1,5 +1,7 @@
 %tr
-  %td.attr #{field.full_alias}
+  %td.attr
+    %a{data: {toggle: 'modal', target: "##{field.slug}"}}
+      #{field.full_alias}
   %td
     = trim @profile.housing.send "#{field}"
     %span.moe= moe_or_blank(@profile.housing, "#{field}")

@@ -18,7 +18,6 @@
 
     = render partial: 'scrollspy/scrollspy', locals: { content: @profile, export: true }
 
-
 %div.modal.fade#neighbors
   %div.modal-dialog
     %div.modal-content
@@ -43,3 +42,5 @@
           =render partial: 'similar', collection: @profile.similar_munis
       %div.modal-footer
         %button.btn.btn-default{type: 'button', data: {dismiss: 'modal'}} Close window
+
+= render partial: 'municipalities/profile/meta', collection: @profile.fields

@@ -1,0 +1,21 @@
+%div.modal.fade{id: "#{meta.slug}" }
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}} &times;
+        %h4.modal-title
+          #{meta.alias}
+      %div.modal-body
+        %p
+          %strong Field Code:
+          #{meta}
+        %p
+          %strong Methodology
+          %br
+          = meta.methodology
+        %p
+          %strong Source
+          %br
+          = meta.source
+      %div.modal-footer
+        %button.btn.btn-default{type: 'button', data: {dismiss: 'modal'}} Close

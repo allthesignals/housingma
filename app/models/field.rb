@@ -9,7 +9,8 @@ class Field < ActiveRecord::Base
   alias_attribute :description, :narrative
 
   belongs_to :subtopic
-  delegate   :topic, to: :subtopic, allow_nil: true
+  delegate   :topic,      to: :subtopic, allow_nil: true
+  delegate   :topic_area, to: :topic,    allow_nil: true
 
   OPERATIONS = %w( average median total )
 
@@ -30,6 +31,10 @@ class Field < ActiveRecord::Base
 
   def to_s
     title
+  end
+
+  def slug
+    to_s.dasherize
   end
 
 end

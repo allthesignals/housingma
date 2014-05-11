@@ -19,8 +19,6 @@ class CommonFacade
     @region         = @muni.regions.first
     @county         = @muni.county
     @state          = @muni.state
-
-    @topic_areas = TopicArea.all
   end
 
 end

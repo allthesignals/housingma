@@ -2,6 +2,16 @@ require 'csv'
 
 class Profile < CommonFacade
 
+  # Include Field association
+  def initialize(municipality)
+    @topic_areas = TopicArea.includes(:fields)
+    super
+  end
+
+  def fields
+    Field.all
+  end
+
   def neighboring
     neighbors.municipalities.sort_by {|m| m.name}
   end
@@ -10,6 +20,8 @@ class Profile < CommonFacade
     community_type.municipalities
   end
 
+
+  # TODO: Refactor this and possibly move it into a module.
   def to_csv
     CSV.generate do |row|
       row << ["Housing Data Profile: #{self.muni}",

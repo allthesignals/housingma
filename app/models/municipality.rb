@@ -30,14 +30,14 @@ class Municipality < ActiveRecord::Base
   # Prevent :geom from being selected
   #   call Municipality.unscoped to get
   #   access to :geom
-  default_scope select(['municipalities.id',
+  default_scope { select(['municipalities.id',
                         'municipalities.name',
                         'municipalities.muni_id',
                         'municipalities.community_subtype_id',
                         'municipalities.created_at',
                         'municipalities.updated_at',
                         'municipalities.county_id',
-                        'municipalities.state_id']).order('municipalities.id')
+                        'municipalities.state_id']).order('municipalities.id') }
   
   # scope
   def nearest(lim=10)
