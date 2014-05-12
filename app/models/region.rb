@@ -3,6 +3,8 @@ class Region < ActiveRecord::Base
   
   has_and_belongs_to_many :municipalities
 
+  default_scope { includes(:municipalities) }
+
   def to_s
     name
   end

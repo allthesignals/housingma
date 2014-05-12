@@ -17,7 +17,6 @@ class Municipality < ActiveRecord::Base
   has_and_belongs_to_many :regions
   has_and_belongs_to_many :subregions
 
-
   def to_param
     name.downcase.parameterize
   end

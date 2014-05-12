@@ -4,6 +4,8 @@ class CommunityType < ActiveRecord::Base
   has_many :community_subtypes
   has_many :municipalities, through: :community_subtypes
 
+  default_scope { includes(:municipalities) }
+
   def muni_names
     municipalities.map{|m| m.name}
   end

@@ -1,6 +1,7 @@
 %thead.subtopic{id: "#{subtopic.slug}"}
   %th.attr #{subtopic}
-  %th      #{@profile.muni}
+  %th.muni      #{@profile.muni}
+  %th
   %th
     %span.defined
       %a{data: {toggle: 'modal', target: '#neighbors'}} #{@profile.neighbors}
@@ -13,9 +14,9 @@
   %th
     %span.defined   #{@profile.region}
     %span.geography Region
-  %th
-    %span.defined   #{@profile.county}
-    %span.geography County
+  -# %th
+  -#   %span.defined   #{@profile.county}
+  -#   %span.geography County
   %th
     %span.defined   #{@profile.state}
     %span.geography State

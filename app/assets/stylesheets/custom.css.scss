@@ -2,7 +2,8 @@ $text-base:  #333;
 $text-light: #666;
 $light-border: 1px solid #DDD;
 
-$features-background: #00C6D4;
+$select-background:   #00C6D4;
+$features-background: steelblue;
 
 body {
   overflow-x: hidden;
@@ -11,6 +12,11 @@ body {
 }
 
 p { font-size: 16px; }
+
+
+
+
+/* Header & Navigation */
 
 .header-pad {
   padding-top: 70px;
@@ -54,7 +60,6 @@ p { font-size: 16px; }
   top: -50px;
 }
 
-
 .normal { top: 20px; }
 
 .highlighted {
@@ -67,8 +72,13 @@ p { font-size: 16px; }
   border-bottom: $light-border;
 }
 
+
+
+
+/* Home   */
+
 #town-select {
-  background-color: steelblue;
+  background-color: $select-background;
   padding: 70px 0;
   margin:  50px 0 0;
 }
@@ -76,6 +86,15 @@ p { font-size: 16px; }
 .features {
   padding: 30px 0;
   background-color: $features-background;
+
+  h2 {
+    color: white;
+    font-weight: bold;
+    font-size: 34px;
+    position: relative;
+    left: 50%;
+    top: 40px;
+  }
 }
 
 .feature {
@@ -92,7 +111,7 @@ p { font-size: 16px; }
   }
 }
 
-#second-button {
+#start-planning-field {
     width:   165px;
     padding: 15px;
     position: relative;
@@ -122,6 +141,53 @@ p { font-size: 16px; }
   font-style: italic;
 }
 
+
+/* Autocomplete / Typeahead */
+
+input { min-height: 44px; }
+.twitter-typeahead {
+  width: 100%;
+
+  .tt-hint {
+    display: block;
+    height:      34px;
+    padding:     6px   12px;
+    font-size:   14px;
+    line-height: 1.428571429;
+    border:      1px solid transparent;
+    border-radius: 4px;
+  }
+
+  .hint-small {
+    height:    30px;
+    padding:   5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    line-height:   1.5;
+  }
+
+  .hint-large {
+    height:      45px;
+    padding:     10px 16px;
+    font-size:   18px;
+    line-height: 1.33;
+    border-radius: 6px;
+    
+  }
+}
+
+
+.tt-dropdown-menu {
+  width: 100%;
+}
+.tt-hint {
+  width: 100%;
+}
+
+
+
+
+/* Municipalities / Services */
 
 .service {
   min-height:   250px;
@@ -169,6 +235,10 @@ p { font-size: 16px; }
   }
 }
 
+
+
+/* Service: Data Download */
+
 .download-area {
   margin-top:   30px;
   padding:    0 40px;
@@ -212,6 +282,9 @@ p { font-size: 16px; }
 
 
 
+
+/* Service: Housing Data Profile */
+
 table {
   width: 100%;
   thead {
@@ -227,6 +300,15 @@ table {
     &.attr {
       text-align: left;
       max-width: 200px;
+    }
+    &.muni{
+      // border-right: #F6F6F6 solid 2px;
+    }
+    &.operation{
+      // max-width: 40px;
+      text-align: right;
+      color: #BBB;
+      text-transform: capitalize;
     }
   }
 }
@@ -277,76 +359,6 @@ ul.similar, ul.neighbors {
   }
 }
 
-.footer {
-  border-top: $light-border;
-  margin-top:  30px;
-  padding-top: 40px;
-  // border: 1px #E0F solid;
-  a {
-    color: $text-light;
-    &:hover {
-      color: $text-base;
-      text-decoration: none;
-    }
-  }
-}
-
-#built-in-boston {
-  padding-top: 20px;
-}
-
-.links {
-  text-align: center;
-  a {
-    margin: 0 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-}
-
-
-/* Autocomplete / Typeahead */
-
-input { min-height: 44px; }
-.twitter-typeahead {
-  width: 100%;
-
-  .tt-hint {
-    display: block;
-    height:      34px;
-    padding:     6px   12px;
-    font-size:   14px;
-    line-height: 1.428571429;
-    border:      1px solid transparent;
-    border-radius: 4px;
-  }
-
-  .hint-small {
-    height:    30px;
-    padding:   5px 10px;
-    font-size: 12px;
-    border-radius: 3px;
-    line-height:   1.5;
-  }
-
-  .hint-large {
-    height:      45px;
-    padding:     10px 16px;
-    font-size:   18px;
-    line-height: 1.33;
-    border-radius: 6px;
-    
-  }
-}
-
-.tt-dropdown-menu {
-  width: 100%;
-}
-.tt-hint {
-  width: 100%;
-}
-
-
 
 
 /* Static Pages */
@@ -357,7 +369,7 @@ ul.contact {
 }
 
 
-/* scrollspy */
+/* Scrollspy */
 
 .bs-sidenav ul > li { 
   list-style-type: none;
@@ -391,6 +403,36 @@ ul.contact {
         }
       }
     }
+  }
+}
+
+
+/* Footer */
+
+.footer {
+  border-top: $light-border;
+  margin-top:  30px;
+  padding-top: 40px;
+  // border: 1px #E0F solid;
+  a {
+    color: $text-light;
+    &:hover {
+      color: $text-base;
+      text-decoration: none;
+    }
+  }
+}
+
+#built-in-boston {
+  padding-top: 20px;
+}
+
+.links {
+  text-align: center;
+  a {
+    margin: 0 20px;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 }
 

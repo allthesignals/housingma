@@ -9,30 +9,6 @@
 
   %div.row
     %div.col-md-4.service
-      %h4 Simple Needs Assessment
-      
-      %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/efc043d0d7d8b238848951324e866c8b/what-is-trello1.png'}
-
-      %a.btn.btn-lg.btn-success{href: report_municipality_path} Select
-      %ul
-        %li
-          Automatically generate a housing needs assessment for
-          = @muni.name
-        %li
-          Report includes narrative and visualizations of
-          critical housing indicators
-        %li
-          Meets state-legislated requirements for housing
-          needs assessment
-        %li
-          Export document to Word.
-      %a.btn.btn-default{href: report_municipality_path}
-        Start planning
-        &nbsp;
-        %span.glyphicon.glyphicon-arrow-right
-
-
-    %div.col-md-4.service
       %h4 Housing Data Profile
       
       %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/efc043d0d7d8b238848951324e866c8b/what-is-trello1.png'}
@@ -40,14 +16,35 @@
       %a.btn.btn-lg.btn-warning{href: profile_municipality_path} Select
       %ul
         %li
-          View statistics on demographics, affordability, tenure, and more in a single set of tables.
+          View #{Field.count} statistics on demographics, housing cost, supply, and more in a single table.
         %li
-          Compare
-          = @muni.name
-          to its neighbors, similar cities, the region,
+          Compare #{@muni}
+          to its neighbors, similar cities & towns, the region,
           and the state.
+        %li
+          Export table to CSV.
       %a.btn.btn-default{href: profile_municipality_path}
         View summary tables
+        &nbsp;
+        %span.glyphicon.glyphicon-arrow-right
+
+    %div.col-md-4.service
+      %h4 Simple Needs Assessment
+      
+      %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/efc043d0d7d8b238848951324e866c8b/what-is-trello1.png'}
+
+      %a.btn.btn-lg.btn-success{href: report_municipality_path} Select
+      %ul
+        %li
+          Interactive visualizations of 12 key housing indicators for #{@muni}
+        %li
+          Interpretive text explaining data and trends
+        %li
+          Provides most required data elements for Housing Production Plans
+        %li
+          Export document to Word.
+      %a.btn.btn-default{href: report_municipality_path}
+        Start planning
         &nbsp;
         %span.glyphicon.glyphicon-arrow-right
 
@@ -60,13 +57,11 @@
       %a.btn.btn-lg.btn-primary{href: download_municipality_path} Select
       %ul
         %li
-          Download the data to perform your own analyses
-          and visualizations.
+          Download all 257 currently available data points for all cities & towns in the state.
         %li
-          Dataset includes 200+ attributes on everything from
-          demographics to cost burden.
+          Dig deeper and perform your own analyses.
         %li
-          Metadata and user guide
+          Includes metadata and user guide
       %a.btn.btn-default{href: download_municipality_path}
         View datasets and guide
         &nbsp;

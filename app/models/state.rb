@@ -3,6 +3,8 @@ class State < ActiveRecord::Base
 
   has_many :municipalities
 
+  default_scope { includes(:municipalities) }
+
   def to_s
     name
   end
