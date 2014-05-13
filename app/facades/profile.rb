@@ -4,7 +4,7 @@ class Profile < CommonFacade
 
   # Include Field association
   def initialize(municipality)
-    @topic_areas = TopicArea.includes(:fields)
+    @topic_areas = TopicArea.includes(:fields).all
     super
   end
 
