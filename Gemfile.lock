@@ -105,12 +105,15 @@ GEM
       net-ssh (>= 2.6.5)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
+    oj (2.9.0)
     options (2.3.2)
     pg (0.17.1)
     polyglot (0.3.4)
     progress_bar (1.0.0)
       highline (~> 1.6.1)
       options (~> 2.3.0)
+    rabl (0.9.3)
+      activesupport (>= 2.3.14)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -217,8 +220,10 @@ DEPENDENCIES
   launchy
   net-ssh (= 2.7.0)
   net-ssh-gateway (= 1.2.0)
+  oj (= 2.9.0)
   pg
   progress_bar
+  rabl (= 0.9.3)
   rails (= 3.2.13)
   rgeo
   rgeo-geojson
