@@ -1,3 +1,8 @@
+$orange:     #F7AD4D;
+$light-blue: #5FB0D8;
+$dark-blue:  #134B8E;
+$green:      #C9E4AE;
+
 $text-base:  #333;
 $text-light: #666;
 $light-border: 1px solid #DDD;
@@ -77,19 +82,33 @@ p { font-size: 16px; }
 
 /* Home   */
 
+.tagline {
+  background-color: $orange;
+  color: #FFF;
+  margin-top: 50px;
+  padding: 3px 0 10px;
+  h2, h3, h4 { 
+    text-align: center;
+    font-weight: 300;
+  }
+}
+
 #town-select {
-  background-color: $select-background;
+  background-color: $light-blue;
   padding: 65px 0 90px;
-  margin:  50px 0 0;
+  margin:  0px 0 0;
   h2, h3 {
     color: white;
-
+  }
+  .btn {
+    background-color: $green;
+    color: $dark-blue;
   }
 }
 
 .features {
   padding: 30px 0;
-  background-color: $features-background;
+  background-color: $dark-blue;
   margin-bottom: -50px;
 
   h2 {
@@ -123,13 +142,16 @@ p { font-size: 16px; }
   top: 15px;
   border-radius: 12px;
   z-index: 10;
-  background-color: $features-background;
-  .btn { background-color: $select-background }
+  background-color: $dark-blue;
+  .btn {
+    background-color: $green;
+    color: $dark-blue;
+  }
 }
 
 #quote {
   font-family: serif;
-  background-color: #CCCCCF;
+  background-color: #BBBBBE;
   color: #FFF;
   padding-top:    40px;
   padding-bottom: 10px;
@@ -169,7 +191,7 @@ input {
     position:  relative;
     bottom:     4px;
     font-size: 25px !important;
-    height:    58px !important;
+    height:    56px !important;
     span {
       margin-left: 4px;
       top:        3px;

@@ -21,10 +21,73 @@ class Profile < CommonFacade
   end
 
 
+  def to_json
+    {
+      municipality: {
+        name:    muni.name,
+        muni_id: muni.muni_id,
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: muni.housing_data.send(field.title),
+                   alias: field.alias}
+                end
+      },
+      neighbors: {
+        names:  neighbors.municipalities.map {|m| m.name},
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: neighbors.send(field.with_op),
+                   operation: field.operation,
+                   alias: field.alias}
+                end
+      },
+      community_type: {
+        names:  community_type.municipalities.map {|m| m.name},
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: community_type.send(field.with_op),
+                   operation: field.operation,
+                   alias: field.alias}
+                end
+      },
+      region: {
+        name:    region.name,
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: region.send(field.with_op),
+                   operation: field.operation,
+                   alias: field.alias}
+                end
+      },
+      county: {
+        name:    county.name,
+        fips:    county.fips,
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: county.send(field.with_op),
+                   operation: field.operation,
+                   alias: field.alias}
+                end
+      },
+      state: {
+        name:    state.name,
+        fips:    state.fips,
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: state.send(field.with_op),
+                   operation: field.operation,
+                   alias: field.alias}
+                end
+      },
+    }
+  end
+
+
   # TODO: Refactor this and possibly move it into a module.
   def to_csv
     CSV.generate do |csv|
       csv << ["Housing Data Profile: #{self.muni}",
+               nil,
                nil,
                nil,
                nil,
