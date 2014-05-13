@@ -48,7 +48,7 @@ p { font-size: 16px; }
 
 .navbar-header {
   float:      left;
-  padding:    13px;
+  padding:    15px; // change this to move header links up/down
   text-align: center;
   width:      100%;
 }
@@ -79,21 +79,26 @@ p { font-size: 16px; }
 
 #town-select {
   background-color: $select-background;
-  padding: 70px 0;
+  padding: 65px 0 90px;
   margin:  50px 0 0;
+  h2, h3 {
+    color: white;
+
+  }
 }
 
 .features {
   padding: 30px 0;
   background-color: $features-background;
+  margin-bottom: -50px;
 
   h2 {
     color: white;
     font-weight: bold;
     font-size: 34px;
     position: relative;
-    left: 50%;
-    top: 40px;
+    text-align: center;
+    margin-bottom: 30px;
   }
 }
 
@@ -112,13 +117,14 @@ p { font-size: 16px; }
 }
 
 #start-planning-field {
-    width:   165px;
-    padding: 15px;
-    position: relative;
-    top: 65px;
-    border-radius: 12px;
-    z-index: 10;
-    background-color: $features-background;
+  width:   165px;
+  padding: 15px;
+  position: relative;
+  top: 15px;
+  border-radius: 12px;
+  z-index: 10;
+  background-color: $features-background;
+  .btn { background-color: $select-background }
 }
 
 #quote {
@@ -144,18 +150,46 @@ p { font-size: 16px; }
 
 /* Autocomplete / Typeahead */
 
-input { min-height: 44px; }
+input { 
+  min-height: 44px;
+  padding: 4px 12px;
+  border-top-left-radius:    8px !important;
+  border-bottom-left-radius: 8px !important;
+}
+
+.typeahead {
+  height:    55px;
+  font-size: 32px;
+}
+
+
+
+.input-group-btn {
+  button {
+    position:  relative;
+    bottom:     4px;
+    font-size: 25px !important;
+    height:    58px !important;
+    span {
+      margin-left: 4px;
+      top:        3px;
+    }
+  }
+}
+
 .twitter-typeahead {
   width: 100%;
+  height: inherit;
 
   .tt-hint {
     display: block;
-    height:      34px;
+    height:      55px;
     padding:     6px   12px;
-    font-size:   14px;
+    font-size:   32px;
     line-height: 1.428571429;
     border:      1px solid transparent;
     border-radius: 4px;
+    color: #AAA;
   }
 
   .hint-small {
@@ -167,12 +201,12 @@ input { min-height: 44px; }
   }
 
   .hint-large {
-    height:      45px;
-    padding:     10px 16px;
-    font-size:   18px;
-    line-height: 1.33;
-    border-radius: 6px;
-    
+    height:        45px;
+    padding:       10px 16px;
+    font-size:     18px;
+    line-height:   1.33;
+
+    border-radius:  6px;
   }
 }
 
@@ -287,6 +321,7 @@ input { min-height: 44px; }
 
 table {
   width: 100%;
+  font-size: 90%;
   thead {
     border-top:    $light-border;
     border-bottom: $light-border;
@@ -302,12 +337,12 @@ table {
       max-width: 200px;
     }
     &.muni{
+      background-color: #F9F9F9;
       // border-right: #F6F6F6 solid 2px;
     }
     &.operation{
-      // max-width: 40px;
       text-align: right;
-      color: #BBB;
+      color: #AAA;
       text-transform: capitalize;
     }
   }
@@ -425,6 +460,7 @@ ul.contact {
 
 #built-in-boston {
   padding-top: 20px;
+  color: #666;
 }
 
 .links {
@@ -436,3 +472,9 @@ ul.contact {
   }
 }
 
+#built {
+  position: relative;
+  left:     10px;
+  bottom: -110px;
+  opacity:   0.7;
+}

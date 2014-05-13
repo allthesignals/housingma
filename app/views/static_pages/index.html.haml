@@ -4,13 +4,15 @@
 
 %div.row#town-select
   %div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2.col-xs-12
-    %h3{style: "color: white;"}
-      Type in your town:
+    %h2
+      Type in your city or town to begin
     %form{action: form_path, method: 'post'}
       %div.input-group.input-group-lg
-        %input{class: 'form-control typeahead', type: 'text', placeholder: 'i.e. Barnstable', name: 'id'}
+        %input{class: 'form-control typeahead', type: 'text', placeholder: "i.e. #{random_muni}", name: 'id'}
         %span.input-group-btn
-          %button.btn.btn-success.btn-default Get started!
+          %button.btn.btn-success.btn-default
+            Get started!
+            %span.glyphicon.glyphicon-circle-arrow-right
 
 %div.row.features
   
@@ -32,7 +34,7 @@
     %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/efc043d0d7d8b238848951324e866c8b/what-is-trello1.png'}
 
     %p
-      Visualizations, interpretive text, and a user guide help you navigate and understand the data. Discover insights into key housing indicators in your city or town.
+      Discover insights into key housing indicators in your city or town. Visualizations, interpretive text, and a user guide help you navigate and understand the data.
 
   %div.col-lg-4.feature
     %h4 Something for Everyone

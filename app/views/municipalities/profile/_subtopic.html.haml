@@ -1,7 +1,7 @@
 %thead.subtopic{id: "#{subtopic.slug}"}
   %th.attr #{subtopic}
   %th.muni      #{@profile.muni}
-  %th
+  %th.operation
   %th
     %span.defined
       %a{data: {toggle: 'modal', target: '#neighbors'}} #{@profile.neighbors}
@@ -14,10 +14,10 @@
   %th
     %span.defined   #{@profile.region}
     %span.geography Region
-  -# %th
-  -#   %span.defined   #{@profile.county}
-  -#   %span.geography County
   %th
-    %span.defined   #{@profile.state}
+    %span.defined   #{@profile.county}
+    %span.geography County
+  %th
+    %span.defined   #{@profile.state.abbr}
     %span.geography State
 = render partial: 'municipalities/profile/field', collection: subtopic.fields

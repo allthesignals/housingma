@@ -7,4 +7,8 @@ module MunicipalitiesHelper
     moe = object.send "#{field_name}_me"
     "&plusmn; #{ "%.0f" % moe }".html_safe unless moe.nil? # format or nil
   end
+
+  def field_count
+    Field.count
+  end
 end
