@@ -17,7 +17,6 @@ class Municipality < ActiveRecord::Base
   has_and_belongs_to_many :regions
   has_and_belongs_to_many :subregions
 
-
   def to_param
     name.downcase.parameterize
   end
@@ -30,14 +29,16 @@ class Municipality < ActiveRecord::Base
   # Prevent :geom from being selected
   #   call Municipality.unscoped to get
   #   access to :geom
-  default_scope { select(['municipalities.id',
-                        'municipalities.name',
-                        'municipalities.muni_id',
-                        'municipalities.community_subtype_id',
-                        'municipalities.created_at',
-                        'municipalities.updated_at',
-                        'municipalities.county_id',
-                        'municipalities.state_id']).order('municipalities.id') }
+
+  default_scope { includes(:housing_data) }
+  # default_scope { select(['municipalities.id',
+  #                       'municipalities.name',
+  #                       'municipalities.muni_id',
+  #                       'municipalities.community_subtype_id',
+  #                       'municipalities.created_at',
+  #                       'municipalities.updated_at',
+  #                       'municipalities.county_id',
+  #                       'municipalities.state_id']).order('municipalities.id') }
   
   # scope
   def nearest(lim=10)

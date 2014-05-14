@@ -4,7 +4,7 @@ class Profile < CommonFacade
 
   # Include Field association
   def initialize(municipality)
-    @topic_areas = TopicArea.includes(:fields)
+    @topic_areas = TopicArea.includes(:fields).all
     super
   end
 
@@ -21,10 +21,73 @@ class Profile < CommonFacade
   end
 
 
+  def to_json
+    {
+      municipality: {
+        name:    muni.name,
+        muni_id: muni.muni_id,
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: muni.housing_data.send(field.title),
+                   alias: field.alias}
+                end
+      },
+      neighbors: {
+        names:  neighbors.municipalities.map {|m| m.name},
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: neighbors.send(field.with_op),
+                   operation: field.operation,
+                   alias: field.alias}
+                end
+      },
+      community_type: {
+        names:  community_type.municipalities.map {|m| m.name},
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: community_type.send(field.with_op),
+                   operation: field.operation,
+                   alias: field.alias}
+                end
+      },
+      region: {
+        name:    region.name,
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: region.send(field.with_op),
+                   operation: field.operation,
+                   alias: field.alias}
+                end
+      },
+      county: {
+        name:    county.name,
+        fips:    county.fips,
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: county.send(field.with_op),
+                   operation: field.operation,
+                   alias: field.alias}
+                end
+      },
+      state: {
+        name:    state.name,
+        fips:    state.fips,
+        fields: fields.map do |field| 
+                  {title: field.title,
+                   value: state.send(field.with_op),
+                   operation: field.operation,
+                   alias: field.alias}
+                end
+      },
+    }
+  end
+
+
   # TODO: Refactor this and possibly move it into a module.
   def to_csv
-    CSV.generate do |row|
-      row << ["Housing Data Profile: #{self.muni}",
+    CSV.generate do |csv|
+      csv << ["Housing Data Profile: #{self.muni}",
+               nil,
                nil,
                nil,
                nil,
@@ -33,9 +96,12 @@ class Profile < CommonFacade
               "Housing MA",
               "http://housing.ma"]
 
-      row << ["Attribute",
+      csv << nil_row(nil)
+
+      csv << ["Attribute",
               "#{self.muni}",
               "#{self.muni}, Margin of Error",
+              "Aggregation Method",
               "#{self.neighbors} Municipalities",
               "#{self.community_type} (Community Type)",
               "#{self.region} (Region)",
@@ -43,18 +109,19 @@ class Profile < CommonFacade
               "#{self.state} (State)"]
       
       self.topic_areas.each do |area|
-        row << nil_row("#{area}")
+        csv << nil_row("#{area}")
 
         area.topics.each do |topic|
-          row << nil_row("\t#{topic}")
+          csv << nil_row("\t#{topic}")
 
           topic.subtopics.each do |subtopic|
-            row << nil_row("\t\t#{subtopic}")
+            csv << nil_row("\t\t#{subtopic}")
 
             subtopic.fields.each do |field|
-              row << ["\t\t\t#{field.full_alias}",
+              csv << ["\t\t\t#{field.alias}",
                       self.housing.send(field.to_s),
                       self.housing.send(field.to_s << "_me"),
+                      field.operation,
                       self.neighbors.send(field.with_op),
                       self.community_type.send(field.with_op),
                       self.region.send(field.with_op),

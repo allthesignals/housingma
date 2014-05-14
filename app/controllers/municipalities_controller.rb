@@ -12,6 +12,7 @@ class MunicipalitiesController < ApplicationController
     @profile = Profile.new( Municipality.find_by_name(params[:id].titleize) )
     respond_to do |format|
       format.html
+      format.json { render json: @profile.to_json }
       format.csv { send_data @profile.to_csv, filename: "#{@profile.muni} Housing Data Profile.csv", disposition: 'attachment' }
     end
   end

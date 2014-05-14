@@ -1,10 +1,11 @@
 %tr
   %td.attr
     %a{data: {toggle: 'modal', target: "##{field.slug}"}}
-      #{field.full_alias}
-  %td
+      #{field.alias}
+  %td.muni
     = trim @profile.housing.send "#{field}"
     %span.moe= moe_or_blank(@profile.housing, "#{field}")
+  %td.operation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{field.operation.pluralize}:
   %td= trim @profile.neighbors.send      field.with_op
   %td= trim @profile.community_type.send field.with_op
   %td= trim @profile.region.send         field.with_op

@@ -1,8 +1,14 @@
+$orange:     #F7AD4D;
+$light-blue: #5FB0D8;
+$dark-blue:  #134B8E;
+$green:      #C9E4AE;
+
 $text-base:  #333;
 $text-light: #666;
 $light-border: 1px solid #DDD;
 
-$features-background: #00C6D4;
+$select-background:   #00C6D4;
+$features-background: steelblue;
 
 body {
   overflow-x: hidden;
@@ -11,6 +17,11 @@ body {
 }
 
 p { font-size: 16px; }
+
+
+
+
+/* Header & Navigation */
 
 .header-pad {
   padding-top: 70px;
@@ -42,7 +53,7 @@ p { font-size: 16px; }
 
 .navbar-header {
   float:      left;
-  padding:    13px;
+  padding:    15px; // change this to move header links up/down
   text-align: center;
   width:      100%;
 }
@@ -53,7 +64,6 @@ p { font-size: 16px; }
   position: relative;
   top: -50px;
 }
-
 
 .normal { top: 20px; }
 
@@ -67,15 +77,48 @@ p { font-size: 16px; }
   border-bottom: $light-border;
 }
 
+
+
+
+/* Home   */
+
+.tagline {
+  background-color: $orange;
+  color: #FFF;
+  margin-top: 50px;
+  padding: 3px 0 10px;
+  h2, h3, h4 { 
+    text-align: center;
+    font-weight: 300;
+  }
+}
+
 #town-select {
-  background-color: steelblue;
-  padding: 70px 0;
-  margin:  50px 0 0;
+  background-color: $light-blue;
+  padding: 65px 0 90px;
+  margin:  0px 0 0;
+  h2, h3 {
+    color: white;
+  }
+  .btn {
+    background-color: $green;
+    color: $dark-blue;
+  }
 }
 
 .features {
   padding: 30px 0;
-  background-color: $features-background;
+  background-color: $dark-blue;
+  margin-bottom: -50px;
+
+  h2 {
+    color: white;
+    font-weight: bold;
+    font-size: 34px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+  }
 }
 
 .feature {
@@ -92,19 +135,23 @@ p { font-size: 16px; }
   }
 }
 
-#second-button {
-    width:   165px;
-    padding: 15px;
-    position: relative;
-    top: 65px;
-    border-radius: 12px;
-    z-index: 10;
-    background-color: $features-background;
+#start-planning-field {
+  width:   165px;
+  padding: 15px;
+  position: relative;
+  top: 15px;
+  border-radius: 12px;
+  z-index: 10;
+  background-color: $dark-blue;
+  .btn {
+    background-color: $green;
+    color: $dark-blue;
+  }
 }
 
 #quote {
   font-family: serif;
-  background-color: #CCCCCF;
+  background-color: #BBBBBE;
   color: #FFF;
   padding-top:    40px;
   padding-bottom: 10px;
@@ -122,6 +169,81 @@ p { font-size: 16px; }
   font-style: italic;
 }
 
+
+/* Autocomplete / Typeahead */
+
+input { 
+  min-height: 44px;
+  padding: 4px 12px;
+  border-top-left-radius:    8px !important;
+  border-bottom-left-radius: 8px !important;
+}
+
+.typeahead {
+  height:    55px;
+  font-size: 32px;
+}
+
+
+
+.input-group-btn {
+  button {
+    position:  relative;
+    bottom:     4px;
+    font-size: 25px !important;
+    height:    56px !important;
+    span {
+      margin-left: 4px;
+      top:        3px;
+    }
+  }
+}
+
+.twitter-typeahead {
+  width: 100%;
+  height: inherit;
+
+  .tt-hint {
+    display: block;
+    height:      55px;
+    padding:     6px   12px;
+    font-size:   32px;
+    line-height: 1.428571429;
+    border:      1px solid transparent;
+    border-radius: 4px;
+    color: #AAA;
+  }
+
+  .hint-small {
+    height:    30px;
+    padding:   5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    line-height:   1.5;
+  }
+
+  .hint-large {
+    height:        45px;
+    padding:       10px 16px;
+    font-size:     18px;
+    line-height:   1.33;
+
+    border-radius:  6px;
+  }
+}
+
+
+.tt-dropdown-menu {
+  width: 100%;
+}
+.tt-hint {
+  width: 100%;
+}
+
+
+
+
+/* Municipalities / Services */
 
 .service {
   min-height:   250px;
@@ -169,6 +291,10 @@ p { font-size: 16px; }
   }
 }
 
+
+
+/* Service: Data Download */
+
 .download-area {
   margin-top:   30px;
   padding:    0 40px;
@@ -212,8 +338,12 @@ p { font-size: 16px; }
 
 
 
+
+/* Service: Housing Data Profile */
+
 table {
   width: 100%;
+  font-size: 90%;
   thead {
     border-top:    $light-border;
     border-bottom: $light-border;
@@ -227,6 +357,15 @@ table {
     &.attr {
       text-align: left;
       max-width: 200px;
+    }
+    &.muni{
+      background-color: #F9F9F9;
+      // border-right: #F6F6F6 solid 2px;
+    }
+    &.operation{
+      text-align: right;
+      color: #AAA;
+      text-transform: capitalize;
     }
   }
 }
@@ -277,76 +416,6 @@ ul.similar, ul.neighbors {
   }
 }
 
-.footer {
-  border-top: $light-border;
-  margin-top:  30px;
-  padding-top: 40px;
-  // border: 1px #E0F solid;
-  a {
-    color: $text-light;
-    &:hover {
-      color: $text-base;
-      text-decoration: none;
-    }
-  }
-}
-
-#built-in-boston {
-  padding-top: 20px;
-}
-
-.links {
-  text-align: center;
-  a {
-    margin: 0 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-}
-
-
-/* Autocomplete / Typeahead */
-
-input { min-height: 44px; }
-.twitter-typeahead {
-  width: 100%;
-
-  .tt-hint {
-    display: block;
-    height:      34px;
-    padding:     6px   12px;
-    font-size:   14px;
-    line-height: 1.428571429;
-    border:      1px solid transparent;
-    border-radius: 4px;
-  }
-
-  .hint-small {
-    height:    30px;
-    padding:   5px 10px;
-    font-size: 12px;
-    border-radius: 3px;
-    line-height:   1.5;
-  }
-
-  .hint-large {
-    height:      45px;
-    padding:     10px 16px;
-    font-size:   18px;
-    line-height: 1.33;
-    border-radius: 6px;
-    
-  }
-}
-
-.tt-dropdown-menu {
-  width: 100%;
-}
-.tt-hint {
-  width: 100%;
-}
-
-
 
 
 /* Static Pages */
@@ -357,7 +426,7 @@ ul.contact {
 }
 
 
-/* scrollspy */
+/* Scrollspy */
 
 .bs-sidenav ul > li { 
   list-style-type: none;
@@ -394,3 +463,40 @@ ul.contact {
   }
 }
 
+
+/* Footer */
+
+.footer {
+  border-top: $light-border;
+  margin-top:  30px;
+  padding-top: 40px;
+  // border: 1px #E0F solid;
+  a {
+    color: $text-light;
+    &:hover {
+      color: $text-base;
+      text-decoration: none;
+    }
+  }
+}
+
+#built-in-boston {
+  padding-top: 20px;
+  color: #666;
+}
+
+.links {
+  text-align: center;
+  a {
+    margin: 0 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+#built {
+  position: relative;
+  left:     10px;
+  bottom: -110px;
+  opacity:   0.7;
+}

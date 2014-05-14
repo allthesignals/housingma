@@ -1,59 +1,61 @@
 %h1.center.title    Housing MA
-%h3.center.subtitle Simple housing production plans and data<br/>for Massachusetts
+%h3.center.subtitle
+  Housing data, visualizations, and interpretation for Massachusetts
+
+%div.row.tagline
+  %h3
+    Helping communities plan for the housing needed to create a vibrant and economically competitive commonwealth
 
 %div.row#town-select
   %div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2.col-xs-12
+    %h2
+      Type in your city or town to begin
     %form{action: form_path, method: 'post'}
       %div.input-group.input-group-lg
-        %input{class: 'form-control typeahead', type: 'text', placeholder: 'Type in your town and', name: 'id'}
+        %input{class: 'form-control typeahead', type: 'text', placeholder: "i.e. #{random_muni}", name: 'id'}
         %span.input-group-btn
-          %button.btn.btn-success.btn-default Get started!
+          %button.btn.btn-success.btn-default
+            Get started!
+            %span.glyphicon.glyphicon-circle-arrow-right
 
 %div.row.features
-  %div.col-lg-4.feature
-    %h4 Simple plans
-
-    %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/efc043d0d7d8b238848951324e866c8b/what-is-trello1.png'}
-
-    %p Automatically generate a housing needs       |
-       assessment based on the latest data from the |
-       U.S. Census American Community Survey (ACS), |
-       complete with graphs of critical trends in   |
-       your city or town.                           |
   
+  %div.row 
+    %div.col-md-12
+      %h2 What's Inside
 
   %div.col-lg-4.feature
-    %h4 Open Data
+    %h4 Rich Data
 
     %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/0c91be28312f6e79a7eecac6d182d399/what-is-trello2.png'}
 
-    %p Easily access rich, value-added data about     |
-       your town to do your own analysis and graphic. |
-       Pair that with our metadata and user guide to  |
-       fully interpret the hard numbers.              |
+    %p
+      Easily access rich, value-added data compiled from U.S. Census, Building Permits, Zillow, MAPC Projections, and more. Compare your city or town to its neighbors, region, and state.
   
+  %div.col-lg-4.feature
+    %h4 Guidance
+
+    %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/efc043d0d7d8b238848951324e866c8b/what-is-trello1.png'}
+
+    %p
+      Discover insights into key housing indicators in your city or town. Visualizations, interpretive text, and a user guide help you navigate and understand the data.
 
   %div.col-lg-4.feature
-    %h4 Easy Use
+    %h4 Something for Everyone
 
     %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/c897d8c6b5e7eefb6d058a04b4d8d739/what-is-trello3.png'}
 
-    %p Housing MA was designed to be used by citizen    |
-       committees and expert analysts alike. Text and   |
-       charts automatically reflect your city, and      |
-       downloading the data behind it is always a click |
-       away.                                            |
+    %p
+      Housing MA was designed to be used by citizen committees and expert analysts alike. Text and charts automatically reflect your city or town, and downloading the data behind it is always a click away.
 
   %div.row
     %div.col-xs-12
-      %div#second-button.col-center
+      %div#start-planning-field.col-center
         %a{class: 'btn btn-lg btn-primary center', id: 'start-planning'} Start planning
 
 %div.row#quote
   %div.col-xs-8.col-xs-offset-2.col-md-6.col-md-offset-3
     %h3
-      The Housing MA portal tool took our housing needs assessment  |
-      planning period from weeks to hours. I cannot recommend       |
-      this tool enough.                                             |
+      The Housing MA portal tool took our housing needs assessment planning period from weeks to hours. I cannot recommend this tool enough.
     %p
       &mdash; Municipal Official, Town of Municipality

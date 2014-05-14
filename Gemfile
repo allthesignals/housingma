@@ -33,8 +33,8 @@ gem 'bootstrap-typeahead-rails'
 # gem 'cancan'
 
 # TODO: Consider adding machine-readability
-# gem 'rabl' # RABL templates for JSON
-# gem 'oj'
+gem 'rabl', '0.9.3' # RABL templates for JSON
+gem 'oj',   '2.9.0'
 
 
 group :development do
