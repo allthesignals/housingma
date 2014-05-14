@@ -22,8 +22,3 @@ Gemfile.lock
 # Never commit a .env file
 
 .env
-
-# The Procfile changes between deploy environments.
-# We don't want to merge changes to it across environments.
-
-Procfile
