@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140514155719) do
+ActiveRecord::Schema.define(:version => 20140527155909) do
 
   create_table "fields", :force => true do |t|
     t.string   "title"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(:version => 20140514155719) do
     t.string   "operation",   :default => "average"
     t.string   "source"
     t.text     "methodology"
+  end
+
+  create_table "quotations", :force => true do |t|
+    t.string   "quote"
+    t.string   "author"
+    t.string   "agency"
+    t.integer  "sort_order"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "published",  :default => false
   end
 
   create_table "subtopics", :force => true do |t|
