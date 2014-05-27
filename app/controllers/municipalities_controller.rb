@@ -1,7 +1,7 @@
 class MunicipalitiesController < ApplicationController
 
   def show
-    @muni = Municipality.find_by_name(params[:id].titleize)
+    @muni = Municipality.unscoped.find_by_name(params[:id].titleize)
   end
 
   def report
@@ -23,7 +23,7 @@ class MunicipalitiesController < ApplicationController
 
   def guide
     @guide = OpenStruct.new(topic_areas: TopicArea.all)
-    @muni  = Municipality.find_by_name(params[:id].titleize)
+    @muni  = Municipality.unscoped.find_by_name(params[:id].titleize)
   end
 
   def form
