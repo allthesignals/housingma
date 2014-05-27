@@ -11,8 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140514155719) do
-  
+
+ActiveRecord::Schema.define(:version => 20140527155909) do
+
   create_table "fields", :force => true do |t|
     t.string   "title"
     t.string   "narrative"
