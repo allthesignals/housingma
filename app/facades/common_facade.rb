@@ -11,7 +11,6 @@ class CommonFacade
 
   def initialize(municipality)
     @muni = municipality
-  
     # Housing Data
     @housing        = @muni.housing_data
     @neighbors      = @muni.neighbors

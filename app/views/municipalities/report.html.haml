@@ -3,6 +3,11 @@
 %div.container
   %h1
     Housing Needs Assessment for #{@report.muni}, MA
+  %div.row
+    %div.col-md-10
+      %div.visualization#visualization1
+      %div.visualization#visualization2
+      %div.visualization#visualization3
 
   %div.row
     %div.col-md-10
@@ -21,3 +26,245 @@
         Export charts to images (.zip)
 
     = render partial: 'scrollspy/scrollspy', locals: { content: @report, export: true }
+
+
+
+:javascript 
+  $.getJSON('#{@report.json_path}', function(d) {
+
+    var groupedBarData = [
+      { series: "1", values:
+        [{name: 'Apples Apples Apples Apples Apples', value: 4},
+         {name: 'Oranges Oranges Oranges Oranges Oranges', value: -36},
+         {name: 'Grapes Grapes Grapes Grapes Grapes', value: 32},
+         {name: 'Peaches Peaches Peaches Peaches Peaches', value: 14}]
+      },
+      { series: "2", values:
+        [{name: 'Apples Apples Apples Apples Apples', value: 36},
+         {name: 'Oranges Oranges Oranges Oranges Oranges', value: 36},
+         {name: 'Grapes Grapes Grapes Grapes Grapes', value: 32},
+         {name: 'Peaches Peaches Peaches Peaches Peaches', value: 14}]
+      },
+      { series: "3", values:
+        [{name: 'Apples Apples Apples Apples Apples', value: 19},
+         {name: 'Oranges Oranges Oranges Oranges Oranges', value: 36},
+         {name: 'Grapes Grapes Grapes Grapes Grapes', value: 32},
+         {name: 'Peaches Peaches Peaches Peaches Peaches', value: 14}]
+      },
+      { series: "4", values:
+        [{name: 'Apples Apples Apples Apples Apples', value: 2},
+         {name: 'Oranges Oranges Oranges Oranges Oranges', value: 36},
+         {name: 'Grapes Grapes Grapes Grapes Grapes', value: 32},
+         {name: 'Peaches Peaches Peaches Peaches Peaches', value: 14}]
+      },
+      { series: "5", values:
+        [{name: 'Apples Apples Apples Apples Apples', value: 6},
+         {name: 'Oranges Oranges Oranges Oranges Oranges', value: 6},
+         {name: 'Grapes Grapes Grapes Grapes Grapes', value: 32},
+         {name: 'Peaches Peaches Peaches Peaches Peaches', value: 14}]
+      }
+    ];
+
+    var data = d;
+    var TYPES = ['pop_projections_by_age', 'another'];
+
+    function get_data_for(chart_title) {
+      
+      if (chart_title == 'pop_projections_by_age') {
+
+        var query = [ "pop00_5_19",
+                      "pop10_5_19",
+                      "pop20_5_19",
+                      "pop30_5_19",
+                      "pop00_2034",
+                      "pop10_2034",
+                      "pop20_2034",
+                      "pop30_2034",
+                      "pop00_3564",
+                      "pop10_3564",
+                      "pop20_3564",
+                      "pop30_3564",
+                      "pop00_65p",
+                      "pop10_65p",
+                      "pop20_65p",
+                      "pop30_65p" ];
+
+        var years = [ "2000", "2010", "2020", "2030" ]
+        var output = [];
+        var returnedColumns = data.municipality.fields.filter(function(d) {
+          return query.indexOf(d.title) !== -1
+        });
+
+        var output = [];
+
+        years.forEach(function(year) {
+          var values = [];
+
+          var findTheseYears = returnedColumns.filter(function(column) {
+            return column.alias.indexOf(year) !== -1
+          });
+
+          findTheseYears = findTheseYears.map(function(d) {
+            var stripAlias = d.alias.replace(", " + year, "");
+            return { name: stripAlias, value: d.value }
+          })
+
+          output.push({ series: year, values: findTheseYears })
+        });
+
+        return output;
+      }
+
+      if (chart_title == 'housing_projections_by_age') {
+
+        var query = [ "hh10_1529",
+                      "hh10_3044",
+                      "hh10_4559",
+                      "hh10_6074",
+                      "hh10_75pl",
+                      "hh20_1529",
+                      "hh20_3044",
+                      "hh20_4559",
+                      "hh20_6074",
+                      "hh20_75pl",
+                      "hh30_1529",
+                      "hh30_3044",
+                      "hh30_4559",
+                      "hh30_6074",
+                      "hh30_75pl" ];
+
+        var years = [ "2010", "2020", "2030" ]
+        var output = [];
+        var returnedColumns = data.municipality.fields.filter(function(d) {
+          return query.indexOf(d.title) !== -1
+        });
+
+        var output = [];
+
+        years.forEach(function(year) {
+          var values = [];
+
+          var findTheseYears = returnedColumns.filter(function(column) {
+            return column.alias.indexOf(year) !== -1
+          });
+
+          findTheseYears = findTheseYears.map(function(d) {
+            var stripAlias = d.alias.replace(", " + year, "");
+            return { name: stripAlias, value: d.value }
+          })
+
+          output.push({ series: year, values: findTheseYears })
+        });
+
+        return output;
+      }
+
+      if (chart_title == 'housing_demand_by_age_group') {
+
+        var query = [ "sfr1534_20",
+                      "sfo1534_20",
+                      "mfr1534_20",
+                      "mfo1534_20",
+                      "sfr3554_20",
+                      "sfo3554_20",
+                      "mfr3554_20",
+                      "mfo3554_20",
+                      "sfr5574_20",
+                      "sfo5574_20",
+                      "mfr5574_20",
+                      "mfo5574_20"];
+
+        var ageGroups = [ "15-34", "35-54", "55-74" ]
+        var output = [];
+        var returnedColumns = data.municipality.fields.filter(function(d) {
+          return query.indexOf(d.title) !== -1
+        });
+
+        var output = [];
+
+        ageGroups.forEach(function(group) {
+          var values = [];
+
+          var findTheseGroups = returnedColumns.filter(function(column) {
+            return column.alias.indexOf(group) !== -1
+          });
+
+          findTheseGroups = findTheseGroups.map(function(d) {
+            var stripAlias = d.alias.replace(" for Ages " + group, "");
+            return { name: stripAlias, value: d.value }
+          })
+
+          output.push({ series: group, values: findTheseGroups })
+        });
+        console.log(output);
+        return output;
+      }
+
+      if (chart_title == 'percent_subsidized_housing') {
+
+        var query = [ "shi_p" ];
+        var geographies = [ "municipality", "state", "region" ]
+        var ageGroups = [ "15-34", "35-54", "55-74" ]
+        var output = [];
+        var returnedColumns = data.municipality.fields.filter(function(d) {
+          return query.indexOf(d.title) !== -1
+        });
+
+        var output = [];
+
+        ageGroups.forEach(function(group) {
+          var values = [];
+
+          var findTheseGroups = returnedColumns.filter(function(column) {
+            return column.alias.indexOf(group) !== -1
+          });
+
+          findTheseGroups = findTheseGroups.map(function(d) {
+            var stripAlias = d.alias.replace(" for Ages " + group, "");
+            return { name: stripAlias, value: d.value }
+          })
+
+          output.push({ series: group, values: findTheseGroups })
+        });
+        console.log(output);
+        return output;
+      }
+    }
+
+    var output = get_data_for('pop_projections_by_age');  
+
+    var chart = d3.select('#visualization1')
+      .append('svg')
+      .chart('GroupedBarChart')
+      .width(500)
+      .height(400)
+      .yAxisLabel("Percent")
+      .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
+
+    chart.draw(output);
+
+    var output = get_data_for('housing_projections_by_age');  
+
+    var chart = d3.select('#visualization2')
+      .append('svg')
+      .chart('GroupedBarChart')
+      .width(500)
+      .height(400)
+      .yAxisLabel("Percent")
+      .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
+
+    chart.draw(output);
+
+    var output = get_data_for('housing_demand_by_age_group');  
+
+    var chart = d3.select('#visualization3')
+      .append('svg')
+      .chart('GroupedBarChart')
+      .width(500)
+      .height(450)
+      .yAxisLabel("Percent")
+      .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
+
+    chart.draw(output);
+  })
+  
