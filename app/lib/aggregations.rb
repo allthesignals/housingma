@@ -7,7 +7,7 @@ module Aggregations
 
 
   def total(attribute)
-    housing_data.inject(0.0) { |sum, h| sum += h.send(attribute) }
+    housing_data.inject(0.0) { |sum, h| sum += h.send(attribute).to_f }
   end
 
 
