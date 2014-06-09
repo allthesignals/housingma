@@ -7,7 +7,7 @@ class Municipality < ActiveRecord::Base
   attr_accessor   :neighbors
   attr_accessible :name, :muni_id, :geom
   
-  has_one :housing_data, foreign_key: 'muni_id'
+  has_many_elsewhere :housing_data, foreign_key: 'muni_id', class_name: "HousingData"
   
   belongs_to :community_subtype
   delegate   :community_type,   to: :community_subtype, allow_nil: true
@@ -25,20 +25,7 @@ class Municipality < ActiveRecord::Base
     name
   end
 
-
-  # Prevent :geom from being selected
-  #   call Municipality.unscoped to get
-  #   access to :geom
-
   default_scope { includes(:housing_data) }
-  # default_scope { select(['municipalities.id',
-  #                       'municipalities.name',
-  #                       'municipalities.muni_id',
-  #                       'municipalities.community_subtype_id',
-  #                       'municipalities.created_at',
-  #                       'municipalities.updated_at',
-  #                       'municipalities.county_id',
-  #                       'municipalities.state_id']).order('municipalities.id') }
   
   # scope
   def nearest(lim=10)

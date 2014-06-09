@@ -22,6 +22,7 @@ gem 'tufted-rails' # Terse D3 by Matt Gardner (allthesignals)
 
 #    Export Word files
 gem 'docx_replace', git: "git://github.com/beechnut/docx_replace.git"
+gem 'verbs' # Conjugate verbs in template
 
 #    Autocomplete
 gem 'twitter-typeahead-rails'   
