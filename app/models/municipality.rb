@@ -7,7 +7,7 @@ class Municipality < ActiveRecord::Base
   attr_accessor   :neighbors
   attr_accessible :name, :muni_id, :geom
   
-  has_many_elsewhere :housing_data, foreign_key: 'muni_id', class_name: "HousingData"
+  has_one :housing_data, foreign_key: 'muni_id'
   
   belongs_to :community_subtype
   delegate   :community_type,   to: :community_subtype, allow_nil: true
@@ -23,6 +23,10 @@ class Municipality < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def region
+    regions.first
   end
 
   default_scope { includes(:housing_data) }

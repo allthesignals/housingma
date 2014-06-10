@@ -7,7 +7,7 @@ module Aggregations
 
 
   def total(attribute)
-    housing_data.inject(0.0) { |sum, h| sum += h.send(attribute) }
+    housing_data.inject(0.0) { |sum, h| sum += h.send(attribute).to_f }
   end
 
 
@@ -18,7 +18,7 @@ module Aggregations
 
   def median(attribute)
     # Don't know if #sort or #order is the faster way
-    sorted = housing_data.map{ |h| h.send(attribute) }.sort
+    sorted = housing_data.map{ |h| h.send(attribute).to_f }.sort
     length = sorted.length
 
     (sorted[(length - 1) / 2] + sorted[length / 2]) / 2.0

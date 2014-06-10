@@ -21,4 +21,8 @@ class CommonFacade
     @state          = @muni.state
   end
 
+  def method_missing(method_name, *args)
+    @housing.send(method_name)
+  end
+
 end

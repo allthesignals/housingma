@@ -21,21 +21,23 @@ Topic Area: Demographics
 
 Housing needs and preferences change over time. Young professionals and seniors on fixed incomes may prefer smaller, more affordable units that are easier to maintain. Families with children may want larger units with more bedrooms and open space.  This section describes the population of #{@report.muni} by age and how it is projected to change.
 
-#{@report.muni} is home to pop_2010 residents
+#{@report.muni} is home to 
 
-, [an increase/a decrease] of 100*(pop_2010 - pop_2000)/ pop_2000%
+#{pop_2010} residents
+
+, [an increase/a decrease] of 100*(#{pop_2010} - #{pop_2000})/ #{pop_2000}%
  
  from 2000. In 2010, working-age adults between 20 and 65 made up 
 
-100*(pop10_2034 + pop10_3564)/pop_2010%
+100*(#{pop10_2034} + #{pop10_3564})/#{pop_2010}%
  
  of the population and seniors over 65 made up
 
-100*pop10_65p/ pop_2010%
+100*#{pop10_65p}/ #{pop_2010}%
 
 .  School-age children, between 5 and 19, make up 
 
-100*pop10_5_19/pop_2010%
+100*#{pop10_5_19}/#{pop_2010}%
  
  of current residents. Between 2005 and 2012, school enrollment 
 
@@ -55,27 +57,9 @@ Housing needs and preferences change over time. Young professionals and seniors 
 
 MAPC, the regional planning agency for Metro Boston, has prepared population and housing demand projections for 164 cities and towns in Metropolitan Boston1, and the University of Massachusetts Donahue Institute has prepared population projections for the balance of the cities and towns in the state2. Both sets of projections include two scenarios: a Status Quo scenario based on continuation of recent trends in migration, housing occupancy, and location preference; and a Stronger Region scenario that assumes increased attraction and retention of young workers and slightly increased preference for urban settings and multifamily housing. The Status Quo scenario found that continuation of current levels of in-migration and housing production would lead to a declining workforce and economic stagnation over the coming decades.  In contrast, the increased migration rates of the Stronger Region scenario could fuel job growth of 7% between 2010 and 2040.  As a result, MAPC recommends use of the Stronger Region scenario as the basis for housing planning, and the assumptions and outputs of that work have been incorporated into the Commonwealth’s multifamily housing production goal of 10,000 multifamily units per year, and have been adopted by the Massachusetts Department of Transportation as the basis for long-term transportation planning.
 
-With the aging of the Baby Boomers, Massachusetts is growing older. The senior population is expected to grow
+With the aging of the Baby Boomers, Massachusetts is growing older. The senior population is expected to grow 100*(#{pop30_65p} - #{pop10_65p})/ #{pop10_65p}% over the next two decades, an increase mirrored in almost every city and town. 
 
-100*(pop30_65p - pop10_65p)/ pop10_65p
-
-% over the next two decades, an increase mirrored in almost every city and town. 
-
-In #{@report.muni}, the aging of the Baby Boomers will cause the senior population to increase by
-
-pop30_65p – pop10_65p
- 
- people, or 
-
-100*(pop30_65p – pop10_65p) / pop10_65p
- 
- %, through 2030, as seen in Figure 1. The total population is projected to [increase/decrease] by pop_30sr – pop_2010
-
-, or
- 
- 100*(pop_30sr – pop_2010) / pop_2010%
-
-, over the same period.
+In #{@report.muni}, the aging of the Baby Boomers will cause the senior population to increase by #{pop30_65p} – #{pop10_65p} people, or 100*(#{pop30_65p} – #{pop10_65p}) / #{pop10_65p} %, through 2030, as seen in Figure 1. The total population is projected to [increase/decrease] by #{pop_30sr} – #{pop_2010}, or 100*(#{pop_30sr} – #{pop_2010}) / #{pop_2010}%, over the same period.
 
 [[Figure 1: Bar chart of population projections by age variable. Bars are filled by year. Age  variable mapped to x-axis. See ”Total Population by Age, 1990 – 2030”  in municipal projections. report. 
 
@@ -83,40 +67,33 @@ Topic: Population
 
 Subtopic: by Race
 
-Massachusetts has grown more diverse since 2000. Between 2000 and 2010, the non-white population increased by 
-
-100*(minor_10 - minor_00)/ minor_00%
-
-. Meanwhile, the white, non-Hispanic population declined by 
-
-100*(white_10 – white_00)/white_00%
-
-. Figure #{figNum} shows the distribution of population by race in #{@report.muni} and its ten nearest neighbors.
+Massachusetts has grown more diverse since 2000. Between 2000 and 2010, the non-white population increased by 100*(#{minor_10} - #{minor_00})/ #{minor_00}%. Meanwhile, the white, non-Hispanic population declined by 100*(#{white_10} – #{white_00})/#{white_00}%. Figure #{figNum} shows the distribution of population by race in #{@report.muni} and its ten nearest neighbors.
 
 [[Stacked bar chart that adds up to 100%. Bars are shaded by percent of population that is White, Black, Asian, Native American, Pacific Islander, Other, Two or More, and Hispanic. Bars correspond to #{@report.muni} and its nearest neighbors.]]
 
 Topic Area: Demand
 
-Housing demand is a function not only of population, but also the number and type of households that the population forms.  As years pass, some households form, move into the community, or grow larger, while others grow smaller, seek different housing options, or move out. Net housing demand is the number of units needed to accommodate additional households and maintain healthy vacancy rates among owner and renter-occupied housing units.3 This section looks at the current distribution of household types in #{@report.muni}, projected household changes, and net housing unit demand through 2030.
+Housing demand is a function not only of population, but also the number and type of households that the population forms.  As years pass, some households form, move into the community, or grow larger, while others grow smaller, seek different housing options, or move out. Net housing demand is the number of units needed to accommodate additional households and maintain healthy vacancy rates among owner and renter-occupied housing units. This section looks at the current distribution of household types in #{@report.muni}, projected household changes, and net housing unit demand through 2030.
 
 Key findings:
 
-- total households in #{@report.muni} [increased/decreased] 100*(hh_10- hh_00)/ hh_00% between 2000 and 2010, from hh_00 to hh_10,4
+%ul
+  %li total households in #{@report.muni} [increased/decreased] 100*(#{hh_10}- #{hh_00})/ #{hh_00}% between 2000 and 2010, from #{hh_00} to #{hh_10},4
 
-- average household size [increased/decreased] from hh_avg00 in 2000 to hh_avg10 in 2010 and is projected to be hhs_30sr by 2030,
+  %li average household size [increased/decreased] from #{hh_avg00} in 2000 to #{hh_avg10} in 2010 and is projected to be #{hhs_30sr} by 2030,
 
-- family households with children make up hhf_c_p% of #{@report.muni} households,
+  %li family households with children make up #{hhf_c_p}% of #{@report.muni} households,
 
-- single person households and elderly5 single person households make up hh1_p% and hh1_65o_p% of #{@report.muni} households, respectively,
+  %li single person households and elderly5 single person households make up #{hh1_p}% and #{hh1_65o_p}% of #{@report.muni} households, respectively,
 
-- total households in #{@report.muni} are projected to [increase/decrease] by hh_30sr - hh_10 through 2030, a 100*(hh_30sr - hh_10)/ hh_10% [increase/decrease] from 2010,
+  %li total households in #{@report.muni} are projected to [increase/decrease] by #{hh_30sr} - #{hh_10} through 2030, a 100*(#{hh_30sr} - #{hh_10})/ #{hh_10}% [increase/decrease] from 2010,
 
-- householders between 30 and 60 are projected to [increase/decrease] by (hh30_3044 + hh30_4559) – (hh10_3044 + hh10_4559), or 100*((hh30_3044 + hh30_4559) – (hh10_3044 + hh10_4559))/ (hh10_3044 + hh10_4559)%,
+  %li householders between 30 and 60 are projected to [increase/decrease] by (#{hh30_3044} + #{hh30_4559}) – (#{hh10_3044} + #{hh10_4559}), or 100*((#{hh30_3044} + #{hh30_4559}) – (#{hh10_3044} + #{hh10_4559}))/ (#{hh10_3044} + #{hh10_4559})%,
 
-- As the Baby Boomer generation ages, the number of householders over 60 will grow by (hh30_6074 + hh30_75pl) – (hh10_75pl + hh10_6074), [increasing/decreasing] from (hh10_6074 + hh10_75pl)/hh_10 to (hh30_6074 + hh30_75pl)/hh_30sr percent of the total households in #{@report.muni}.
+  %li As the Baby Boomer generation ages, the number of householders over 60 will grow by (#{hh30_6074} + #{hh30_75pl}) – (#{hh10_75pl} + #{hh10_6074}), [increasing/decreasing] from (#{hh10_6074} + #{hh10_75pl})/#{hh_10} to (#{hh30_6074} + #{hh30_75pl})/#{hh_30sr} percent of the total households in #{@report.muni}.
 
-- Net housing unit demand will be hu1534_20 + hu3554_20 + hu5574_20 + hu75p_20 through 2020, or (hu1534_20 + hu3554_20 + hu5574_20 + hu75p_20)/10 annually,
+  %li Net housing unit demand will be #{hu1534_20} + #{hu3554_20} + #{hu5574_20} + #{hu75p_20} through 2020, or (#{hu1534_20} + #{hu3554_20} + #{hu5574_20} + #{hu75p_20})/10 annually,
 
-- Net housing unit demand  for householders currently between the ages of 15 and 35 will be hu1534_20, or hu1534_20 /10 annually,
+  %li Net housing unit demand  for householders currently between the ages of 15 and 35 will be #{hu1534_20}, or #{hu1534_20} /10 annually,
 
-- Over the next ten years, householders currently older than 55 will need hu5574_20  + hu75p_20 [more/fewer] units than they do today[., putting sfr5574_20 + sfo5574_20 + sfr75p_20 + sfo75p_20 single family houses back onto the market on average each year.].
+  %li Over the next ten years, householders currently older than 55 will need #{hu5574_20}  + #{hu75p_20} [more/fewer] units than they do today[., putting #{sfr5574_20} + #{sfo5574_20} + #{sfr75p_20} + #{sfo75p_20} single family houses back onto the market on average each year.].
