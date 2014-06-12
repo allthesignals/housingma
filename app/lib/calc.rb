@@ -22,6 +22,18 @@ class Calc
   end
 
 
+  def percent_change_increase(options={})
+    percent_rep = options.fetch(:percent) { " percent" }
+    "#{increase(options)} #{percent_change(options)}" << percent_rep
+  end
+
+
+  def percent_increase(options={})
+    percent_rep = options.fetch(:percent) { " percent" }
+    "#{increase(options)} #{percent(options)}" << percent_rep
+  end
+
+
   def increase(options={})
     @context = options.fetch(:context, :by) # default to context: :by
     @phrase  = contextualize(@phrase)

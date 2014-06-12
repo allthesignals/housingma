@@ -29,10 +29,10 @@
 %p
   #{@report.muni} is home to #{@report.pop_2010} residents, [an increase/a decrease] of 
   = 100 * (@report.pop_2010 - @report.pop_2000) / @report.pop_2000
-  - # Calc.new(@report.pop_2000, @report.pop_2010).percent_change
+  - # Calc.new(@report.pop_2000, @report.pop_2010).percent_change_increase
   percent from 2000. In 2010, working-age adults between 20 and 65 made up 
   = 100 * (@report.working_age_adults_20_65) / @report.pop_2010
-  - # Calc.new(@report.pop10_3564, @report.pop10_2034).percent_change
+  - # Calc.new(@report.working_age_adults_20_65, @report.pop_2010).percent
   percent of the population and seniors over 65 made up 
   = 100 * @report.pop10_65p / @report.pop_2010
   percent.  School-age children, between 5 and 19, make up 
@@ -204,18 +204,17 @@
 
 %p
   The decline in demand from older householders will partly offset increased demand from their younger counterparts. In Metro Boston, for example, the decline in demand for single-family homes among householders over 55 and over will accommodate
-  = 100 * (@report.sf_homes_over_55_2020) / (@report.sf_homes_under_55_2020)
+  = 100 * (@report.sf_homes_over_55_2020 / @report.sf_homes_under_55_2020)
+  - # Calc.new(@report.sf_homes_under_55_2020, @report.sf_homes_over_55_2020).percent
   percent of demand for such units from younger households between 2010 and 2020, and an even greater share in the decade thereafter. However, shifts in preferences among younger households towards multifamily units means that only
   = 100 * (@report.mf_homes_over_55_2020) / (@report.mf_homes_under_55_2020)
+  - # Calc.new(@report.mf_homes_under_55_2020, @report.mf_homes_over_55_2020).percent
   percent of new multifamily demand will be met through existing units freed up by householder over 55.
 
 %p
   Through 2020, new households headed by someone currently under the age of 35 will need an additional @report.hu1534_20 housing units.  Households headed by someone currently between the ages of 35 and 55 will demand @report.hu3554_20 additional units.  Householders currently over the age of 55 will need 
   = @report.hu5574_20 + @report.hu75p_20
-  [fewer/more] units than they do today. After accounting for the units freed up by departing seniors and the units needed to maintain a healthy vacancy rate, this translates into net demand for
-  = @report.sfr1534_20 + @report.sfo1534_20 + @report.sfr3554_20 + @report.sfo3554_20 + @report.sfr5574_20 + @report.sfo5574_20 + @report.sfr75p_20 + @report.sfo75p_20
-  single family and
-  = @report.mfr1534_20 + @report.mfo1534_20 + @report.mfr3554_20 + @report.mfo3554_20 + @report.mfr5574_20 + @report.mfo5574_20 + @report.mfr75p_20 + @report.mfo75p_20 
+  [fewer/more] units than they do today. After accounting for the units freed up by departing seniors and the units needed to maintain a healthy vacancy rate, this translates into net demand for #{@report.net_demand_sf_2020} single family and #{@report.net_demand_mf_2020}
   multi-family units. Figure {figNum} breaks projected demand down by householder cohort, unit type, and tenure.
 
 %p [[Figure {figNum}: Bar chart of housing unit demand by cohort: 2010 through 2030. Age breaks on the x-axis: 15 - 34, 35-54, 55 - 74, and 75+. Bars are stacked and colored by unit type and tenure (single family rental and owner, and multifamily rental and owner. See figure Housing Unit Demand by Cohort, 2010 - 2020 in Abington HPP report.]]

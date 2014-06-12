@@ -98,6 +98,14 @@ module HousingIndicators
     mf_demand_2020 / YEARS
   end
 
+  def net_demand_sf_2020
+    sfr1534_20 + sfo1534_20 + sfr3554_20 + sfo3554_20 + sfr5574_20 + sfo5574_20 + sfr75p_20 + sfo75p_20
+  end
+
+  def net_demand_mf_2020
+    mfr1534_20 + mfo1534_20 + mfr3554_20 + mfo3554_20 + mfr5574_20 + mfo5574_20 + mfr75p_20 + mfo75p_20
+  end
+
 
   def single_family_units
     "add all 'sf*' fields"
