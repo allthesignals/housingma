@@ -27,42 +27,36 @@
 %p Housing needs and preferences change over time. Young professionals and seniors on fixed incomes may prefer smaller, more affordable units that are easier to maintain. Families with children may want larger units with more bedrooms and open space.  This section describes the population of #{@report.muni} by age and how it is projected to change.
 
 %p
-  #{@report.muni} is home to #{@report.pop_2010} residents, [an increase/a decrease] of 
-  = 100 * (@report.pop_2010 - @report.pop_2000) / @report.pop_2000
-  - # Calc.new(@report.pop_2000, @report.pop_2010).percent_change_increase
-  percent from 2000. In 2010, working-age adults between 20 and 65 made up 
-  = 100 * (@report.working_age_adults_20_65) / @report.pop_2010
-  - # Calc.new(@report.working_age_adults_20_65, @report.pop_2010).percent
-  percent of the population and seniors over 65 made up 
-  = 100 * @report.pop10_65p / @report.pop_2010
-  percent.  School-age children, between 5 and 19, make up 
-  = 100 * @report.pop10_5_19 / @report.pop_2010
-  percent of current residents. Between 2005 and 2012, school enrollment [increased / decreased] by #{@report.enroll_chg}, or
-  = 100 * @report.enroll_chg / (@report.enrolled - @report.enroll_chg)
-  percent.
+  #{@report.muni} is home to #{@report.pop_2010} residents, 
+  = Calc.new(@report.pop_2000, @report.pop_2010).percent_change_increase(context: :of)
+  from 2000. In 2010, working-age adults between 20 and 65 made up 
+  = Calc.new(@report.working_age_adults_20_65, @report.pop_2010).percent_text
+  of the population and seniors over 65 made up 
+  = Calc.new(@report.pop10_65p, @report.pop_2010).percent_text
+  School-age children, between 5 and 19, make up 
+  = Calc.new(@report.pop10_5_19, @report.pop_2010).percent_text
+  of current residents. Between 2005 and 2012, school enrollment
+  = Calc.new(@report.enroll_chg).number_increase(tense: :past)
+  , or
+  = Calc.new(@report.enroll_chg, (@report.enrolled - @report.enroll_chg)).percent_text
 
 %p MAPC, the regional planning agency for Metro Boston, has prepared population and housing demand projections for 164 cities and towns in Metropolitan Boston1, and the University of Massachusetts Donahue Institute has prepared population projections for the balance of the cities and towns in the state2. Both sets of projections include two scenarios: a Status Quo scenario based on continuation of recent trends in migration, housing occupancy, and location preference; and a Stronger Region scenario that assumes increased attraction and retention of young workers and slightly increased preference for urban settings and multifamily housing. The Status Quo scenario found that continuation of current levels of in-migration and housing production would lead to a declining workforce and economic stagnation over the coming decades.  In contrast, the increased migration rates of the Stronger Region scenario could fuel job growth of 7% between 2010 and 2040.  As a result, MAPC recommends use of the Stronger Region scenario as the basis for housing planning, and the assumptions and outputs of that work have been incorporated into the Commonwealth’s multifamily housing production goal of 10,000 multifamily units per year, and have been adopted by the Massachusetts Department of Transportation as the basis for long-term transportation planning.
 
 %p
-  With the aging of the Baby Boomers, Massachusetts is growing older. The senior population is expected to grow 
-  = 100 * (@report.pop30_65p - @report.pop10_65p) / @report.pop10_65p
-  percent over the next two decades, an increase mirrored in almost every city and town.
+  With the aging of the Baby Boomers, Massachusetts is growing older. The senior population is expected to
+  = Calc.new(@report.pop10_65p, @report.pop30_65p).percent_change_increase
+  over the next two decades, an increase mirrored in almost every city and town.
 
 %p
-  In #{@report.muni}, the aging of the Baby Boomers will cause the senior population to increase by
-  = @report.pop30_65p - @report.pop10_65p
-  - # Calc.new(@report.pop10_65p, @report.pop30_65p).change
+  In #{@report.muni}, the aging of the Baby Boomers will cause the senior population to
+  = Calc.new(@report.pop10_65p, @report.pop30_65p).number_increase
   people, or
-  = 100 * (@report.pop30_65p - @report.pop10_65p) / @report.pop10_65p
-  - # Calc.new(@report.pop10_65p, @report.pop30_65p).percent_change
-  percent, through 2030, as seen in Figure 1. The total population is projected to
-  ruby: [increase/decrease] by
-  = @report.pop_30sr - @report.pop_2010
-  - # Calc.new(@report.pop_2010, @report.pop_30sr).increase(preceded_with: :by)
+  = Calc.new(@report.pop10_65p, @report.pop30_65p).percent_change_text
+  , through 2030, as seen in Figure 1. The total population is projected to
+  = Calc.new(@report.pop_2010, @report.pop_30sr).number_increase
   , or 
-  = 100 * (@report.pop_30sr - @report.pop_2010) / @report.pop_2010
-  - # Calc.new(@report.pop_2010, @report.pop_30sr).increase_percent
-  percent, over the same period.
+  = Calc.new(@report.pop_2010, @report.pop_30sr).percent_change_text
+  , over the same period.
 
 %p [[Figure 1: Bar chart of population projections by age variable. Bars are filled by year. Age  variable mapped to x-axis. See ”Total Population by Age, 1990 - 2030”  in municipal projections. report. 
 
@@ -88,60 +82,61 @@
 %p Key findings:
 
 %ul
-  %li total households in #{@report.muni} [increased/decreased] 
-  = 100 * (@report.hh_10 - @report.hh_00) / @report.hh_00
-  - # Calc.new(@report.hh_00, @report.hh_10).percent_change
-  percent % between 2000 and 2010, from #{@report.hh_00} to #{@report.hh_10},4
+  %li
+    total households in #{@report.muni}
+    = Calc.new(@report.hh_00, @report.hh_10).percent_change_increase(tense: :past)
+    between 2000 and 2010, from #{@report.hh_00.round} to #{@report.hh_10.round},4
 
-  %li average household size [increased/decreased] from #{@report.hh_avg00} in 2000 to #{@report.hh_avg10} in 2010 and is projected to be #{@report.hhs_30sr} by 2030,
+  %li
+    average household size
+    = Calc.new(@report.hh_avg00, @report.hh_avg10).increase(context: :none, tense: :past)
+    from #{@report.hh_avg00} in 2000 to #{@report.hh_avg10} in 2010, and is projected to be #{@report.hhs_30sr} by 2030,
 
-  %li family households with children make up #{@report.hhf_c_p}% of #{@report.muni} households,
+  %li
+    family households with children make up #{@report.hhf_c_p.round}% of #{@report.muni} households,
 
-  %li single person households and elderly5 single person households make up #{@report.hh1_p}% and #{@report.hh1_65o_p}% of #{@report.muni} households, respectively,
+  %li
+    single person households and elderly5 single person households make up #{@report.hh1_p.round}% and #{@report.hh1_65o_p.round}% of #{@report.muni} households, respectively,
 
-  %li total households in #{@report.muni} are projected to [increase/decrease] by
-  = @report.hh_30sr - @report.hh_10
-  - # Calc.new(@report.hh_10, @report.hh_30sr).increase(context: :by)
-  through 2030, a 
-  = 100 * (@report.hh_30sr - @report.hh_10)/ @report.hh_10
-  - # Calc.new(@report.hh_10, @report.hh_30sr).percent_change
-  percent [increase/decrease] from 2010,
+  %li
+    total households in #{@report.muni} are projected to
+    = Calc.new(@report.hh_10, @report.hh_30sr).number_increase(context: :by)
+    through 2030, 
+    = Calc.new(@report.hh_10, @report.hh_30sr).percent_change_increase(context: :of)
+    from 2010,
 
   %li
     householders between 30 and 60 are projected to [increase/decrease] by 
-    = @report.househld_30_60_2030 - @report.househld_30_60_2010
-    - # Calc.new(@report.househld_30_60_2010, @report.househld_30_60_2030).increase(context: :by)
+    = Calc.new(@report.househld_30_60_2010, @report.househld_30_60_2030).number_increase(context: :by)
     , or
-    = 100 * (@report.househld_30_60_2030 - @report.househld_30_60_2010) / (@report.househld_30_60_2010)
-    - # Calc.new(@report.househld_30_60_2010, @report.househld_30_60_2030).percent_change
-    percent,
+    = Calc.new(@report.househld_30_60_2010, @report.househld_30_60_2030).percent_change_text
+    ,
 
   %li
-    As the Baby Boomer generation ages, the number of householders over 60 will grow by
-    = (@report.househld_60_pl_2030) - (@report.househld_60_pl_2010)
-    - # Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).change
-    , [increasing/decreasing] from
-    = @report.househld_60_pl_2010 / @report.hh_10
-    - # Calc.new(@report.househld_60_pl_2010, @report.hh_10).percent(multiply: false)
-    percent to
-    = @report.househld_60_pl_2030 / @report.hh_30sr
-    - # Calc.new(@report.househld_60_pl_2030, @report.hh_30sr).percent(multiply: false)
-    percent of the total households in #{@report.muni}.
+    As the Baby Boomer generation ages, the number of householders over 60 will 
+    = Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).number_increase
+    , from
+    = Calc.new(@report.househld_60_pl_2010, @report.hh_10).percent_text
+    to
+    = Calc.new(@report.househld_60_pl_2030, @report.hh_30sr).percent_text
+    of the total households in #{@report.muni}.
 
   %li
     Net housing unit demand will be #{@report.net_housing_demand_2020} through 2020, or #{@report.net_housing_demand_2020_ann} annually,
 
   %li
-    Net housing unit demand for householders currently between the ages of 15 and 35 will be #{@report.hu1534_20}, or 
-    = @report.hu1534_20 / 10
+    Net housing unit demand for householders currently between the ages of 15 and 35 will be #{@report.hu1534_20.round}, or 
+    = (@report.hu1534_20 / 10).round
     annually,
 
   %li
     Over the next ten years, householders currently older than 55 will need 
-    = @report.net_housing_demand_55_pl_2020
-    - # Calc.new(@report.net_housing_demand_55_pl_2020).more
-    [more/fewer] units than they do today
-    [., putting #{@report.sfr5574_20} + #{@report.sfo5574_20} + #{@report.sfr75p_20} + #{@report.sfo75p_20} single family houses back onto the market on average each year.].
+    = units = Calc.new(@report.net_housing_demand_55_pl_2020).more
+    units than they do today
+    - if units.include?('fewer')
+      , putting #{@report.putting_back_sf} single family houses back onto the market on average each year
+    #{"."}
+    %strong I insist we check this calculation
 
 
 %h2 Topic: Households
@@ -154,28 +149,26 @@
 
 %p
   In #{@report.muni}, total households [increased/decreased] by 
-  = @report.hh_10 - @report.hh_00
-  - # Calc.new(@report.hh_00, @report.hh_10).increase(context: :by)
+  = Calc.new(@report.hh_00, @report.hh_10).number_increase(tense: :past)
   , or
-  = 100 * (@report.hh_10 - @report.hh_00) / @report.hh_00
-  - # Calc.new(@report.hh_00, @report.hh_10).percent_change
-  percent, between 2000 and 2010. At the same time, average household size [increased/decreased] from {@report.hh_avg00} to {@report.hh_avg10}.
+  = Calc.new(@report.hh_00, @report.hh_10).percent_change_text
+  , between 2000 and 2010. At the same time, average household size [increased/decreased] from {@report.hh_avg00} to {@report.hh_avg10}.
 
 %h3 Subtopic: Households by Age Cohort
 
 %p
   Just as aging Baby Boomers (those born between 1945 and 1970, for our purposes) will dominate the overall population dynamics of the state, they will also have a substantial influence on household changes and housing needs in #{@report.muni}. As this large generation ages, it will increase the number of householders over 60 by
   = ((@report.househld_60_pl_2030) - (@report.househld_60_pl_2010)) / (@report.househld_60_pl_2010)
-  - # Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).percent_change(multiply: false)
-  - # I think this is in error, but {multiply: false} won't multiply by 100 in the calculation
+  = Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).percent_change_text
+  %strong I think the original calculation is in error, but {multiply: false} won't multiply by 100 in the calculation. Also why statewide? This is for the town only. Do we have to calculate this too?
   percent statewide through 2030, and their share of all households will increase from
-  = @report.househld_60_pl_2010 / @report.hh_10
+  = Calc.new(@report.househld_60_pl_2010, @report.hh_10).percent_text(percent: '')
   to
-  = @report.househld_60_pl_2030 / @report.hh_30sr
-  percent over the same period. Meanwhile, the total number of under-60 householders will change only slightly from one decade to the next, and most age groups under 60 will see a decline in the number of households between 2010 and 2030.
+  = Calc.new(@report.househld_60_pl_2030, @report.hh_30sr).percent_text
+  over the same period. Meanwhile, the total number of under-60 householders will change only slightly from one decade to the next, and most age groups under 60 will see a decline in the number of households between 2010 and 2030.
 
 %p
-  In @report.muni, householders over 60 will [increase/decrease] from 
+  In #{@report.muni}, householders over 60 will [increase/decrease] from 
   = (@report.hh10_6074 + @report.hh10_75pl) / @report.hh_10
   in 2010 to
   = (@report.househld_60_pl_2030) / @report.hh_30sr

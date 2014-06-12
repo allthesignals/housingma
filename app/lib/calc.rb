@@ -14,7 +14,6 @@ class Calc
 =end
 
   def initialize(*args)
-    @options       = args.pop if args.last.is_a? Hash
     @number        = args.shift.to_f
     @second_number = args.shift.to_f unless args.empty?
     @nums          = [@number, @second_number]
@@ -24,41 +23,63 @@ class Calc
 
   def percent_change_increase(options={})
     percent_rep = options.fetch(:percent) { " percent" }
-    "#{increase(options)} #{percent_change(options)}" << percent_rep
+    "#{increase(options)} #{percent_change_text(options)}"
   end
 
 
   def percent_increase(options={})
-    percent_rep = options.fetch(:percent) { " percent" }
-    "#{increase(options)} #{percent(options)}" << percent_rep
+    "#{increase(options)} #{percent_text(options)}"
   end
 
 
-  def increase(options={})
-    @context = options.fetch(:context, :by) # default to context: :by
-    @phrase  = contextualize(@phrase)
+  def number_increase(options={})
+    "#{increase(options)} #{value_of_change}"
+  end
+
+
+  def percent_text(options={})
+    percent_rep = options.fetch(:percent) { " percent" }
+    "#{ percent(options).abs.round }" << percent_rep
+  end
+
+
+  def percent_change_text(options={})
+    percent_rep = options.fetch(:percent) { " percent" }
+    "#{ percent_change(options).abs.round }" << percent_rep
   end
 
 
   def percent(options={})
     assert_two_numbers
-
     value = @number / @second_number
     value *= 100 if options.fetch(:multiply) { true }
-    value
   end
 
 
   def percent_change(options={})
     assert_two_numbers
-    
     value = (@second_number - @number) / @number
     value *= 100 if options.fetch(:multiply) { true }
-    value
+  end
+
+
+  def increase(options={})
+    @phrase  = contextualize(@phrase, options)
+  end
+
+
+  def more
+    @phrase = more_or_fewer
+    "#{value_of_change} #{@phrase}"
   end
 
 
   private
+
+    def value_of_change
+      value = @second_number ? (@second_number - @number).abs : @number
+      value.abs.round
+    end
 
 
     def increase_or_decrease
@@ -69,11 +90,22 @@ class Calc
       end
     end
 
+    def more_or_fewer
+      if @second_number.nil?
+        @number > 0 ? 'more' : 'fewer'
+      else
+        @second_number > @number ? 'more' : 'fewer' 
+      end
+    end
 
-    def contextualize(phrase)
-      return phrase                        if @context == :none
-      result = "#{phrase}d by"             if @context == :by
-      result = "#{phrase.indefinitize} of" if @context == :of
+
+    def contextualize(phrase, options)
+      context = options.fetch(:context) {:by} # default to context: :by
+      past    = options[:tense] == :past ? 'd' : ''
+      
+      return "#{phrase}#{past}"            if context == :none
+      result = "#{phrase}#{past} by"       if context == :by
+      result = "#{phrase.indefinitize} of" if context == :of
       result
     end
 
@@ -88,9 +120,5 @@ class Calc
       end
     end
 
-
-    def no_context
-      @context == :none
-    end
 
 end
