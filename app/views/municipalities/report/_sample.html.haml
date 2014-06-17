@@ -69,9 +69,10 @@
 
 %p
   Massachusetts has grown more diverse since 2000. Between 2000 and 2010, the non-white population increased by
-  100*({@report.minor_10} - {@report.minor_00}) / {@report.minor_00}
+  TODO: 100 * (@report.minor_10 - @report.minor_00) / @report.minor_00
   percent. Meanwhile, the white, non-Hispanic population declined by
-  100*({@report.white_10} - {@report.white_00})/{@report.white_00}%. Figure {figNum} shows the distribution of population by race in #{@report.muni} and its ten nearest neighbors.
+  TODO: 100 * (@report.whi_10 - @report.whi_00) / @report.whi_00
+  percent. Figure {figNum} shows the distribution of population by race in #{@report.muni} and its ten nearest neighbors.
 
 %p [[Stacked bar chart that adds up to 100%. Bars are shaded by percent of population that is White, Black, Asian, Native American, Pacific Islander, Other, Two or More, and Hispanic. Bars correspond to #{@report.muni} and its nearest neighbors.]]
 
@@ -85,7 +86,7 @@
   %li
     total households in #{@report.muni}
     = Calc.new(@report.hh_00, @report.hh_10).percent_change_increase(tense: :past)
-    between 2000 and 2010, from #{@report.hh_00.round} to #{@report.hh_10.round},4
+    between 2000 and 2010, from #{@report.hh_00} to #{@report.hh_10},4
 
   %li
     average household size
@@ -93,10 +94,10 @@
     from #{@report.hh_avg00} in 2000 to #{@report.hh_avg10} in 2010, and is projected to be #{@report.hhs_30sr} by 2030,
 
   %li
-    family households with children make up #{@report.hhf_c_p.round}% of #{@report.muni} households,
+    family households with children make up #{@report.hhf_c_p}% of #{@report.muni} households,
 
   %li
-    single person households and elderly5 single person households make up #{@report.hh1_p.round}% and #{@report.hh1_65o_p.round}% of #{@report.muni} households, respectively,
+    single person households and elderly5 single person households make up #{@report.hh1_p}% and #{@report.hh1_65o_p}% of #{@report.muni} households, respectively,
 
   %li
     total households in #{@report.muni} are projected to
@@ -125,7 +126,7 @@
     Net housing unit demand will be #{@report.net_housing_demand_2020} through 2020, or #{@report.net_housing_demand_2020_ann} annually,
 
   %li
-    Net housing unit demand for householders currently between the ages of 15 and 35 will be #{@report.hu1534_20.round}, or 
+    Net housing unit demand for householders currently between the ages of 15 and 35 will be #{@report.hu1534_20}, or 
     = (@report.hu1534_20 / 10).round
     annually,
 
@@ -136,7 +137,7 @@
     - if units.include?('fewer')
       , putting #{@report.putting_back_sf} single family houses back onto the market on average each year
     #{"."}
-    %strong I insist we check this calculation
+    %strong TODO: Check calculation
 
 
 %h2 Topic: Households
@@ -160,7 +161,7 @@
   Just as aging Baby Boomers (those born between 1945 and 1970, for our purposes) will dominate the overall population dynamics of the state, they will also have a substantial influence on household changes and housing needs in #{@report.muni}. As this large generation ages, it will increase the number of householders over 60 by
   = ((@report.househld_60_pl_2030) - (@report.househld_60_pl_2010)) / (@report.househld_60_pl_2010)
   = Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).percent_change_text
-  %strong I think the original calculation is in error, but {multiply: false} won't multiply by 100 in the calculation. Also why statewide? This is for the town only. Do we have to calculate this too?
+  %strong TODO: These two are in conflict presently.
   percent statewide through 2030, and their share of all households will increase from
   = Calc.new(@report.househld_60_pl_2010, @report.hh_10).percent_text(percent: '')
   to
@@ -168,23 +169,23 @@
   over the same period. Meanwhile, the total number of under-60 householders will change only slightly from one decade to the next, and most age groups under 60 will see a decline in the number of households between 2010 and 2030.
 
 %p
+  %strong TODO: Come back to this. Restructure the sentence.
   In #{@report.muni}, householders over 60 will [increase/decrease] from 
-  = (@report.hh10_6074 + @report.hh10_75pl) / @report.hh_10
-  in 2010 to
-  = (@report.househld_60_pl_2030) / @report.hh_30sr
+  = Calc.new(@report.househld_60_pl_2010, @report.hh_10).percent_text
+  of the population in 2010 to
+  = Calc.new(@report.househld_60_pl_2030, @report.hh_30sr).percent_text
   in 2030, a change of 
-  = ((@report.househld_60_pl_2030) - (@report.househld_60_pl_2010)) / (@report.househld_60_pl_2010)
-  - # Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).percent_change(multiply: false)
-  - # I think this is in error, but {multiply: false} won't multiply by 100 in the calculation
+  = Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).percent_change_increase(context: :of)
   percent. Meanwhile, under-60 householders will
   [increase/decrease] by
   = (@report.under_60_househld_2030 - @report.under_60_househld_2010)
+  = Calc.new(@report.under_60_househld_2010, @report.under_60_househld_2030).number_increase
   , or
-  = (@report.under_60_househld_2030 - @report.under_60_househld_2010) / @report.under_60_househld_2010
+  = Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).percent_change_text
   percent, as seen in Figure 2.
 
-%p [[Figure 2: Bar chart of household projections by age variable. Essentially identical to Figure 1.]]
 
+%p [[Figure 2: Bar chart of household projections by age variable. Essentially identical to Figure 1.]]
 
 
 %h2 Topic: Housing Units
@@ -197,17 +198,18 @@
 
 %p
   The decline in demand from older householders will partly offset increased demand from their younger counterparts. In Metro Boston, for example, the decline in demand for single-family homes among householders over 55 and over will accommodate
+  %strong TODO: Why are these different?
   = 100 * (@report.sf_homes_over_55_2020 / @report.sf_homes_under_55_2020)
-  - # Calc.new(@report.sf_homes_under_55_2020, @report.sf_homes_over_55_2020).percent
+  = Calc.new(@report.sf_homes_over_55_2020, @report.sf_homes_under_55_2020).percent_text
   percent of demand for such units from younger households between 2010 and 2020, and an even greater share in the decade thereafter. However, shifts in preferences among younger households towards multifamily units means that only
-  = 100 * (@report.mf_homes_over_55_2020) / (@report.mf_homes_under_55_2020)
-  - # Calc.new(@report.mf_homes_under_55_2020, @report.mf_homes_over_55_2020).percent
+  = 100 * (@report.mf_homes_over_55_2020 / @report.mf_homes_under_55_2020)
+  = Calc.new(@report.mf_homes_over_55_2020, @report.mf_homes_under_55_2020).percent_text
   percent of new multifamily demand will be met through existing units freed up by householder over 55.
 
 %p
-  Through 2020, new households headed by someone currently under the age of 35 will need an additional @report.hu1534_20 housing units.  Households headed by someone currently between the ages of 35 and 55 will demand @report.hu3554_20 additional units.  Householders currently over the age of 55 will need 
-  = @report.hu5574_20 + @report.hu75p_20
-  [fewer/more] units than they do today. After accounting for the units freed up by departing seniors and the units needed to maintain a healthy vacancy rate, this translates into net demand for #{@report.net_demand_sf_2020} single family and #{@report.net_demand_mf_2020}
+  Through 2020, new households headed by someone currently under the age of 35 will need an additional #{@report.hu1534_20} housing units.  Households headed by someone currently between the ages of 35 and 55 will demand #{@report.hu3554_20} additional units. Householders currently over the age of 55 will need 
+  = Calc.new(@report.hu5574_20 + @report.hu75p_20).more
+  units than they do today. After accounting for the units freed up by departing seniors and the units needed to maintain a healthy vacancy rate, this translates into net demand for #{@report.net_demand_sf_2020} single family and #{@report.net_demand_mf_2020}
   multi-family units. Figure {figNum} breaks projected demand down by householder cohort, unit type, and tenure.
 
 %p [[Figure {figNum}: Bar chart of housing unit demand by cohort: 2010 through 2030. Age breaks on the x-axis: 15 - 34, 35-54, 55 - 74, and 75+. Bars are stacked and colored by unit type and tenure (single family rental and owner, and multifamily rental and owner. See figure Housing Unit Demand by Cohort, 2010 - 2020 in Abington HPP report.]]
@@ -223,11 +225,11 @@
 %p The distribution of housing units by age is important for at least three reasons. First, a housing stock with few units built since 2000 indicates that housing supply is growing slowly. If demand is expected to remain stable or increase in the future, this may result in upward pressure on housing prices. Second, older housing units can be more expensive to occupy, due to higher heating and maintenance costs. Third, certain federal housing programs, such as Community Development Block Grants, track the percent of housing units by age, and in particular the percent built before 1939.
 
 %p
-  In #{@report.muni}, #{@report.h_39_p}% of housing units are in buildings built before 1939, compared to #{@report.h_39_p}% statewide. Another #{@report.h4059_p}% and #{@report.h6079_p}% of #{@report.muni} units are in buildings that date from 1940-1959 and 1960-1979, respectively. Construction since 2000 accounts for #{@report.h_00_p}% of units, compared to #{@report.h_00_p} % statewide.
+  In #{@report.muni}, #{@report.h_39_p}% of housing units are in buildings built before 1939, compared to #{@report.h_39_p}% statewide. Another #{@report.h4059_p}% and #{@report.h6079_p}% of #{@report.muni} units are in buildings that date from 1940-1959 and 1960-1979, respectively. Construction since 2000 accounts for #{@report.h_00_p}% of units, compared to #{@report.state.average_h_00_p}% statewide.
 
 %h3 Subtopic: Housing Units by Type
 
-%p Housing preferences are projected to change, as both younger householders and seniors opt for smaller, multifamily units, as seen above. It is important to compare these projections to the current distribution of units in order to calibrate supply to future demand. In #{@report.muni}, #{@report.u1_p}% of units are in single family homes, compared to #{@report.u1_p}% statewide and #{@report.u1_p}% for the [insert Community Type]; {@report.u2_p} + {@report.u3_4_p}% of all units are in two- to four-family buildings; and {@report.u5_9p} + #{@report.u10_19_p} + #{@report.u20ov_p}% are in multifamily buildings with five or more units. The remainder are in non-permanent structures, such as mobile homes.
+%p Housing preferences are projected to change, as both younger householders and seniors opt for smaller, multifamily units, as seen above. It is important to compare these projections to the current distribution of units in order to calibrate supply to future demand. In #{@report.muni}, #{@report.u1_p}% of units are in single family homes, compared to #{@report.state.average_u1_p}% statewide and #{@report.community_type.average_u1_p}% for #{@report.community_type}-type municipalities; #{@report.u2_4_p}% of all units are in two- to four-family buildings; and #{@report.u5_9_p + @report.u10_19_p + @report.u20ov_p}% are in multifamily buildings with five or more units. The remainder are in non-permanent structures, such as mobile homes.
 
 %h2 Topic: Housing Permits
 
@@ -268,18 +270,14 @@
 
 %p
   The most common measure of housing affordability is the percent of income that households spend on housing costs. According to most federal and state agencies, households that spend more than 30% of income on housing costs are “cost burdened.” Households that spend more than 50% of income on housing are “severely cost burdened.” Areas where more than 30% of households are cost burdened face an affordable housing shortage. In #{@report.muni},
-  = 100 * @report.cost_burdened_units / @report.occupied_units
-  - # Calc.new(@report.cost_burdened_units, @report.occupied_units).percent
-  percent and
-  = 100 * @report.sev_cost_burdened_units / @report.occupied_units
-  - # Calc.new(@report.sev_cost_burdened_units, @report.occupied_units).percent
-  percent of households are cost burdened and severely cost burdened, respectively, compared to
-  = 100 * @report.cost_burdened_units / @report.occupied_units
-  - # Calc.new(@report.cost_burdened_units, @report.occupied_units).percent
-  percent and
-  = 100 * @report.sev_cost_burdened_units / @report.occupied_units
-  - # Calc.new(@report.sev_cost_burdened_units, @report.occupied_units).percent
-  percent of households statewide.
+  = Calc.new(@report.cost_burdened_units, @report.occupied_units).percent_text
+  and
+  = Calc.new(@report.sev_cost_burdened_units, @report.occupied_units).percent_text
+  of households are cost burdened and severely cost burdened, respectively, compared to
+  = Calc.new(@report.state.average_cost_burdened_units, @report.state.average_occupied_units).percent_text
+  and
+  = Calc.new(@report.state.average_sev_cost_burdened_units, @report.state.average_occupied_units).percent_text
+  of households statewide.
 
 %h3 Subtopic: Cost Burden by Tenure
 

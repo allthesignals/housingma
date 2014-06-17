@@ -21,8 +21,10 @@ class CommonFacade
     @state          = @muni.state
   end
 
+  # Shortcut so we can call housing indicator
+  # methods on @muni instead of @muni.housing
   def method_missing(method_name, *args)
-    @housing.send(method_name)
+    @housing.send(method_name).round
   end
 
 end
