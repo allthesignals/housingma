@@ -11,7 +11,7 @@
     %div.col-md-4.service
       %h4 Housing Data Profile
       
-      %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/efc043d0d7d8b238848951324e866c8b/what-is-trello1.png'}
+      = image_tag 'profile.png', class: 'service'
 
       %a.btn.btn-lg.btn-warning{href: profile_municipality_path} Select
       %ul
@@ -31,16 +31,16 @@
     %div.col-md-4.service
       %h4 Basic Needs Assessment
       
-      %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/efc043d0d7d8b238848951324e866c8b/what-is-trello1.png'}
+      = image_tag 'report.png', class: 'service'
 
       %a.btn.btn-lg.btn-success{href: report_municipality_path} Select
       %ul
         %li
-          View interactive visualizations of ### key housing indicators for #{@muni}.
+          Read interpretive text explaining housing trends in #{@muni}.
         %li
-          Read and export interpretive text tailored for housing trends in #{@muni}.
+          View interactive visualizations of six key housing indicators for #{@muni}.
         %li
-          Provides most of the required data elements for a housing production plan.
+          Provides most of the required data elements for the housing needs assessment section of a housing production plan.
         %li
           Export document to Word.
       %a.btn.btn-default{href: report_municipality_path}
@@ -52,12 +52,12 @@
     %div.col-md-4.service
       %h4 Data Download
       
-      %img{src: 'https://d2k1ftgv7pobq7.cloudfront.net/images/landing/efc043d0d7d8b238848951324e866c8b/what-is-trello1.png'}
+      = image_tag 'download.png', class: 'service'
 
       %a.btn.btn-lg.btn-primary{href: download_municipality_path} Select
       %ul
         %li
-          Download all ### currently available data points for all cities & towns in the state.
+          Download all currently available data points for all cities & towns in the state.
         %li
           Dig deeper and perform your own analyses.
         %li

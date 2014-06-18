@@ -106,21 +106,18 @@
     #{ Calc.new(@report.househld_60_pl_2030, @report.hh_30sr).percent_text } of the total households in #{@report.muni}.
 
   %li
-    Net housing unit demand will be #{@report.net_housing_demand_2020} through 2020, or #{@report.net_housing_demand_2020_ann} annually,
+    Net housing unit demand will be #{@report.net_housing_demand_2020} through 2020, or #{@report.net_housing_demand_2020_ann} annually.
 
   %li
     Net housing unit demand for householders currently between the ages of 15 and 35 will be #{@report.hu1534_20}, or 
     = @report.net_annual_demand
-    annually,
+    annually.
 
   %li
     Over the next ten years, householders currently older than 55 will need 
-    = units = Calc.new(@report.net_housing_demand_55_pl_2020).more
+    #{ Calc.new(@report.net_housing_demand_55_pl_2020).more }
     units than they do today
-    - if units.include?('fewer')
-      , putting #{@report.putting_back_sf} single family houses back onto the market on average each year
-    #{"."}
-
+    #{ ", putting #{@report.putting_back_sf} single family houses back onto the market on average each year" if Calc.new(@report.net_housing_demand_55_pl_2020).more.include?('fewer') }.
 
 %h2 Topic: Households
 
@@ -247,11 +244,11 @@
 
 %h3 Subtopic: Cost Burden by Tenure
 
-%p Cost burden rates are typically higher among renter households. Statewide, #{@report.r_cb_p}% of renter and #{@report.o_cb_p}% of owners are cost burdened, respectively. In #{@report.muni}, #{@report.r_cb_p}% of renters are cost burdened, versus #{@report.o_cb_p}% of owners.
+%p Cost burden rates are typically higher among renter households. Statewide, #{@report.state.average_r_cb_p}% of renter and #{@report.state.average_o_cb_p}% of owners are cost burdened, respectively. In #{@report.muni}, #{@report.r_cb_p}% of renters are cost burdened, versus #{@report.o_cb_p}% of owners.
 
 %h3 Subtopic: Cost Burden by Income
 
-%p As expected, cost burden is also more common among low income households. Statewide, #{@report.eli_cbp}% of all extremely low income households, #{@report.vli_cbp}% of very low income households, and #{@report.li_cbp}% of low income households are cost burdened, versus #{@report.hi_cbp}% of households with incomes above 100% AMI. Figure {figNum} shows the percent of #{@report.muni} households that are cost burdened and severely cost burdened by income level.
+%p As expected, cost burden is also more common among low income households. Statewide, #{@report.state.average_eli_cbp}% of all extremely low income households, #{@report.state.average_vli_cbp}% of very low income households, and #{@report.state.average_li_cbp}% of low income households are cost burdened, versus #{@report.state.average_hi_cbp}% of households with incomes above 100% AMI. Figure {figNum} shows the percent of #{@report.muni} households that are cost burdened and severely cost burdened by income level.
 
 %p [[cost burden by income graph. Colors correspond to income category, y-axis corresponds to percent of total households, x-axis corresponds to municipality.]]
 
@@ -263,7 +260,7 @@
 
 %p Massachusetts maintains a subsidized housing inventory (SHI) that tracks each municipality’s affordable housing stock, including deed restricted and subsidized units.  nder General Law Chapter 40B, in any municipality where less than 10% of units are included on the SHI, a developer can build more densely than the municipal zoning bylaws would permit, if at least 25% (or 20% in certain cases) of the new units are affordable.
 
-%p Statewide, #{@report.shi_p}% of housing unit are on the SHI, and 100*sum(#{@report.shi_p} > 10)/351% of municipalities meet their 10% requirement under Chapter 40B. Figure {figNum} shows the percent of SHI unit within #{@report.muni} and its nearest neighbors.
+%p Statewide, #{@report.state.average_shi_p}% of housing units are on the SHI, and 12 percent of municipalities meet their 10% requirement under Chapter 40B. Figure {figNum} shows the percent of SHI unit within #{@report.muni} and its nearest neighbors.
 
 %p [[Bar chart of percent SHI units for #{@report.muni} and nearest neighborhoods.]]
 

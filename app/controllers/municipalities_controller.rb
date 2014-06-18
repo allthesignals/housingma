@@ -41,11 +41,11 @@ class MunicipalitiesController < ApplicationController
     # Initialize DocxReplace with my template
     doc = DocxReplace::Doc.new("#{Rails.root}/lib/assets/template-2014-06-09.docx", "#{Rails.root}/tmp")
 
-    calculations = doc.uniq_matches(/(Calc.new[\(\w.,:\-'\s\@\)]*)/)
-    calculations.each { |calc| doc.replace("\#{ #{calc}}", "#{eval calc}", true)}
+    # calculations = doc.uniq_matches(/(Calc.new[\(\w.,:\-'\s\@\)]*)/)
+    # calculations.each { |calc| doc.replace("\#{ #{calc}}", "#{eval calc}", true)}
 
-    matches = doc.uniq_matches(/\{(\@[\w\.]*)\}/)
-    matches.each { |match| doc.replace("\#{#{match}}", "#{eval match}", true) }
+    matches = doc.uniq_matches(/\#\{(.*?)\}/)
+    matches.each { |match| doc.replace("\#{#{match}}", "#{eval(match.strip)}", true) }
     
     # Write the document back to a temporary file
     tmp_file = Tempfile.new('word_template', "#{Rails.root}/tmp")
