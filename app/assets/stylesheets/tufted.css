@@ -1,0 +1,80 @@
+text {
+  font: 10px sans-serif;
+}
+
+.callout-Oranges {
+  stroke: purple;
+}
+
+rect {
+  opacity: 0.8;
+}
+
+#line-chart {
+  width: 500px;
+}
+
+.charts {
+  height:300px;
+  width:400px;
+}
+
+body {
+  font: 12px sans-serif;
+}
+
+circle:hover {
+  cursor: pointer;
+}
+
+path:hover {
+  cursor: pointer;
+}
+
+.category text {
+  fill: white;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.recession {
+  fill: lightgrey;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+
+.tick.major line {
+  stroke: lightgrey;
+  /*opacity: 0.7;*/
+}
+
+
+
+.error {
+  stroke: black;
+  stroke-width:2;
+}
+
+.average {
+
+  stroke-width:2;
+
+}
+
+#average0 {
+  stroke: black;
+  stroke-dasharray: 6, 1;
+}
+
+#average1 {
+  stroke: black;
+}

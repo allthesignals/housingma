@@ -178,8 +178,8 @@ module Seeds
      { id: 139, title: 'h8099_mep',  subtopic_id: 5,  alias: "Housing units built before 1980-2000, margin of error"                                                    },
      { id: 140, title: 'h_00_p',     subtopic_id: 5,  alias: "Housing units built in 2000 or after"                                                                     },
      { id: 141, title: 'h_00_mep',   subtopic_id: 5,  alias: "Housing units built in 2000 or after, margin of error"                                                    },
-     { id: 142, title: 'tot_units',  subtopic_id: 5,  alias: "Number of building permits, 2012"                                                                         },
-     { id: 143, title: 'sf_units',   subtopic_id: 5,  alias: "Single Family unit permits, 2012"                                                                         },
+     { id: 142, title: 'totunits12', subtopic_id: 5,  alias: "Number of building permits, 2012"                                                                         },
+     { id: 143, title: 'sf_units12', subtopic_id: 5,  alias: "Single Family unit permits, 2012"                                                                         },
      { id: 144, title: 'mf_units',   subtopic_id: 5,  alias: "Multi-Family unit permits, 2012"                                                                          },
      { id: 145, title: 'mf2_units',  subtopic_id: 5,  alias: "Two Family unit permits, 2012"                                                                            },
      { id: 146, title: 'mf3_4units', subtopic_id: 5,  alias: "3 - 4 Units unit permits, 2012"                                                                           },
@@ -309,6 +309,3 @@ model_names.each do |model_name|
 
   puts " -- DONE!"
 end
-
-
-

@@ -16,7 +16,7 @@
 //= require bootstrap-typeahead-rails
 //= require d3
 //= require d3.chart
-//= require tufted-rails
+//= require tufted.js
 
 
 $(document).ready(function () {
@@ -26,4 +26,5 @@ $(document).ready(function () {
     $('html, body').animate({ scrollTop: 0 }, 'slow');
     $('input').focus();
   });
-})
+
+});
