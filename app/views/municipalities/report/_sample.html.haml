@@ -68,11 +68,9 @@
 
 
 %p
-  Massachusetts has grown more diverse since 2000. Between 2000 and 2010, the non-white population increased by
-  TODO: 100 * (@report.minor_10 - @report.minor_00) / @report.minor_00
-  percent. Meanwhile, the white, non-Hispanic population declined by
-  TODO: 100 * (@report.whi_10 - @report.whi_00) / @report.whi_00
-  percent. Figure {figNum} shows the distribution of population by race in #{@report.muni} and its ten nearest neighbors.
+  Massachusetts has grown more diverse since 2000. Between 2000 and 2010, the non-white population
+  #{Calc.new(@report.minor_00, @report.minor_10).percent_change_increase(tense: :past)}. Meanwhile, the white, non-Hispanic population 
+  #{Calc.new(@report.whi_00, @report.nhwhi).percent_change_increase(tense: :past)}. Figure {figNum} shows the distribution of population by race in #{@report.muni} and its ten nearest neighbors.
 
 %p [[Stacked bar chart that adds up to 100%. Bars are shaded by percent of population that is White, Black, Asian, Native American, Pacific Islander, Other, Two or More, and Hispanic. Bars correspond to #{@report.muni} and its nearest neighbors.]]
 
@@ -91,7 +89,10 @@
   %li
     average household size
     = Calc.new(@report.hh_avg00, @report.hh_avg10).increase(context: :none, tense: :past)
-    from #{@report.hh_avg00} in 2000 to #{@report.hh_avg10} in 2010, and is projected to be #{@report.hhs_30sr} by 2030,
+    from
+    #{@report.hh_avg00(round: false)} in 2000 to
+    #{@report.hh_avg10(round: false)} in 2010, and is projected to be
+    #{@report.hhs_30sr(round: false)} by 2030,
 
   %li
     family households with children make up #{@report.hhf_c_p}% of #{@report.muni} households,
@@ -107,7 +108,7 @@
     from 2010,
 
   %li
-    householders between 30 and 60 are projected to [increase/decrease] by 
+    householders between 30 and 60 are projected to
     = Calc.new(@report.househld_30_60_2010, @report.househld_30_60_2030).number_increase(context: :by)
     , or
     = Calc.new(@report.househld_30_60_2010, @report.househld_30_60_2030).percent_change_text
@@ -137,7 +138,6 @@
     - if units.include?('fewer')
       , putting #{@report.putting_back_sf} single family houses back onto the market on average each year
     #{"."}
-    %strong TODO: Check calculation
 
 
 %h2 Topic: Households
@@ -149,40 +149,42 @@
 %p Despite these overall trends, household size did increase in 48 Massachusetts municipalities between 2000 and 2010. Several factors may contribute to this, including “doubling up” in the face of rising housing costs, and concentrations of certain demographic groups with higher fertility rates.
 
 %p
-  In #{@report.muni}, total households [increased/decreased] by 
-  = Calc.new(@report.hh_00, @report.hh_10).number_increase(tense: :past)
-  , or
-  = Calc.new(@report.hh_00, @report.hh_10).percent_change_text
-  , between 2000 and 2010. At the same time, average household size [increased/decreased] from {@report.hh_avg00} to {@report.hh_avg10}.
+  In #{@report.muni}, total households
+  #{ Calc.new(@report.hh_00, @report.hh_10).number_increase(tense: :past) }, or
+  #{ Calc.new(@report.hh_00, @report.hh_10).percent_change_text }, between 2000 and 2010. At the same time, average household size
+  #{ Calc.new(@report.hh_avg00, @report.hh_avg10).increase(tense: :past, context: :none) } from
+  #{ @report.hh_avg00(round: false) } to 
+  #{ @report.hh_avg10(round: false) }.
 
 %h3 Subtopic: Households by Age Cohort
 
 %p
   Just as aging Baby Boomers (those born between 1945 and 1970, for our purposes) will dominate the overall population dynamics of the state, they will also have a substantial influence on household changes and housing needs in #{@report.muni}. As this large generation ages, it will increase the number of householders over 60 by
-  = ((@report.househld_60_pl_2030) - (@report.househld_60_pl_2010)) / (@report.househld_60_pl_2010)
   = Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).percent_change_text
-  %strong TODO: These two are in conflict presently.
-  percent statewide through 2030, and their share of all households will increase from
+  statewide through 2030, and their share of all households will increase from
   = Calc.new(@report.househld_60_pl_2010, @report.hh_10).percent_text(percent: '')
   to
   = Calc.new(@report.househld_60_pl_2030, @report.hh_30sr).percent_text
   over the same period. Meanwhile, the total number of under-60 householders will change only slightly from one decade to the next, and most age groups under 60 will see a decline in the number of households between 2010 and 2030.
 
+
 %p
-  %strong TODO: Come back to this. Restructure the sentence.
-  In #{@report.muni}, householders over 60 will [increase/decrease] from 
+  In #{@report.muni}, householders over 60 will 
+  = Calc.new(@report.househld_60_pl_2010.to_f / @report.hh_10, @report.househld_60_pl_2030.to_f / @report.hh_30sr).increase(context: :none)
+  from 
   = Calc.new(@report.househld_60_pl_2010, @report.hh_10).percent_text
   of the population in 2010 to
   = Calc.new(@report.househld_60_pl_2030, @report.hh_30sr).percent_text
-  in 2030, a change of 
-  = Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).percent_change_increase(context: :of)
+  in 2030,
+  = Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).percent_change_increase(context: :of, percent: '')
   percent. Meanwhile, under-60 householders will
-  [increase/decrease] by
-  = (@report.under_60_househld_2030 - @report.under_60_househld_2010)
   = Calc.new(@report.under_60_househld_2010, @report.under_60_househld_2030).number_increase
   , or
-  = Calc.new(@report.househld_60_pl_2010, @report.househld_60_pl_2030).percent_change_text
-  percent, as seen in Figure 2.
+  = Calc.new(@report.under_60_househld_2010, @report.under_60_househld_2030).percent_change_text
+  , as seen in Figure 2.
+
+
+
 
 
 %p [[Figure 2: Bar chart of household projections by age variable. Essentially identical to Figure 1.]]
@@ -198,16 +200,15 @@
 
 %p
   The decline in demand from older householders will partly offset increased demand from their younger counterparts. In Metro Boston, for example, the decline in demand for single-family homes among householders over 55 and over will accommodate
-  %strong TODO: Why are these different?
-  = 100 * (@report.sf_homes_over_55_2020 / @report.sf_homes_under_55_2020)
   = Calc.new(@report.sf_homes_over_55_2020, @report.sf_homes_under_55_2020).percent_text
-  percent of demand for such units from younger households between 2010 and 2020, and an even greater share in the decade thereafter. However, shifts in preferences among younger households towards multifamily units means that only
-  = 100 * (@report.mf_homes_over_55_2020 / @report.mf_homes_under_55_2020)
+  of demand for such units from younger households between 2010 and 2020, and an even greater share in the decade thereafter. However, shifts in preferences among younger households towards multifamily units means that only
   = Calc.new(@report.mf_homes_over_55_2020, @report.mf_homes_under_55_2020).percent_text
   percent of new multifamily demand will be met through existing units freed up by householder over 55.
 
 %p
-  Through 2020, new households headed by someone currently under the age of 35 will need an additional #{@report.hu1534_20} housing units.  Households headed by someone currently between the ages of 35 and 55 will demand #{@report.hu3554_20} additional units. Householders currently over the age of 55 will need 
+  Through 2020, new households headed by someone currently under the age of 35 will need an additional #{@report.hu1534_20} housing units.  Households headed by someone currently between the ages of 35 and 55 will demand
+  = Calc.new(@report.hu3554_20).more
+  units. Householders currently over the age of 55 will need 
   = Calc.new(@report.hu5574_20 + @report.hu75p_20).more
   units than they do today. After accounting for the units freed up by departing seniors and the units needed to maintain a healthy vacancy rate, this translates into net demand for #{@report.net_demand_sf_2020} single family and #{@report.net_demand_mf_2020}
   multi-family units. Figure {figNum} breaks projected demand down by householder cohort, unit type, and tenure.
@@ -237,7 +238,7 @@
 %h3 Subtopic: 2000 - 2012
 
 %p
-  One way to measure whether or not a municipality is on track to meet future demand is to compare recent permitting activity to future projected demand. If annual permitting for single or multifamily housing units is historically lower than projected annual demand, this indicates a need to increase the rate of single or multifamily permitting in the future.1 From 2000 to 2012, #{@report.muni} permitted #{@report.sf_units} single family and #{@report.mf_units} multifamily housing units annually, as seen in {figNum}.  By comparison, #{@report.muni} faces an annual projected demand of #{@report.sf_demand_2020_ann} single family units and #{@report.mf_demand_2020_ann} multifamily units.
+  One way to measure whether or not a municipality is on track to meet future demand is to compare recent permitting activity to future projected demand. If annual permitting for single or multifamily housing units is historically lower than projected annual demand, this indicates a need to increase the rate of single or multifamily permitting in the future.1 From 2000 to 2012, #{@report.muni} permitted #{@report.sf_units12} single family and #{@report.mf_units12} multifamily housing units annually, as seen in {figNum}.  By comparison, #{@report.muni} faces an annual projected demand of #{@report.sf_demand_2020_ann} single family units and #{@report.mf_demand_2020_ann} multifamily units.
 
 %p [[Line graph with permitted single family and multifamily units per year from 2000 to 2013. Overall horizontal lines to indicate the average annual demand for new single family and multifamily units. These may also work better as separate graphs, especially in communities with historically low multifamily permitting.]]
 

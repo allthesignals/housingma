@@ -22,3 +22,4 @@ Gemfile.lock
 # Never commit a .env file
 
 .env
+/doc/

@@ -24,7 +24,8 @@ class CommonFacade
   # Shortcut so we can call housing indicator
   # methods on @muni instead of @muni.housing
   def method_missing(method_name, *args)
-    @housing.send(method_name).round
+    value = @housing.send(method_name)
+    args.first && args.first[:round] == false ? value : value.round
   end
 
 end
