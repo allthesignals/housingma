@@ -91,7 +91,7 @@ d3.chart("BaseChart").extend("BarChart", {
               .call(xAxis)
               .selectAll("text")
               .style("font", "10px sans-serif")
-              .call(chart.wrap, 60)
+              .call(chart.wrap, 75)
 
         chart.areas.legend
           .append("ul")
@@ -615,11 +615,11 @@ d3.chart("BaseChart").extend("LineChart", {
     chart.duration = 500;
 
     chart.on('change:width', function(newWidth) {
-      chart.xScale.rangeRoundBands([0, chart.width()], 1);
+      chart.xScale.range([0, newWidth]);
     });
 
     chart.on('change:height', function(newHeight) {
-      chart.yScale.range([chart.height(), 0]);
+      chart.yScale.range([newHeight, 0]);
     }); 
 
     chart.areas.yAxisLayer = chart.base.select('g').append('g')
@@ -886,7 +886,6 @@ d3.chart("BaseChart").extend("LineChart", {
         return d.value;
       })
     });
-    console.log(buffer);
 
     chart.xScale.domain(buffer);
     chart.yScale.domain([min,max]);
@@ -904,6 +903,8 @@ d3.chart("BaseChart").extend("LineChart", {
         data.push(pluck[0]);
       });
     }
+
+    console.log(buffer);
 
     return data;
   }
