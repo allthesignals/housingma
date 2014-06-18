@@ -16,7 +16,11 @@
 //= require bootstrap-typeahead-rails
 //= require d3
 //= require d3.chart
+//= require lib/simg.js
 //= require lib/tufted.js
+//= require lib/FileSaver.js
+//= require lib/jszip.min.js
+
 
 
 $(document).ready(function () {
@@ -26,5 +30,4 @@ $(document).ready(function () {
     $('html, body').animate({ scrollTop: 0 }, 'slow');
     $('input').focus();
   });
-
 });

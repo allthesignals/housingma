@@ -8,13 +8,16 @@
       %div.visualization#visualization1
       %div.visualization#visualization2
       %div.visualization#visualization3
+      %div.visualization#visualization4
+      %div.visualization#visualization5
+      %div.visualization#visualization6
 
   %div.row
     %div.col-md-10
       = render partial: 'municipalities/report/topic_area', collection: @report.topic_areas
     
       %hr   
-      %h2{id: "export"}
+      %h2
         Export
       %p
         Export the #{@report.muni} Housing Needs Assessment to Word.
@@ -22,7 +25,7 @@
       %a.btn.btn-lg.btn-primary{href: export_municipality_path(@report.muni)}
         Export to Word (.docx)
 
-      %a.btn.btn-lg.btn-success{href: '#export'}
+      %a.btn.btn-lg.btn-success{id: "export"}
         Export charts to images (.zip)
 
     = render partial: 'scrollspy/scrollspy', locals: { content: @report, export: true }
@@ -32,40 +35,12 @@
 :javascript 
   $.getJSON('#{@report.json_path}', function(d) {
 
-    var groupedBarData = [
-      { series: "1", values:
-        [{name: 'Apples Apples Apples Apples Apples', value: 4},
-         {name: 'Oranges Oranges Oranges Oranges Oranges', value: -36},
-         {name: 'Grapes Grapes Grapes Grapes Grapes', value: 32},
-         {name: 'Peaches Peaches Peaches Peaches Peaches', value: 14}]
-      },
-      { series: "2", values:
-        [{name: 'Apples Apples Apples Apples Apples', value: 36},
-         {name: 'Oranges Oranges Oranges Oranges Oranges', value: 36},
-         {name: 'Grapes Grapes Grapes Grapes Grapes', value: 32},
-         {name: 'Peaches Peaches Peaches Peaches Peaches', value: 14}]
-      },
-      { series: "3", values:
-        [{name: 'Apples Apples Apples Apples Apples', value: 19},
-         {name: 'Oranges Oranges Oranges Oranges Oranges', value: 36},
-         {name: 'Grapes Grapes Grapes Grapes Grapes', value: 32},
-         {name: 'Peaches Peaches Peaches Peaches Peaches', value: 14}]
-      },
-      { series: "4", values:
-        [{name: 'Apples Apples Apples Apples Apples', value: 2},
-         {name: 'Oranges Oranges Oranges Oranges Oranges', value: 36},
-         {name: 'Grapes Grapes Grapes Grapes Grapes', value: 32},
-         {name: 'Peaches Peaches Peaches Peaches Peaches', value: 14}]
-      },
-      { series: "5", values:
-        [{name: 'Apples Apples Apples Apples Apples', value: 6},
-         {name: 'Oranges Oranges Oranges Oranges Oranges', value: 6},
-         {name: 'Grapes Grapes Grapes Grapes Grapes', value: 32},
-         {name: 'Peaches Peaches Peaches Peaches Peaches', value: 14}]
-      }
-    ];
-
     var data = d;
+
+    var select = $.grep(data.municipality.fields, function(n,i) {
+      return ( n.title == "pop00_2034")
+    });
+
     var TYPES = ['pop_projections_by_age', 'another'];
 
     function get_data_for(chart_title) {
@@ -91,11 +66,12 @@
 
         var years = [ "2000", "2010", "2020", "2030" ]
         var output = [];
+
+        
+
         var returnedColumns = data.municipality.fields.filter(function(d) {
           return query.indexOf(d.title) !== -1
         });
-
-        var output = [];
 
         years.forEach(function(year) {
           var values = [];
@@ -135,6 +111,7 @@
 
         var years = [ "2010", "2020", "2030" ]
         var output = [];
+
         var returnedColumns = data.municipality.fields.filter(function(d) {
           return query.indexOf(d.title) !== -1
         });
@@ -176,6 +153,7 @@
 
         var ageGroups = [ "15-34", "35-54", "55-74" ]
         var output = [];
+
         var returnedColumns = data.municipality.fields.filter(function(d) {
           return query.indexOf(d.title) !== -1
         });
@@ -196,7 +174,7 @@
 
           output.push({ series: group, values: findTheseGroups })
         });
-        console.log(output);
+
         return output;
       }
 
@@ -226,45 +204,204 @@
 
           output.push({ series: group, values: findTheseGroups })
         });
-        console.log(output);
+
         return output;
       }
-    }
 
-    var output = get_data_for('pop_projections_by_age');  
+      if (chart_title == 'cost_burden_by_income') {
+
+        var query = [ "eli_cbp",
+                      "vli_cbp",
+                      "li_cbp",
+                      "mod_cbp",
+                      "hi_cbp" ];
+
+        var output = [];
+
+        var returnedColumns = data.municipality.fields.filter(function(d) {
+          return query.indexOf(d.title) !== -1
+        });
+
+        returnedColumns.forEach(function(field) {
+          var stripAlias = field.alias.replace(" that are cost burdened", "");
+          stripAlias = stripAlias.replace("% Households with income ", "");
+          // stripAlias = stripAlias.replace("")
+          output.push({name: stripAlias, value: field.value });
+        });
+
+        return output;
+      }
+
+      if (chart_title == 'subsidized_housing_inventory') {
+
+        var query = [ "shi_p" ];
+
+        var output = [];
+
+        var returnedMuni = data.municipality.fields.filter(function(d) {
+          return query.indexOf(d.title) !== -1
+        });
+
+        var returnedNeighbors = data.neighbors.fields.filter(function(d) {
+          return query.indexOf(d.title) !== -1
+        });
+
+        output.push({
+          name: returnedMuni[0].alias + ", " + data.municipality.name,
+          value: returnedMuni[0].value
+        },
+        {
+          name: returnedNeighbors[0].alias + ", neighboring cities",
+          value: returnedNeighbors[0].value
+        });
+        
+        return output;
+      }
+
+      if (chart_title = "housing_affordability") {
+        var query = [ "hhinc10k",
+                      "hhinc20k",
+                      "hhinc30k",
+                      "hhinc40k",
+                      "hhinc50k",
+                      "hhinc60k",
+                      "hhinc70k",
+                      "hhinc80k",
+                      "hhinc90k",
+                      "hhinc100k",
+                      "hhinc120k" ]; 
+
+        var output = [];
+
+        var returnedColumns = data.municipality.fields.filter(function(d) {
+          return query.indexOf(d.title) !== -1
+        });
+
+        var values = [];
+
+        returnedColumns.forEach(function(field) {
+
+          var stripAlias = field.alias.replace("% of single family homes sold since 2000 that were affordable to households with an incomes of ", "");
+
+          stripAlias = stripAlias.replace(".", "")
+
+          output.push({year: stripAlias.toString(), value: field.value });
+
+        });
+
+        values.push({ series: "Housing Affordability", values: output })
+
+        return values;
+
+      }
+    }
 
     var chart = d3.select('#visualization1')
       .append('svg')
       .chart('GroupedBarChart')
-      .width(500)
-      .height(400)
+      .width(300)
+      .height(300)
       .yAxisLabel("Percent")
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
 
-    chart.draw(output);
-
-    var output = get_data_for('housing_projections_by_age');  
+    chart.draw(get_data_for('pop_projections_by_age'));
 
     var chart = d3.select('#visualization2')
       .append('svg')
       .chart('GroupedBarChart')
-      .width(500)
-      .height(400)
+      .width(300)
+      .height(300)
       .yAxisLabel("Percent")
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
 
-    chart.draw(output);
-
-    var output = get_data_for('housing_demand_by_age_group');  
+    chart.draw(get_data_for('housing_projections_by_age'));
 
     var chart = d3.select('#visualization3')
       .append('svg')
       .chart('GroupedBarChart')
-      .width(500)
-      .height(450)
+      .width(300)
+      .height(300)
       .yAxisLabel("Percent")
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
 
-    chart.draw(output);
-  })
+    chart.draw(get_data_for('housing_demand_by_age_group'));
+
+    var chart = d3.select('#visualization4')
+      .append('svg')
+      .chart('BarChart')
+      .width(300)
+      .height(300)
+      .yAxisLabel("Percent")
+      .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
+
+    chart.draw(get_data_for('cost_burden_by_income'));
+
+    var chart = d3.select('#visualization5')
+      .append('svg')
+      .chart('BarChart')
+      .width(300)
+      .height(300)
+      .yAxisLabel("Percent")
+      .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
+
+    chart.draw(get_data_for('subsidized_housing_inventory'));
+
+    var chart = d3.select('#visualization6')
+      .append('svg')
+      .chart('LineChart')
+      .width(600)
+      .height(300)
+      .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
+
+    chart.draw(get_data_for('housing_affordability'));
+    
+
+    var saveImages = function(callback) {
+      var zip = new JSZip();
+      var img = zip.folder("images");
+
+      console.log("1");
+
+      $("svg").each(function(index, svg) {
+        var simg = new Simg(svg);
+        console.log("2");
+        simg.toImg(function(image) {
+          console.log("3");
+          var filedata = Simg.getBase64Image(image);
+          var filename = "chart-" + index + ".png"
+          img.file(filename, filedata, {base64: true})
+        });
+
+      });
+
+      setTimeout(function(){
+        console.log("4");
+        if(callback) callback(zip);
+      }, 500);
+      
+    }
+
+    var saveZip = function(zip) {
+      console.log("5");
+      var content = zip.generate({type:"blob"});
+      saveAs(content, "example.zip");
+    }
+
+    // log("7");
+
+    var downloadSvgs = function () {
+      console.log("6");
+      saveImages(function(zip) {
+        console.log("7");
+        saveZip(zip);
+      });
+    }
+
+    $("#export").on("click", function() {
+      console.log("8");
+      downloadSvgs();
+    });
+  });
+
+
   
