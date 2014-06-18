@@ -1,4 +1,5 @@
 class CommonFacade
+  include ExceptionHandler
 
   attr_reader :muni,
               :housing,
@@ -23,9 +24,10 @@ class CommonFacade
 
   # Shortcut so we can call housing indicator
   # methods on @muni instead of @muni.housing
+
   def method_missing(method_name, *args)
-    value = @housing.send(method_name)
+    value = handle_template_exceptions { @housing.send(method_name) }
+    return 'N/A' if value.nil?
     args.first && args.first[:round] == false ? value : value.round
   end
-
 end

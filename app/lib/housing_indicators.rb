@@ -30,6 +30,19 @@ module HousingIndicators
   end
 
 
+  def househld_60_pl_2010_p
+    (househld_60_pl_2010.to_f / @report.hh_10)
+  end
+
+  def househld_60_pl_2030_p
+    (househld_60_pl_2030.to_f / @report.hh_30sr)
+  end
+
+  def househld_55_pl_will_need
+    (hu5574_20 + hu75p_20)
+  end
+
+
   def under_60_househld_2030
     (hh30_4559 + hh30_3044 + hh30_1529)
   end
@@ -66,6 +79,9 @@ module HousingIndicators
     (o_cb50 + r_cb50)
   end
 
+  def net_annual_demand
+    (hu1534_20 / 10)
+  end
 
   def net_housing_demand_2020
     (hu1534_20 + hu3554_20 + hu5574_20 + hu75p_20)
@@ -106,5 +122,7 @@ module HousingIndicators
   def putting_back_sf
     ((sfr5574_20 + sfo5574_20 + sfr75p_20 + sfo75p_20) / 10).abs
   end
+
+
 
 end

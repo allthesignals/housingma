@@ -14,10 +14,18 @@ class Calc
 =end
 
   def initialize(*args)
+    return "N/A" if args.include? "N/A"
+
     @number        = args.shift.to_f
     @second_number = args.shift.to_f unless args.empty?
     @nums          = [@number, @second_number]
     @phrase        = increase_or_decrease
+  end
+
+
+  def self.new(*args, &block)
+    # super = the Calc object
+    CalcDelegator.new(super)
   end
 
 
@@ -89,6 +97,7 @@ class Calc
         @second_number > @number ? 'increase' : 'decrease' 
       end
     end
+
 
     def more_or_fewer
       if @second_number.nil?

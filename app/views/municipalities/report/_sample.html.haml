@@ -128,7 +128,7 @@
 
   %li
     Net housing unit demand for householders currently between the ages of 15 and 35 will be #{@report.hu1534_20}, or 
-    = (@report.hu1534_20 / 10).round
+    = @report.net_annual_demand
     annually,
 
   %li
@@ -170,7 +170,7 @@
 
 %p
   In #{@report.muni}, householders over 60 will 
-  = Calc.new(@report.househld_60_pl_2010.to_f / @report.hh_10, @report.househld_60_pl_2030.to_f / @report.hh_30sr).increase(context: :none)
+  = Calc.new(@report.househld_60_pl_2010_p, @report.househld_60_pl_2030_p).increase(context: :none)
   from 
   = Calc.new(@report.househld_60_pl_2010, @report.hh_10).percent_text
   of the population in 2010 to
@@ -209,7 +209,7 @@
   Through 2020, new households headed by someone currently under the age of 35 will need an additional #{@report.hu1534_20} housing units.  Households headed by someone currently between the ages of 35 and 55 will demand
   = Calc.new(@report.hu3554_20).more
   units. Householders currently over the age of 55 will need 
-  = Calc.new(@report.hu5574_20 + @report.hu75p_20).more
+  = Calc.new(@report.househld_55_pl_will_need).more
   units than they do today. After accounting for the units freed up by departing seniors and the units needed to maintain a healthy vacancy rate, this translates into net demand for #{@report.net_demand_sf_2020} single family and #{@report.net_demand_mf_2020}
   multi-family units. Figure {figNum} breaks projected demand down by householder cohort, unit type, and tenure.
 
