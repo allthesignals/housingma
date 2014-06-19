@@ -26,7 +26,7 @@
 
 
 :javascript 
-  $.getJSON("#{@report.json_path}", function(d) {
+  $.getJSON('#{@report.json_path}', function(d) {
 
     var data = d;
 
@@ -74,14 +74,19 @@
           });
 
           findTheseYears = findTheseYears.map(function(d) {
-            var stripAlias = d.alias.replace(", " + year, "");
+            var stripAlias = d.alias.replace(" in " + year, "");
+            stripAlias = stripAlias.replace("Projected ", "");
             return { name: stripAlias, value: d.value }
           })
 
           output.push({ series: year, values: findTheseYears })
         });
 
+        
+
         return output;
+
+
       }
 
       if (chart_title == 'housing_projections_by_age') {
@@ -119,12 +124,15 @@
           });
 
           findTheseYears = findTheseYears.map(function(d) {
-            var stripAlias = d.alias.replace(", " + year, "");
+            var stripAlias = d.alias.replace(" in " + year, "");
+            stripAlias = stripAlias.replace("Projected ", "");
             return { name: stripAlias, value: d.value }
           })
 
           output.push({ series: year, values: findTheseYears })
         });
+
+        console.log("Chart 1: ", output);
 
         return output;
       }
