@@ -1,5 +1,5 @@
 
-%h1 Topic Area: Introduction
+%h1 Introduction
 
 %p Housing production is one of the most profound challenges facing Massachusetts, and one in which each city and town has a unique and important role to play. Creating enough homes to accommodate the next generation of workers while also addressing the complex needs of an aging and increasingly diverse population will require communities across the state to implement new plans and policies that usher in a new era of housing production. 
 
@@ -10,7 +10,7 @@
 %p This report provides an overview of the current demographics of #{@report.muni}, the projected changes in housing demand over the coming decades, and the types of new housing that are needed to meet that need.  
 
 
-%h2 Topic: The Legal Context for Housing Production Planning
+%h2 The Legal Context for Housing Production Planning
 
 %p Housing production has been an important goal of the Commonwealth for decades.  The Comprehensive Permit Act consists of Massachusetts General Laws (MGL) Chapter 40B, Sections 20 through 23, along with associated regulations issued and administered by the Massachusetts Department of Housing and Community Development (DHCD). It was enacted in 1969 to encourage the production of affordable housing in all communities of the Commonwealth.
 
@@ -20,7 +20,7 @@
 
 
 
-%h1 Topic Area: Demographics
+%h1 Demographics
 
 
 
@@ -48,13 +48,16 @@
   #{ Calc.new(@report.pop_2010, @report.pop_30sr).number_increase }, or 
   #{ Calc.new(@report.pop_2010, @report.pop_30sr).percent_change_text }, over the same period.
 
-%p [[Figure 1: Bar chart of population projections by age variable. Bars are filled by year. Age  variable mapped to x-axis. See ”Total Population by Age, 1990 - 2030”  in municipal projections. report. 
+%p
+  %div.visualization#visualization1
+  %strong Figure 1.
+  Population by Age Group, 2000-2030.
 
 
-%h2 Topic: Population
+%h2 Population
 
 
-%h3 Subtopic: by Race
+%h3 by Race
 
 
 %p
@@ -64,7 +67,7 @@
 
 %p [[Stacked bar chart that adds up to 100%. Bars are shaded by percent of population that is White, Black, Asian, Native American, Pacific Islander, Other, Two or More, and Hispanic. Bars correspond to #{@report.muni} and its nearest neighbors.]]
 
-%h1 Topic Area: Demand
+%h1 Demand
 
 %p Housing demand is a function not only of population, but also the number and type of households that the population forms.  As years pass, some households form, move into the community, or grow larger, while others grow smaller, seek different housing options, or move out. Net housing demand is the number of units needed to accommodate additional households and maintain healthy vacancy rates among owner and renter-occupied housing units. This section looks at the current distribution of household types in #{@report.muni}, projected household changes, and net housing unit demand through 2030.
 
@@ -119,9 +122,9 @@
     units than they do today
     #{ ", putting #{@report.putting_back_sf} single family houses back onto the market on average each year" if Calc.new(@report.net_housing_demand_55_pl_2020).more.include?('fewer') }.
 
-%h2 Topic: Households
+%h2 Households
 
-%h3 Subtopic: Total Households
+%h3 Total Households
 
 %p Total population and average household size determine the number of households in a community. In Massachusetts overall, and in 96% of Massachusetts municipalities with population growth since 2000, the number of households increased faster than population because of declines in average household size. This trend is expected to continue as seniors make up a greater share of householders and younger householders wait longer to form families that are smaller on average than their predecessors.
 
@@ -135,7 +138,7 @@
   #{ @report.hh_avg00(round: false) } to 
   #{ @report.hh_avg10(round: false) }.
 
-%h3 Subtopic: Households by Age Cohort
+%h3 Households by Age Cohort
 
 %p
   Just as aging Baby Boomers (those born between 1945 and 1970, for our purposes) will dominate the overall population dynamics of the state, they will also have a substantial influence on household changes and housing needs in #{@report.muni}. As this large generation ages, it will increase the number of householders over 60 by
@@ -154,16 +157,16 @@
   #{ Calc.new(@report.under_60_househld_2010, @report.under_60_househld_2030).percent_change_text }, as seen in Figure 2.
 
 
+%p
+  %div.visualization#visualization2
+  %strong Figure 2.
+  Households by Householder Age Cohort, 2010-2030.
 
 
-
-%p [[Figure 2: Bar chart of household projections by age variable. Essentially identical to Figure 1.]]
-
-
-%h2 Topic: Housing Units
+%h2 Housing Units
 
 
-%h3 Subtopic: Housing Unit Demand Change
+%h3 Housing Unit Demand Change
 
 
 %p Changes in housing unit demand result from household formation, dissolution, and mortality. Young adults currently between the ages of 15 and 30 are poised to form households after they leave home, dorm, or roommates. Thousands are projected to do so each year, and each will need a housing unit, typically multi-family rental units. Meanwhile, older adults have typically already formed households. Combined with mortality, outmigration, or transition to nursing homes and other group quarter situations, this translates to a decline in housing unit demand among householders 55 and over, despite a sharp increase in the number of senior-headed households.
@@ -177,38 +180,40 @@
   Through 2020, new households headed by someone currently under the age of 35 will need an additional #{@report.hu1534_20} housing units.  Households headed by someone currently between the ages of 35 and 55 will demand
   #{ Calc.new(@report.hu3554_20).more } units. Householders currently over the age of 55 will need 
   #{ Calc.new(@report.househld_55_pl_will_need).more } units than they do today. After accounting for the units freed up by departing seniors and the units needed to maintain a healthy vacancy rate, this translates into net demand for #{@report.net_demand_sf_2020} single family and #{@report.net_demand_mf_2020}
-  multi-family units. Figure {figNum} breaks projected demand down by householder cohort, unit type, and tenure.
+  multi-family units. Figure 3 breaks projected demand down by householder cohort, unit type, and tenure.
 
-%p [[Figure {figNum}: Bar chart of housing unit demand by cohort: 2010 through 2030. Age breaks on the x-axis: 15 - 34, 35-54, 55 - 74, and 75+. Bars are stacked and colored by unit type and tenure (single family rental and owner, and multifamily rental and owner. See figure Housing Unit Demand by Cohort, 2010 - 2020 in Abington HPP report.]]
+%p
+  %div.visualization#visualization3
+  %strong Figure 3.
+  Projected Household Deman by Age Cohort, Unit Type, and Tenure.
 
 
-%h2 Topic: Supply
+%h2 Supply
 
 
 %p Supply is measured by the number and type of housing units in a community. It is the part of the housing market that municipalities can directly control through zoning and other land use policies. In this section, we look at the current supply of housing units in #{@report.muni}, as well as its distribution by unit type, building age, size, and cost. We also look at housing permitting in #{@report.muni} since 2000 and compare it to projected future demand. These numbers can help your community to determine what policies are needed to ensure an adequate supply of housing to meet current and future demand.
 
-%h3 Subtopic: Housing Units by Age
+%h3 Housing Units by Age
 
 %p The distribution of housing units by age is important for at least three reasons. First, a housing stock with few units built since 2000 indicates that housing supply is growing slowly. If demand is expected to remain stable or increase in the future, this may result in upward pressure on housing prices. Second, older housing units can be more expensive to occupy, due to higher heating and maintenance costs. Third, certain federal housing programs, such as Community Development Block Grants, track the percent of housing units by age, and in particular the percent built before 1939.
 
 %p
   In #{@report.muni}, #{@report.h_39_p}% of housing units are in buildings built before 1939, compared to #{@report.h_39_p}% statewide. Another #{@report.h4059_p}% and #{@report.h6079_p}% of #{@report.muni} units are in buildings that date from 1940-1959 and 1960-1979, respectively. Construction since 2000 accounts for #{@report.h_00_p}% of units, compared to #{@report.state.average_h_00_p}% statewide.
 
-%h3 Subtopic: Housing Units by Type
+%h3 Housing Units by Type
 
 %p Housing preferences are projected to change, as both younger householders and seniors opt for smaller, multifamily units, as seen above. It is important to compare these projections to the current distribution of units in order to calibrate supply to future demand. In #{@report.muni}, #{@report.u1_p}% of units are in single family homes, compared to #{@report.state.average_u1_p}% statewide and #{@report.community_type.average_u1_p}% for #{@report.community_type}-type municipalities; #{@report.u2_4_p}% of all units are in two- to four-family buildings; and #{@report.u5_9_p + @report.u10_19_p + @report.u20ov_p}% are in multifamily buildings with five or more units. The remainder are in non-permanent structures, such as mobile homes.
 
-%h2 Topic: Housing Permits
+%h2 Housing Permits
 
 
-%h3 Subtopic: 2000 - 2012
+%h3 2000 - 2012
 
 %p
-  One way to measure whether or not a municipality is on track to meet future demand is to compare recent permitting activity to future projected demand. If annual permitting for single or multifamily housing units is historically lower than projected annual demand, this indicates a need to increase the rate of single or multifamily permitting in the future.1 From 2000 to 2012, #{@report.muni} permitted #{@report.sf_units12} single family and #{@report.mf_units12} multifamily housing units annually, as seen in {figNum}.  By comparison, #{@report.muni} faces an annual projected demand of #{@report.sf_demand_2020_ann} single family units and #{@report.mf_demand_2020_ann} multifamily units.
+  One way to measure whether or not a municipality is on track to meet future demand is to compare recent permitting activity to future projected demand. If annual permitting for single or multifamily housing units is historically lower than projected annual demand, this indicates a need to increase the rate of single or multifamily permitting in the future.1 From 2000 to 2012, #{@report.muni} permitted #{@report.sf_units12} single family and #{@report.mf_units12} multifamily housing units annually.  By comparison, #{@report.muni} faces an annual projected demand of #{@report.sf_demand_2020_ann} single family units and #{@report.mf_demand_2020_ann} multifamily units.
 
-%p [[Line graph with permitted single family and multifamily units per year from 2000 to 2013. Overall horizontal lines to indicate the average annual demand for new single family and multifamily units. These may also work better as separate graphs, especially in communities with historically low multifamily permitting.]]
 
-%h1 Topic Area: Affordability
+%h1 Affordability
 
 %p Housing prices are determined by the demand for and supply of housing units. If supply does not keep up with demand, higher prices result. Affordability is determined by the distribution of housing prices and household incomes. If prices rise but incomes remain flat - a familiar dynamic in many communities in recent years - affordability declines.
 
@@ -220,7 +225,7 @@
   %li the percent of recent home sales affordable to low and median income households, and
   %li the gap between the number of households by income level, and the number of housing units affordable by income level.
 
-%h2 Topic: Households by Income
+%h2 Households by Income
 
 %p Affordability is of particular concern to low income households. Many federal and state housing programs define low income households according to household size and household income, measured as a percent of Area Median Income. The breakdown for extremely low, very low, and low income households by household size is shown in Table tableNum below.
 
@@ -231,9 +236,7 @@
   = @report.amiu30p + @report.ami3050p + @report.ami5080p
   percent of all households qualify for federal and state affordable housing programs based on household income. 
 
-%p [[Bar graph of household projections by household income. Similar to household by age, expect bars will be filed in according to income.]]
-
-%h2 Topic: Housing Cost Burden
+%h2 Housing Cost Burden
 
 %p
   The most common measure of housing affordability is the percent of income that households spend on housing costs. According to most federal and state agencies, households that spend more than 30% of income on housing costs are “cost burdened.” Households that spend more than 50% of income on housing are “severely cost burdened.” Areas where more than 30% of households are cost burdened face an affordable housing shortage. In #{@report.muni},
@@ -242,37 +245,46 @@
   #{ Calc.new(@report.state.average_cost_burdened_units, @report.state.average_occupied_units).percent_text } and
   #{ Calc.new(@report.state.average_sev_cost_burdened_units, @report.state.average_occupied_units).percent_text } of households statewide.
 
-%h3 Subtopic: Cost Burden by Tenure
+%h3 Cost Burden by Tenure
 
 %p Cost burden rates are typically higher among renter households. Statewide, #{@report.state.average_r_cb_p}% of renter and #{@report.state.average_o_cb_p}% of owners are cost burdened, respectively. In #{@report.muni}, #{@report.r_cb_p}% of renters are cost burdened, versus #{@report.o_cb_p}% of owners.
 
-%h3 Subtopic: Cost Burden by Income
+%h3 Cost Burden by Income
 
-%p As expected, cost burden is also more common among low income households. Statewide, #{@report.state.average_eli_cbp}% of all extremely low income households, #{@report.state.average_vli_cbp}% of very low income households, and #{@report.state.average_li_cbp}% of low income households are cost burdened, versus #{@report.state.average_hi_cbp}% of households with incomes above 100% AMI. Figure {figNum} shows the percent of #{@report.muni} households that are cost burdened and severely cost burdened by income level.
+%p As expected, cost burden is also more common among low income households. Statewide, #{@report.state.average_eli_cbp}% of all extremely low income households, #{@report.state.average_vli_cbp}% of very low income households, and #{@report.state.average_li_cbp}% of low income households are cost burdened, versus #{@report.state.average_hi_cbp}% of households with incomes above 100% AMI. Figure 4 shows the percent of #{@report.muni} households that are cost burdened and severely cost burdened by income level.
 
-%p [[cost burden by income graph. Colors correspond to income category, y-axis corresponds to percent of total households, x-axis corresponds to municipality.]]
+%p
+  %div.visualization#visualization4
+  %strong Figure 4.
+  Percent of households in #{@report.muni} cost burdened by income level.
 
-%h3 Subtopic: Cost Burden by Household Type
+%h3 Cost Burden by Household Type
 
 %p Younger households, non-family households, and elderly households typically have lower incomes, and are more likely to rent. They are also more likely to to be cost burdened. Statewide, #{@report.ef_cbp}% of elderly family households and #{@report.oth_cbp}% of non-elderly, non-family households are cost burdened, respectively. As the number of elderly households increases, the number of cost-burdened elderly households is likely to increase. In #{@report.muni}, cost burden among elderly family households and non-elderly, non-family households is #{@report.ef_cbp}% and #{@report.oth_cbp}%, respectively.
 
-%h2 Topic: Subsidized Housing Inventory
+%h2 Subsidized Housing Inventory
 
 %p Massachusetts maintains a subsidized housing inventory (SHI) that tracks each municipality’s affordable housing stock, including deed restricted and subsidized units.  nder General Law Chapter 40B, in any municipality where less than 10% of units are included on the SHI, a developer can build more densely than the municipal zoning bylaws would permit, if at least 25% (or 20% in certain cases) of the new units are affordable.
 
 %p Statewide, #{@report.state.average_shi_p}% of housing units are on the SHI, and 12 percent of municipalities meet their 10% requirement under Chapter 40B. Figure {figNum} shows the percent of SHI unit within #{@report.muni} and its nearest neighbors.
 
-%p [[Bar chart of percent SHI units for #{@report.muni} and nearest neighborhoods.]]
+%p
+  %div.visualization#visualization5
+  %strong Figure 5.
+  Percent SHI units for #{@report.muni} and nearest neighboring municipalities.
 
-%h2 Topic: Affordability of Recent Home Sales
+%h2 Affordability of Recent Home Sales
 
 %p Owner-occupied cost burden estimates reflect the housing costs of current owner households, not the prices that aspiring homeowners face in the current housing market. If prices have risen recently, new entrants my find themselves with fewer options of higher risk of cost burden than their counterparts who have been in the area for some time. To estimate how affordable recent sale prices are to low income families, we use 2000 to 2012 sales data from the Massachusetts parcel file Figure {figNum} shows the percent of single family home sales since 2000 that are affordable by household income.
 
 %p [Note: If a graph does not appear below, then #{@report.muni} either does not have data on sale price or sale date in the Massachusetts parcel file, or the data is in a non-standard format.]
 
-%p [[Line graph. y-axis is percent of home sales/condo sales since 2000 that are affordable to households at each income level. Vertical lines show low income household cutoff and median households income.]]
+%p
+  %div.visualization#visualization6
+  %strong Figure 6.
+  A description of Figure 6.
 
-%h2 Topic: Affordability Gap
+%h2 Affordability Gap
 
 %p Units that are affordable to low income households are not necessarily occupied by low income households. This mismatch between households’ incomes and the units they occupy can exacerbate affordability problems. To measure the extent to which affordability is a supply problem versus a distribution problem, we calculate the affordability gap. The gap is the difference between the number of households at a given income level and the number of units affordable to households at that income level. A positive gap indicates a shortage of units at a given income level, even if households and units were perfectly matched by incomes and costs. Table tableNum shows the gap #{@report.muni} renter and owner households face at 50% AMI, 50 to 80% AMI, and above 80% AMI.
 

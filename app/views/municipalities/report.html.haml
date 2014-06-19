@@ -3,14 +3,6 @@
 %div.container
   %h1
     Housing Needs Assessment for #{@report.muni}, MA
-  %div.row
-    %div.col-md-10
-      %div.visualization#visualization1
-      %div.visualization#visualization2
-      %div.visualization#visualization3
-      %div.visualization#visualization4
-      %div.visualization#visualization5
-      %div.visualization#visualization6
 
   %div.row
     %div.col-md-10
@@ -34,7 +26,7 @@
 
 
 :javascript 
-  $.getJSON('#{@report.json_path}', function(d) {
+  $.getJSON("#{@report.json_path}", function(d) {
 
     var data = d;
 
