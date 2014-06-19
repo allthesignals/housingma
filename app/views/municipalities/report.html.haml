@@ -171,6 +171,8 @@
 
           findTheseGroups = findTheseGroups.map(function(d) {
             var stripAlias = d.alias.replace(" for Ages " + group, "");
+            stripAlias = stripAlias.replace("Projected ", "")
+            stripAlias = stripAlias.replace(" Household Demand between ", "")
             return { name: stripAlias, value: d.value }
           })
 
@@ -301,7 +303,6 @@
     var chart = d3.select('#visualization1')
       .append('svg')
       .chart('GroupedBarChart')
-      .width(300)
       .height(300)
       .yAxisLabel("Percent")
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
@@ -311,7 +312,6 @@
     var chart = d3.select('#visualization2')
       .append('svg')
       .chart('GroupedBarChart')
-      .width(300)
       .height(300)
       .yAxisLabel("Percent")
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
@@ -321,7 +321,6 @@
     var chart = d3.select('#visualization3')
       .append('svg')
       .chart('GroupedBarChart')
-      .width(300)
       .height(300)
       .yAxisLabel("Percent")
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
@@ -331,7 +330,6 @@
     var chart = d3.select('#visualization4')
       .append('svg')
       .chart('BarChart')
-      .width(300)
       .height(300)
       .yAxisLabel("Percent")
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
@@ -341,7 +339,6 @@
     var chart = d3.select('#visualization5')
       .append('svg')
       .chart('BarChart')
-      .width(300)
       .height(300)
       .yAxisLabel("Percent")
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
@@ -351,7 +348,6 @@
     var chart = d3.select('#visualization6')
       .append('svg')
       .chart('LineChart')
-      .width(600)
       .height(300)
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
 
@@ -379,7 +375,7 @@
         simg.toImg(function(image) {
           console.log("3");
           var filedata = Simg.getBase64Image(image);
-          var filename = "chart-" + index + ".png"
+          var filename = "figure-" + index + ".png"
           img.file(filename, filedata, {base64: true})
         });
 
