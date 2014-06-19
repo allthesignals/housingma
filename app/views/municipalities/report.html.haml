@@ -13,13 +13,19 @@
       %h2
         Export
       %p
-        Export the #{@report.muni} Housing Needs Assessment to Word.
+        Export the #{@report.muni} Housing Needs Assessment to Word, and export the charts as images.
 
       %a.btn.btn-lg.btn-primary{href: export_municipality_path(@report.muni)}
         Export to Word (.docx)
 
       %a.btn.btn-lg.btn-success{id: "export"}
         Export charts to images (.zip)
+
+      %br
+      %br
+      %p
+        %strong Some assembly required:
+        The charts cannot be exported as images with the Word document. To retrieve the complete report, export both the Word document and the charts. Insert the charts into the Word document where indicated.
 
     - # render partial: 'scrollspy/scrollspy', locals: { content: @report, export: true }
     = render partial: 'scrollspy/sample'

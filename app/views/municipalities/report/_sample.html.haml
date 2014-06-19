@@ -63,9 +63,7 @@
 %p
   Massachusetts has grown more diverse since 2000. Between 2000 and 2010, the non-white population
   #{Calc.new(@report.minor_00, @report.minor_10).percent_change_increase(tense: :past)}. Meanwhile, the white, non-Hispanic population 
-  #{Calc.new(@report.whi_00, @report.nhwhi).percent_change_increase(tense: :past)}. Figure {figNum} shows the distribution of population by race in #{@report.muni} and its ten nearest neighbors.
-
-%p [[Stacked bar chart that adds up to 100%. Bars are shaded by percent of population that is White, Black, Asian, Native American, Pacific Islander, Other, Two or More, and Hispanic. Bars correspond to #{@report.muni} and its nearest neighbors.]]
+  #{Calc.new(@report.whi_00, @report.nhwhi).percent_change_increase(tense: :past)}.
 
 %h1#demand Demand
 
@@ -185,7 +183,7 @@
 %p
   %div.visualization#visualization3
   %strong Figure 3.
-  Projected Household Deman by Age Cohort, Unit Type, and Tenure.
+  Projected Household Demand by Age Cohort, Unit Type, and Tenure.
 
 
 %h2#supply Supply
@@ -263,7 +261,7 @@
 
 %p Massachusetts maintains a subsidized housing inventory (SHI) that tracks each municipality’s affordable housing stock, including deed restricted and subsidized units.  nder General Law Chapter 40B, in any municipality where less than 10% of units are included on the SHI, a developer can build more densely than the municipal zoning bylaws would permit, if at least 25% (or 20% in certain cases) of the new units are affordable.
 
-%p Statewide, #{@report.state.average_shi_p}% of housing units are on the SHI, and 12 percent of municipalities meet their 10% requirement under Chapter 40B. Figure {figNum} shows the percent of SHI unit within #{@report.muni} and its nearest neighbors.
+%p Statewide, #{@report.state.average_shi_p}% of housing units are on the SHI, and 12 percent of municipalities meet their 10% requirement under Chapter 40B. Figure 5 shows the percent of SHI unit within #{@report.muni} and its nearest neighbors.
 
 %p
   %div.visualization#visualization5
@@ -272,14 +270,16 @@
 
 %h2#afford-recent-home-sales Affordability of Recent Home Sales
 
-%p Owner-occupied cost burden estimates reflect the housing costs of current owner households, not the prices that aspiring homeowners face in the current housing market. If prices have risen recently, new entrants my find themselves with fewer options of higher risk of cost burden than their counterparts who have been in the area for some time. To estimate how affordable recent sale prices are to low income families, we use 2000 to 2012 sales data from the Massachusetts parcel file Figure {figNum} shows the percent of single family home sales since 2000 that are affordable by household income.
+%p Owner-occupied cost burden estimates reflect the housing costs of current owner households, not the prices that aspiring homeowners face in the current housing market. If prices have risen recently, new entrants my find themselves with fewer options of higher risk of cost burden than their counterparts who have been in the area for some time. To estimate how affordable recent sale prices are to low income families, we use 2000 to 2012 sales data from the Massachusetts parcel file Figure 6 shows the percent of single family home sales since 2000 that are affordable by household income.
 
-%p [Note: If a graph does not appear below, then #{@report.muni} either does not have data on sale price or sale date in the Massachusetts parcel file, or the data is in a non-standard format.]
+%p
+  %strong Note:
+  (If a graph does not appear below, then there is no data on sale price or sale date for #{@report.muni} in the Massachusetts parcel data, or the data is in a non-standard format.)
 
 %p
   %div.visualization#visualization6
   %strong Figure 6.
-  A description of Figure 6.
+  Percent of Single Family Home Sales, Affordable by Household Income (2000-present)
 
 %h2 Affordability Gap
 
