@@ -34,6 +34,7 @@ d3.chart("BaseChart").extend("BarChart", {
     chart.yScale = d3.scale.linear().rangeRound([chart.height(), 0]);
     chart.color = d3.scale.category10();
     chart.duration = 500;
+
     chart.on('change:width', function(newWidth) {
       chart.xScale.rangeRoundBands([0, newWidth], 0.1);
     });
@@ -48,8 +49,8 @@ d3.chart("BaseChart").extend("BarChart", {
     chart.layers.bars = chart.base.select('g').append('g')
       .classed('bars', true)
 
-    chart.areas.legend = chart.base.select('g').append('g')
-      .attr("transform", "translate(0, -40)");
+    var selection = chart.base.node().parentNode
+    chart.areas.legend = d3.select(chart.base.node().parentNode).append("div");
 
     chart.layer('bars', chart.layers.bars, {
 
@@ -92,37 +93,19 @@ d3.chart("BaseChart").extend("BarChart", {
               .style("font", "10px sans-serif")
               .call(chart.wrap, 60)
 
-        chart.areas.legend =
-          chart.areas.legend
-          .selectAll(".legend")
+        chart.areas.legend
+          .append("ul")
+          .selectAll("li")
           .data(chart.xScale.domain())
-            .enter().append("g")
-            .attr("class", "legend")
-
-        chart.areas.legend
-            .append("circle")
-              .attr("r", 5)
-              .attr("cx", function(d,i) {
-                return 1 + (i * 100);
-              })
-              .attr("fill", function(d) {
-                return chart.colorScale(d);
-              })
-              .attr("cy", 5)
-
-        chart.areas.legend
-            .append("text")
-            .attr("transform", function (d,i) {
-              return "translate(" + (10 + (i*100)) + ",0)";
-            })
-            .attr("dy", ".71em")
-            .attr("x", 0)
-            .attr("y", 0)
-            .text(function(d) { 
-              return d;
-            })
-            .call(chart.wrap, 85)
-
+          .enter()
+            .append("li")
+            .style("color", function(d,i) { return chart.colorScale(d) })
+            .style("font-size", "2.2em")
+            .style("line-height", ".4em")
+              .append("span")
+              .style("color", "black")
+              .style("font-size", ".40em")
+              .text(function(d) { return d });
 
         // chart.areas.legend
         //   .selectAll("circle")
@@ -167,22 +150,20 @@ d3.chart("BaseChart").extend("BarChart", {
           var chart = this.chart();
 
           this.attr('x', function(d) { return chart.xScale(d.name); })
-            // .attr("title", function(d) { return d.name })
-            .attr("class", "bar")
+            .attr("title", function(d) { return d.name })
             .attr("data-content", function(d) { return  "Estimate: " + d.value + '%' })
             .attr("data-legend", function(d) { return d.name })
             .attr('y', function(d) { return chart.yScale(0); })
             .attr('width', chart.xScale.rangeBand())
             .attr('height', 0)
-
-            // .on("mouseover", function() {
-            //   d3.select(this)
-            //     .style("opacity", 1)
-            // })
-            // .on("mouseout", function() {
-            //   d3.select(this)
-            //     .style("opacity", 0.8)
-            // })
+            .on("mouseover", function() {
+              d3.select(this)
+                .style("opacity", 1)
+            })
+            .on("mouseout", function() {
+              d3.select(this)
+                .style("opacity", 0.8)
+            })
             .style('fill', function(d) {return chart.colorScale(d.name);});
         },
 
@@ -228,10 +209,6 @@ d3.chart("BaseChart").extend("BarChart", {
   }
 });
 },{}],3:[function(require,module,exports){
-
-  // obtains element computed style
-  // context is chart
-
 d3.chart("BaseChart", {
 
   initialize: function () {
@@ -240,46 +217,19 @@ d3.chart("BaseChart", {
     chart.areas = {};
     chart.layers = {};
 
-    chart.areas.legend = {};
-
     this._tickValues = [];
     this._yAxisLabel = "Y-Axis";
-    this._margin = {top: 60, right: 20, bottom: 80, left: 60};
-    this._width  = setInitialWidth();
-    this._height = setInitialHeight();
+    this._margin = {top: 20, right: 20, bottom: 80, left: 60};
+    this._width  = this.base.attr('width') ? this.base.attr('width') - this._margin.left - this._margin.right : this.base.node().parentNode.clientWidth - this._margin.left - this._margin.right;
+    this._height = this.base.attr('height') ? this.base.attr('height') - this._margin.top - this._margin.bottom : this.base.node().parentNode.clientHeight - this._margin.top - this._margin.bottom ;
     this.colorScale = d3.scale.category10();
     this.updateContainerWidth();
     this.updateContainerHeight();
-
-
-    function setInitialWidth () {
-      if (chart.base.attr('width')) {
-        return chart.base.attr('width') - chart._margin.left - chart._margin.right;
-      } else {
-        return numbersOnly(getComputedStyle(chart.base.node().parentNode).width) - chart._margin.left - chart._margin.right;
-      }
-    }
-
-    function setInitialHeight() {
-      if (chart.base.attr('height')) {
-        return chart.base.attr('height') - chart._margin.top - chart._margin.bottom;
-      } else {
-        return numbersOnly(getComputedStyle(chart.base.node().parentNode).height) - chart._margin.top - chart._margin.bottom;
-      }
-    }
-
-    function numbersOnly(string) {
-      var regex = /([0-9,]{1,})/;
-      var match = regex.exec(string);
-
-      return parseInt(match[0]);
-    }
 
     this.base.append('g')
       .attr('transform', 'translate(' + this._margin.left + ',' + this._margin.top + ')');
 
   },
-
 
   updateContainerWidth: function() { this.base.attr('width', this._width + this._margin.left + this._margin.right); },
 
@@ -410,492 +360,23 @@ d3.chart("BaseChart", {
         }
       }
     });
+  },
+
+  download: function(element) {
+    var chart = this;
+    if (arguments.length === 0) {
+      return this;
+    }
+
+    var simg = new Simg((chart.base[0])[0]);
+
+    d3.select(element).on("click", function() {
+      simg.download();
+    });
+    
+    return this;
   }
 });
-
-
-  // function _style(attr) {
-  //   var style,
-  //     element = this.base[0][0];
-  //   if (window.getComputedStyle) {
-  //     style = window.getComputedStyle(element);
-  //   } else if (element.currentStyle) {
-  //     style = element.currentStyle;
-  //   }
-
-  //   if (!attr) {
-  //     return style;
-  //   } else {
-  //     return style[attr];
-  //   }
-  // }
-
-  // // converts pixel values
-  // var _toNumFromPx = (function() {
-  //   var rx = /px$/;
-  //   return function(value) {
-  //     if (rx.test(value)) {
-  //       return +(value.replace(rx, ""));
-  //     } else {
-  //       return value;
-  //     }
-  //   };
-  // }());
-
-
-  // // helper attribute setter on chart base.
-  // // context is chart
-  // function _initAttr(internalName, d3Name, defaultValue) {
-  //   var current = _toNumFromPx(_style.call(this, d3Name));
-
-  //   if (current === null || current === 0 || current === "") {
-  //     this[internalName] = defaultValue;
-  //     this.base.style(d3Name, defaultValue);
-  //   } else {
-  //     this[internalName] = _toNumFromPx(_style.call(this, d3Name));
-  //   }
-  // }
-
-  // // Borrowed from Underscore.js 1.5.2
-  // //     http://underscorejs.org
-  // //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-  // //     Underscore may be freely distributed under the MIT license.
-  // // Returns a function, that, as long as it continues to be invoked, will not
-  // // be triggered. The function will be called after it stops being called for
-  // // N milliseconds. If `immediate` is passed, trigger the function on the
-  // // leading edge, instead of the trailing.
-  // function _debounce(func, wait, immediate) {
-  //   var timeout, args, context, timestamp, result;
-  //   return function() {
-  //     context = this;
-  //     args = arguments;
-  //     timestamp = new Date();
-  //     var later = function() {
-  //       var last = (new Date()) - timestamp;
-  //       if (last < wait) {
-  //         timeout = setTimeout(later, wait - last);
-  //       } else {
-  //         timeout = null;
-  //         if (!immediate) { result = func.apply(context, args); }
-  //       }
-  //     };
-  //     var callNow = immediate && !timeout;
-  //     if (!timeout) {
-  //       timeout = setTimeout(later, wait);
-  //     }
-  //     if (callNow) { result = func.apply(context, args); }
-  //     return result;
-  //   };
-  // }
-
-  // // go over existing modes and determine which we are in
-  // // returns true if a mode change occured, false otherwise.
-  // function _determineMode() {
-  //   var oldMode = this._currentMode;
-  //   this._currentMode = null;
-
-  //   if ("modes" in this) {
-  //     var result = false;
-  //     for (var mode in this._modes) {
-  //       result = this._modes[mode].call(this);
-  //       if (result) {
-  //         this._currentMode = mode;
-  //         break;
-  //       }
-  //     }
-  //   }
-  //   return oldMode !== this._currentMode;
-  // }
-
-  // // takes care of removing/adding appropriate layers
-  // function _onModeChange() {
-
-  //   var chart = this;
-
-  //   for(var layerName in chart._layersArguments) {
-      
-  //     // is this chart in the current mode?
-  //     var layerArgs = chart._layersArguments[layerName];
-      
-  //     // if this layer should not exist in the current mode
-  //     // unlayer it and then save it so we can reattach it 
-  //     // later.
-  //     if (layerArgs.options.modes.indexOf(chart.mode()) === -1) {
-
-  //       // is it showing?
-  //       if (layerArgs.showing === true) {
-          
-  //         // nope? remove it.
-  //         var removedLayer = chart.unlayer(layerName);
-  //         removedLayer.style("display","none");
-  //         chart._layersArguments[layerName].showing = false;
-  //         chart._layersArguments[layerName].layer = removedLayer;
-  //       }
-      
-  //     } else {
-
-  //       // this layer is not showing, we need to add it
-  //       if (chart._layersArguments[layerName].showing === false) {
-
-  //         // if the layer has already been created, just re-add it
-  //         if (chart._layersArguments[layerName].layer !== null) {
-  //           oldLayer.call(chart, layerName, chart._layersArguments[layerName].layer);
-  //           chart._layersArguments[layerName].layer.style("display","inline");
-  //         } else {
-
-  //           // this layer must not have been drawn in the initial rendering
-  //           // but we do have the arguments, so render it using the
-  //           // old layering.
-  //           oldLayer.call(chart,
-  //             chart._layersArguments[layerName].name,
-  //             chart._layersArguments[layerName].selection,
-  //             chart._layersArguments[layerName].options);
-  //         }
-
-  //         chart._layersArguments[layerName].showing = true;
-  //       }
-  //     }
-  //   }
-  // }
-
-  // var BaseChart = d3.chart("BaseChart", {
-  //   initialize: function() {
-
-
-  //     var chart = this;
-
-  //     chart.areas = {};
-  //     chart.layers = {};
-  //     // layer structures container - for layers that are
-  //     // created on initialize but do not actually need to 
-  //     // be rendered in the detected mode, we need to save the
-  //     // actual arguments so that we can construct it later.
-  //     this._layersArguments = {};
-  //     this._tickValues = [];
-  //     // save mode functions
-  //     this._modes = this.modes || {};
-  //     delete this.modes;
-
-  //     // store layers referenced per mode
-  //     this._modeLayers = {};
-
-  //     // determine current mode on initialization
-  //     _determineMode.call(this);
-
-  //     // setup some reasonable defaults
-  //     chart._width  = _toNumFromPx(_style.call(chart, "width")) || 200;
-  //     chart._height = _toNumFromPx(_style.call(chart, "height")) || 200;
-
-  //     // make sure container height and width are set.
-  //     _initAttr.call(this, "_width", "width", 200);
-  //     _initAttr.call(this, "_height", "height", 200);
-
-  //     // bind to winow resize end
-  //     window.addEventListener("resize", _debounce(function() {
-
-  //       // trigger generic resize event
-  //       chart.trigger("resize");
-
-  //       // don't overwrite % widths.
-  //       if (!isNaN(chart._width)) {
-  //         chart.width(_toNumFromPx(_style.call(chart, "width")) || 200, {
-  //           noDraw : true
-  //         });
-  //       }
-  //       if (!isNaN(chart._height)) {
-  //         chart.height(_toNumFromPx(_style.call(chart, "height")) || 200, {
-  //           noDraw: true
-  //         });
-  //       }
-        
-  //       // update current mode
-  //       var changed = _determineMode.call(chart);
-  //       if (changed) {
-  //         chart.trigger("change:mode", this._currentMode);
-  //       }
-
-  //       // only redraw if there is data
-  //       if (chart.data) {
-  //         chart.draw(chart.data);
-  //       }
-
-  //     }, 150));
-
-  //     window.addEventListener("orientationchange", function() {
-  //       // redraw on device rotation
-  //       chart.trigger("change:mode", this._currentMode);
-
-  //       // only redraw if there is data
-  //       if (chart.data) {
-  //         chart.draw(chart.data);
-  //       }
-  //     }, false);
-
-  //     // on mode change, update height and width, and redraw
-  //     // the chart
-  //     chart.on("change:mode", function() {
-
-  //       // sort out current mode
-  //       _onModeChange.call(chart);
-       
-  //     });
-  //   },
-
-  //   // returns current mode
-  //   mode : function() {
-  //     return this._currentMode;
-  //   },
-
-  //   recomputeMode: function() {
-  //     var changed = _determineMode.call(this);
-  //     if (changed) {
-  //       this.trigger("change:mode", this._currentMode);
-  //     }
-  //     return changed;
-
-  //   },
-
-  //   width: function(newWidth, options) {
-  //     options = options || {};
-  //     if (arguments.length === 0) {
-  //       if (this._width && !isNaN(+this._width)) {
-  //         return this._width;
-  //       } else {
-  //         return _toNumFromPx(_style.call(this, "width"));
-  //       }
-  //     }
-
-  //     var oldWidth = this._width;
-
-  //     this._width = newWidth;
-
-  //     // only if the width actually changed:
-  //     if (this._width !== oldWidth) {
-
-  //       // set higher container width
-  //       this.base.style("width", isNaN(this._width) ?
-  //         this._width :
-  //         this._width + "px");
-
-  //       // trigger a change event
-  //       if (!options.silent) {
-  //         this.trigger("change:width", this._width, oldWidth);
-  //       }
-
-  //       // redraw if we saved the data on the chart
-  //       if (this.data && !options.noDraw) {
-  //         this.draw(this.data);
-  //       }
-  //     }
-
-  //     // always return the chart, for chaining magic.
-  //     return this;
-  //   },
-
-  //   height: function(newHeight, options) {
-  //     options = options || {};
-  //     if (arguments.length === 0) {
-  //       if (this._height && !isNaN(+this._height)) {
-  //         return this._height;
-  //       } else {
-  //         return _toNumFromPx(_style.call(this, "height"));
-  //       }
-  //     }
-
-  //     var oldHeight = this._height;
-
-  //     this._height = newHeight;
-
-  //     if (this._height !== oldHeight) {
-
-  //       this.base.style("height", isNaN(this._height) ?
-  //         this._height :
-  //         this._height + "px");
-
-  //       if (!options.silent) {
-  //         this.trigger("change:height", this._height, oldHeight);
-  //       }
-
-  //       if (this.data && !options.noDraw) {
-  //         this.draw(this.data);
-  //       }
-  //     }
-
-  //     return this;
-  //   },
-
-  //   parseDate: function(string) {
-
-  //     this.parseDate = d3.time.format("%Y").parse;
-  //     return this.parseDate(string);
-  //   },
-
-  //   tickValues: function(collection) {
-  //     if (arguments.length === 0) {
-  //       return this._tickValues;
-  //     }
-
-  //     if (Array.isArray(collection)) {
-  //       this._tickValues = collection
-  //     } 
-
-  //     return this;
-  //   },
-
-  //   xScale: function (scale_object) {
-  //     if (!arguments.length) {
-  //       scale_object = d3.scale.ordinal()
-  //     }
-  //     if (colorScale instanceof Object) {
-  //       scale_object = d3.scale.ordinal()
-  //         .range(colorScale)
-  //     }
-  //     if (this.data) this.draw(this.data);
-
-  //     return this;
-  //   },
-
-  //   yAxisLabel: function(string) {
-  //     if (arguments.length === 0) {
-  //       return this._yAxisLabel;
-  //     }
-
-  //     if (typeof string === "string") {
-  //       this._yAxisLabel = string
-  //     } 
-
-  //     return this;
-  //   },
-
-  //   colors: function(colorScale) {
-
-  //     if (!arguments.length) {
-  //       colorScale = d3.scale.category10();
-  //       // return this.colorScale;
-  //     }
-  //     if (colorScale instanceof Array) {
-  //       colorScale = d3.scale.ordinal()
-  //         .range(colorScale)
-  //         // .domain([0, colorScale.length-1]);
-
-  //     }
-  //     this.colorScale = colorScale;
-  //     if (this.data) this.draw(this.data);
-
-  //     return this;
-  //   },
-
-  //   wrap: function(text, width) {
-  //     text.each(function() {
-  //       var text = d3.select(this),
-  //           words = text.text().split(/\s+/).reverse(),
-  //           word,
-  //           line = [],
-  //           lineNumber = 0,
-  //           lineHeight = 1.1, // ems
-  //           y = text.attr("y"),
-  //           dy = parseFloat(text.attr("dy")),
-  //           tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-  //       while (word = words.pop()) {
-  //         line.push(word);
-  //         tspan.text(line.join(" "));
-  //         if (tspan.node().getComputedTextLength() > width) {
-  //           line.pop();
-  //           tspan.text(line.join(" "));
-  //           line = [word];
-  //           tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-  //         }
-  //       }
-  //     });
-  //   }
-  // });
-  
-  // var oldLayer = BaseChart.prototype.layer;
-  // BaseChart.prototype.layer = function(name, selection, options) {
-
-  //   var chart = this;
-
-  //   // just return an existing layer if all we are
-  //   // passed is the name argument
-  //   if (arguments.length === 1) {
-  //     return oldLayer.call(this, name);
-  //   }
-
-  //   // save all the layer arguments. For layers that are created
-  //   // but do not need to be rendered in the current mode, this
-  //   // will ensure their arguments are intact for when they do
-  //   // need to be created.
-  //   chart._layersArguments[name] = {
-  //     name : name,
-  //     selection: selection,
-  //     options : options,
-  //     showing: false, // default hidden
-  //     layer: null // layer handle
-  //   };
-
-
-  //   // create the layer if it should exist in the curret
-  //   // mode.
-  //   var layer;
-  //   if (typeof options.modes === "undefined" ||
-  //       ("modes" in options &&
-  //         options.modes.indexOf(chart.mode()) > -1)) {
-
-  //     // run default layer code
-  //     layer = oldLayer.call(this, name, selection, options);
-
-  //     // mark layer as showing.
-  //     chart._layersArguments[name].showing = true;
-  //     chart._layersArguments[name].layer = layer;
-  //   }
-
-  //   if ("modes" in options) {
-
-  //     // save available modes on the layer if we created it
-  //     if (layer) {
-  //       layer._modes = options.modes;
-  //     }
-
-  //     // cache the layer under the mode name. This will be useful
-  //     // when we are repainting layers.
-  //     options.modes.forEach(function(mode) {
-        
-  //       // make sure mode exists
-  //       if (mode in chart._modes) {
-          
-  //          chart._modeLayers[mode] = chart._modeLayers[mode] || [];
-
-  //          // save the layer as being mapped to this mode.
-  //          chart._modeLayers[mode].push(name);
-
-  //       } else {
-  //         throw new Error("Mode " + mode + " is not defined");
-  //       }
-  //     });
-
-  //   // make sure this layer has all modes if none were
-  //   // specified as an option.  
-  //   } else if (chart._modes) {
-      
-  //     var allModes = Object.keys(chart._modes);
-      
-  //     if (layer) {
-  //       layer._modes = allModes;
-  //     }
-
-  //     allModes.forEach(function(mode) {
-  //       chart._modeLayers[mode] = chart._modeLayers[mode] || [];
-  //       chart._modeLayers[mode].push(name);
-  //     });
-
-  //     // mark layer as showing.
-  //     chart._layersArguments[name].showing = true;
-  //     chart._layersArguments[name].layer = layer;
-  //   }
-
-  //   return layer;
-  // };
-  
 },{}],4:[function(require,module,exports){
 d3.chart('BaseChart').extend('GroupedBarChart', {
   initialize : function() {
@@ -929,8 +410,8 @@ d3.chart('BaseChart').extend('GroupedBarChart', {
     chart.layers.bars = chart.base.select('g').append('g')
       .classed('bars', true)
 
-    chart.areas.legend = chart.base.select('g').append('g')
-      .attr("transform", "translate(0, -40)");
+    var selection = chart.base.node().parentNode
+    chart.areas.legend = d3.select(chart.base.node().parentNode).append("div");
 
     chart.layer('bars', chart.layers.bars, {
       dataBind: function(data) {
@@ -965,39 +446,6 @@ d3.chart('BaseChart').extend('GroupedBarChart', {
               .call(xAxis)
               .selectAll("text")
               .call(chart.wrap, chart.xScale.rangeBand())
-
-        chart.areas.legend =
-          chart.areas.legend
-          .selectAll(".legend")
-          .data(chart.x1Scale.domain())
-            .enter().append("g")
-            .attr("class", "legend")
-
-        chart.areas.legend
-            .append("circle")
-              .attr("r", 5)
-              .attr("cx", function(d,i) {
-                return 1 + (i * 100);
-              })
-              .attr("fill", function(d) {
-                return chart.colorScale(d);
-              })
-              .attr("cy", 5)
-
-        chart.areas.legend
-            .append("text")
-            .attr("transform", function (d,i) {
-              return "translate(" + (10 + (i*100)) + ",0)";
-            })
-            .attr("dy", ".71em")
-            .attr("x", 0)
-            .attr("y", 0)
-            .style("text-anchor", "beginning")
-            .style("font", "10px sans-serif;")
-            .text(function(d) { 
-              return d;
-            })
-            .call(chart.wrap, 85)
 
         // Bind the data
         return this.selectAll('.category')
@@ -1142,6 +590,7 @@ d3.chart('BaseChart').extend('GroupedBarChart', {
       chart.yScale.domain([min, max]);
       // chart.colorScale
       //   .domain(chart.x1Scale());
+
       return data;
   }
 });
@@ -1149,9 +598,7 @@ d3.chart('BaseChart').extend('GroupedBarChart', {
 d3.chart("BaseChart").extend("LineChart", {
 
   initialize: function() {
-
     var chart = this;
-
     chart._callouts = [];
 
     chart.xScale = d3.scale.ordinal()
@@ -1168,11 +615,11 @@ d3.chart("BaseChart").extend("LineChart", {
     chart.duration = 500;
 
     chart.on('change:width', function(newWidth) {
-      chart.xScale.rangeRoundBands([0, newWidth], 1);
+      chart.xScale.rangeRoundBands([0, chart.width()], 1);
     });
 
     chart.on('change:height', function(newHeight) {
-      chart.yScale.range([newHeight, 0]);
+      chart.yScale.range([chart.height(), 0]);
     }); 
 
     chart.areas.yAxisLayer = chart.base.select('g').append('g')
@@ -1187,8 +634,8 @@ d3.chart("BaseChart").extend("LineChart", {
     chart.layers.labels = chart.base.select('g').append('g')
       .classed('text-labels', true)
 
-    chart.areas.legend = chart.base.select('g').append('g')
-      .attr("transform", "translate(0, -40)");
+    var selection = chart.base.node().parentNode
+    chart.areas.legend = d3.select(chart.base.node().parentNode).append("div");
 
     // create a layer of circles that will go into
     // a new group element on the base of the chart
@@ -1225,38 +672,26 @@ d3.chart("BaseChart").extend("LineChart", {
             .selectAll("text")
               .call(chart.wrap, 50)
 
-        chart.areas.legend =
-          chart.areas.legend
-          .selectAll(".legend")
-          .data(data)
-            .enter().append("g")
-            .attr("class", "legend")
 
         chart.areas.legend
-            .append("circle")
-              .attr("r", 5)
-              .attr("cx", function(d,i) {
-                return 1 + (i * 100);
-              })
-              .attr("fill", function(d) {
-                return chart.colorScale(d.series);
-              })
-              .attr("cy", 5)
-
-        chart.areas.legend
-            .append("text")
-            .attr("transform", function (d,i) {
-              return "translate(" + (10 + (i*100)) + ",0)";
-            })
-            .attr("dy", ".71em")
-            .attr("x", 0)
-            .attr("y", 0)
-            .style("text-anchor", "beginning")
-            .style("font", "10px sans-serif;")
-            .text(function(d) { 
-              return d.series;
-            })
-            .call(chart.wrap, 85)
+          .append("ul")
+          .selectAll("li")
+          .data(function() { 
+            if (chart.callouts().length > 0) {
+              return chart.callouts();
+            } else {
+              return data.map(function(d) { return d.series }) ;
+            }
+          })
+          .enter()
+            .append("li")
+            .style("color", function(d,i) { return chart.colorScale(d) })
+            .style("font-size", "2.2em")
+            .style("line-height", ".4em")
+              .append("span")
+              .style("color", "black")
+              .style("font-size", ".40em")
+              .text(function(d) { return d });
 
       return this.selectAll('.line')
         .data(data);
@@ -1286,7 +721,6 @@ d3.chart("BaseChart").extend("LineChart", {
             .attr("data-content", function(d) {
               return d.series;
             })
-            .style("fill", "none")
             .style("stroke", function(d,i) {
               if (chart.matchWithCallouts(d.series) || chart.callouts() == false) {
                 return chart.colorScale(d.series); 
@@ -1294,7 +728,7 @@ d3.chart("BaseChart").extend("LineChart", {
                 return "Lightgray"
               }       
             })
-            .on("mousemove", function(d,i) {
+            .on("mouseover", function(d,i) {
 
               d3.select(this)
                 .style("stroke", function (d) {
@@ -1331,14 +765,14 @@ d3.chart("BaseChart").extend("LineChart", {
         'enter:transition': function() {
           var chart = this.chart();
 
-          // $(document).ready(function () {
-          //     $("svg circle").popover({
-          //         'container': 'body',
-          //         'placement': 'right',
-          //         'trigger': 'hover',
-          //         'html': true
-          //     });
-          // });
+          $(document).ready(function () {
+              $("svg circle").popover({
+                  'container': 'body',
+                  'placement': 'right',
+                  'trigger': 'hover',
+                  'html': true
+              });
+          });
         }
       }
     });
@@ -1401,8 +835,7 @@ d3.chart("BaseChart").extend("LineChart", {
                 'trigger': 'hover',
                 'html': true
             });
-          });        
-        }
+          });        }
       }
     });
 
@@ -1453,6 +886,7 @@ d3.chart("BaseChart").extend("LineChart", {
         return d.value;
       })
     });
+    console.log(buffer);
 
     chart.xScale.domain(buffer);
     chart.yScale.domain([min,max]);
@@ -1510,9 +944,6 @@ d3.chart('BaseChart').extend('StackedBarChart', {
     chart.areas.legend = chart.base.select('g').append('g')
           .classed('legend', true)
 
-    chart.areas.legend = chart.base.select('g').append('g')
-      .attr("transform", "translate(0, -40)");
-
     chart.layer('bars', chart.layers.bars, {
       dataBind: function(data) {
         var chart = this.chart();
@@ -1548,39 +979,6 @@ d3.chart('BaseChart').extend('StackedBarChart', {
               .style("font", "10px sans-serif")
               .call(chart.wrap, chart.xScale.rangeBand())
 
-        chart.areas.legend =
-          chart.areas.legend
-          .selectAll(".legend")
-          .data(data[0].groups)
-          .enter().append("g")
-          .attr("class", "legend")
-
-        chart.areas.legend
-            .append("circle")
-              .attr("r", 5)
-              .attr("cx", function(d,i) {
-                return 1 + (i * 100);
-              })
-              .attr("fill", function(d) {
-                return chart.colorScale(d.name);
-              })
-              .attr("cy", 5)
-
-        chart.areas.legend
-            .append("text")
-            .attr("transform", function (d,i) {
-              return "translate(" + (10 + (i*100)) + ",0)";
-            })
-            .attr("dy", ".71em")
-            .attr("x", 0)
-            .attr("y", 0)
-            .style("text-anchor", "beginning")
-            .style("font", "10px sans-serif;")
-            .text(function(d) { 
-              return d.name;
-            })
-            .call(chart.wrap, 85)
-
         // Bind the data
         return this.selectAll('.category')
           .data(data);
@@ -1609,8 +1007,6 @@ d3.chart('BaseChart').extend('StackedBarChart', {
               .attr("y", function(d) { return chart.yScale(d.y1); })
               .attr("height", function(d) { return chart.yScale(d.y0) - chart.yScale(d.y1); })
               .style("fill", function(d) { return chart.color(d.name); });
-
-              
         }
       },
     });
