@@ -5,7 +5,7 @@ class Neighbors
 
   def initialize(muni)
     @municipalities = muni.nearest
-    @housing_data   = HousingData.where('muni_id IN (?)', @municipalities.map { |m| m.id })
+    @housing_data   = HousingData.where('muni_id IN (?)', @municipalities.map{ |m| m.id })
   end
 
   def to_s

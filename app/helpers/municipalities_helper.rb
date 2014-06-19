@@ -1,5 +1,6 @@
 module MunicipalitiesHelper
   def trim(number)
+    return "&mdash;".html_safe if number.nil?
     ("%#g" % number.to_f).gsub(/0*$/, '')
   end
 

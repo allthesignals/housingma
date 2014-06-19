@@ -16,7 +16,7 @@
     %a.btn.btn-lg.btn-primary
       %span.btn-title Download
       %p     data, metadata, and guide
-      %small (4.5 MB zipped CSV)
+      %small (X.X MB zipped CSVs)
   
   %hr
 
@@ -43,8 +43,8 @@
 
     %div.col-md-4.download-area.highlighted
       %h4 Data & Metadata
-      %a.btn.btn-default
-        Download (3.1 MB .zip)
+      = link_to 'https://s3.amazonaws.com/files.housing.ma/housing_ma_data_download.zip', class: 'btn btn-default' do
+        Download (1.7 MB zipped CSVs)
 
       %p Data include:
       %ul
@@ -56,10 +56,10 @@
       %p
         for all 351 cities & towns in Massachusetts.
       
-      %a.btn.btn-success.download
+      = link_to 'https://s3.amazonaws.com/files.housing.ma/housing_ma_data_download.zip', class: 'btn btn-success download' do
         %span.btn-title Download
         %p     Data and Metadata
-        %small (3.1 MB .zip)
+        %small (1.7 MB zipped CSVs)
 
 
     %div.col-md-4.download-area.normal
