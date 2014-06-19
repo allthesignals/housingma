@@ -18,8 +18,10 @@ module Aggregations
 
 
   def average(attribute)
-    return nil if total(attribute).nil?
-    (total(attribute) / housing_data.length).round(ROUND)
+    total = total(attribute)
+    return nil if total.nil?
+    
+    (total / housing_data.length).round(ROUND)
   end
 
 
