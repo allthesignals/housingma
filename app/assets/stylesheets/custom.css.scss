@@ -10,6 +10,19 @@ $light-border: 1px solid #DDD;
 $select-background:   #00C6D4;
 $features-background: steelblue;
 
+$brand-primary:         #83B9F2 !default;
+$brand-success:         #5cb85c !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;
+
+$state-success-bg:      #dff0d8 !default;
+$state-info-bg:         #d9edf7 !default;
+$state-warning-bg:      #FCF3BA !default;
+$state-danger-bg:       #f2dede !default;
+$state-primary-bg:      #D5EAFF !default;
+
+
 body {
   overflow-x: hidden;
   font-size: 16px;
@@ -17,11 +30,6 @@ body {
 }
 
 p { font-size: 16px; }
-
-
-img.service {
-  max-height: 200px;
-}
 
 img.whats-inside {
   max-height: 150px;
@@ -251,6 +259,24 @@ input {
 
 /* Municipalities / Services */
 
+#profile {
+  img {
+    background-color: $state-warning-bg;
+  }
+}
+
+#report {
+  img {
+    background-color: $state-success-bg;
+  }
+}
+
+#download {
+  img {
+    background-color: $state-primary-bg;
+  }
+}
+
 .service {
   min-height:   250px;
   margin-top:   30px;
@@ -264,9 +290,9 @@ input {
   }
 
   img {
+    max-height: 200px;
     margin: 0 auto 20px;
     padding: 15px;
-    background-color: #EEE;
     display: block;
     border-radius: 10px;
   }
