@@ -2,6 +2,8 @@ require 'csv'
 
 class Profile < CommonFacade
 
+  include MunicipalitiesHelper
+
   # Include Field association
   def initialize(municipality)
     @topic_areas = TopicArea.includes(:fields).all
@@ -120,7 +122,7 @@ class Profile < CommonFacade
             subtopic.fields.each do |field|
               csv << ["\t\t\t#{field.alias}",
                       self.housing.send(field.to_s),
-                      self.housing.send(field.to_s << "_me"),
+                      moe_or_blank(self.housing, field).to_s.gsub("&plusmn; ", ''),
                       field.operation,
                       self.neighbors.send(field.with_op),
                       self.community_type.send(field.with_op),
