@@ -21,7 +21,8 @@
       %a.btn.btn-lg.btn-success{id: "export"}
         Export charts to images (.zip)
 
-    = render partial: 'scrollspy/scrollspy', locals: { content: @report, export: true }
+    - # render partial: 'scrollspy/scrollspy', locals: { content: @report, export: true }
+    = render partial: 'scrollspy/sample'
 
 
 
@@ -355,6 +356,15 @@
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
 
     chart.draw(get_data_for('housing_affordability'));
+
+    setTimeout(function(){
+      // Reset scrollspy after the last visualization is loaded.
+      // Insanely hacky. Should be linked to a visualization callback.
+
+      $('[data-spy="scroll"]').each(function () {
+        $(this).scrollspy('refresh');
+      });
+    }, 2000)
     
 
     var saveImages = function(callback) {
