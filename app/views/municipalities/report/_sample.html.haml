@@ -222,9 +222,53 @@
 
 %h2#afford-households-by-income Households by Income
 
-%p Affordability is of particular concern to low income households. Many federal and state housing programs define low income households according to household size and household income, measured as a percent of Area Median Income. The breakdown for extremely low, very low, and low income households by household size is shown in Table tableNum below.
+%p Affordability is of particular concern to low income households. Many federal and state housing programs define low income households according to household size and household income, measured as a percent of Area Median Income. The breakdown for extremely low, very low, and low income households by household size is shown in Table 1 below.
 
-%p [[Table modeled after Table 11 in Everett HPP, page 23.]]
+%table.data.borderless
+  %thead
+    %th.muni Income Level
+    %th 1-Person
+    %th 2-Person
+    %th 3-Person
+    %th 4-Person
+    %th 5-Person
+    %th 6-Person
+    %th 7-Person
+    %th 8-Person
+  %tr
+    %th.muni Extremely Low Income (30%)
+    %td= @report.il_30_1
+    %td= @report.il_30_2
+    %td= @report.il_30_3
+    %td= @report.il_30_4
+    %td= @report.il_30_5
+    %td= @report.il_30_6
+    %td= @report.il_30_7
+    %td= @report.il_30_8
+  %tr
+    %th.muni Very Low Income (50%)
+    %td= @report.il_50_1
+    %td= @report.il_50_2
+    %td= @report.il_50_3
+    %td= @report.il_50_4
+    %td= @report.il_50_5
+    %td= @report.il_50_6
+    %td= @report.il_50_7
+    %td= @report.il_50_8
+  %tr
+    %th.muni Low Income (80%)
+    %td= @report.il_80_1
+    %td= @report.il_80_2
+    %td= @report.il_80_3
+    %td= @report.il_80_4
+    %td= @report.il_80_5
+    %td= @report.il_80_6
+    %td= @report.il_80_7
+    %td= @report.il_80_8
+
+%p
+  %strong Table 1.
+  Low income households in #{@report.muni} by household income and household size.
 
 %p
   In #{@report.muni}, #{@report.amiu30p}%, #{@report.ami3050p}%, and #{@report.ami5080p}% of households are extremely low, very low, and low income, respectively. This means that
@@ -259,7 +303,7 @@
 
 %h2#afford-shi Subsidized Housing Inventory
 
-%p Massachusetts maintains a subsidized housing inventory (SHI) that tracks each municipality’s affordable housing stock, including deed restricted and subsidized units.  nder General Law Chapter 40B, in any municipality where less than 10% of units are included on the SHI, a developer can build more densely than the municipal zoning bylaws would permit, if at least 25% (or 20% in certain cases) of the new units are affordable.
+%p Massachusetts maintains a subsidized housing inventory (SHI) that tracks each municipality’s affordable housing stock, including deed restricted and subsidized units. Under General Law Chapter 40B, in any municipality where less than 10% of units are included on the SHI, a developer can build more densely than the municipal zoning bylaws would permit, if at least 25% (or 20% in certain cases) of the new units are affordable.
 
 %p Statewide, #{@report.state.average_shi_p}% of housing units are on the SHI, and 12 percent of municipalities meet their 10% requirement under Chapter 40B. Figure 5 shows the percent of SHI unit within #{@report.muni} and its nearest neighbors.
 
@@ -283,6 +327,10 @@
 
 %h2 Affordability Gap
 
-%p Units that are affordable to low income households are not necessarily occupied by low income households. This mismatch between households’ incomes and the units they occupy can exacerbate affordability problems. To measure the extent to which affordability is a supply problem versus a distribution problem, we calculate the affordability gap. The gap is the difference between the number of households at a given income level and the number of units affordable to households at that income level. A positive gap indicates a shortage of units at a given income level, even if households and units were perfectly matched by incomes and costs. Table tableNum shows the gap #{@report.muni} renter and owner households face at 50% AMI, 50 to 80% AMI, and above 80% AMI.
+%p Units that are affordable to low income households are not necessarily occupied by low income households. This mismatch between households’ incomes and the units they occupy can exacerbate affordability problems. To measure the extent to which affordability is a supply problem versus a distribution problem, we calculate the affordability gap. The gap is the difference between the number of households at a given income level and the number of units affordable to households at that income level. A positive gap indicates a shortage of units at a given income level, even if households and units were perfectly matched by incomes and costs. Table 2 shows the gap #{@report.muni} renter and owner households face at 50% AMI, 50 to 80% AMI, and above 80% AMI.
 
 %p [[Table based on Table 17 in Everett Housing Production Plan.]]
+
+%p
+  %strong Table 2.
+  Low income households in #{@report.muni} by household income and household size.

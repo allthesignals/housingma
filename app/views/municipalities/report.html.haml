@@ -24,8 +24,8 @@
       %br
       %br
       %p
-        %strong Some assembly required:
-        The charts cannot be exported as images with the Word document. To retrieve the complete report, export both the Word document and the charts. Insert the charts into the Word document where indicated.
+        %strong Some assembly required.
+        The charts cannot be automatically included in the downloaded Word document. For the complete report, export both the Word document and the charts. Insert the charts into the Word document at the indicated points.
 
     - # render partial: 'scrollspy/scrollspy', locals: { content: @report, export: true }
     = render partial: 'scrollspy/sample'
@@ -381,7 +381,7 @@
         simg.toImg(function(image) {
           console.log("3");
           var filedata = Simg.getBase64Image(image);
-          var filename = "figure-" + index + ".png"
+          var filename = "figure-" + index + ".png";
           img.file(filename, filedata, {base64: true})
         });
 
@@ -396,8 +396,8 @@
 
     var saveZip = function(zip) {
       console.log("5");
-      var content = zip.generate({type:"blob"});
-      saveAs(content, "example.zip");
+      var content = zip.generate({ type: "blob" });
+      saveAs(content, "#{@report.muni} Charts.zip");
     }
 
     // log("7");

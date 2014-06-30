@@ -1,50 +1,48 @@
-=provide :title, @muni.name if @muni
+- provide :page_name, "Donwload housing data for the Commonwealth"
+- provide :title, @muni.name if @muni
 
 %div.container
 
-  %h1 
-    Download housing data for
-    = "#{@muni.name} </br> and".html_safe if @muni
-    the Commonwealth
+  - if @muni
+    %h1
+      Download housing data for #{@muni} and the Commonwealth
 
   %h3
-    A comprehensive set of value-added data       |
-    on every municipality in the state. Interpret |
-    the data with the metadata and user guide.
+    A comprehensive set of value-added data on every municipality in the state. Interpret the data with the metadata and user guide.
 
-  %center
-    %a.btn.btn-lg.btn-primary
-      %span.btn-title Download
-      %p     data, metadata, and guide
-      %small (X.X MB zipped CSVs)
+  -# %center
+  -#   %a.btn.btn-lg.btn-primary
+  -#     %span.btn-title Download
+  -#     %p     data, metadata, and guide
+  -#     %small (X.X MB zipped CSVs)
   
-  %hr
+  -# %hr
 
   %div.row
-    %div.col-md-4.download-area.normal
-      %h4 User Guide
-      %a.btn.btn-default
-        Download (1.4 MB .zip)
-      %p
-        The user guide is a comprehensive listing of
-        the available housing data, including sources and methodology.
+    -# %div.col-md-4.download-area.normal
+    -#   %h4 User Guide
+    -#   %a.btn.btn-default
+    -#     Download (1.4 MB .zip)
+    -#   %p
+    -#     The user guide is a comprehensive listing of
+    -#     the available housing data, including sources and methodology.
       
-      %a.btn.btn-warning.download
-        %span.btn-title Download
-        %p     User Guide
-        %small (1.4 MB .zip)
-      %p.center
-        or,
-        - if @muni
-          =link_to 'go to the User Guide page', guide_municipality_path(@muni)
-        - else
-          =link_to 'go to the User Guide page', guide_path
+    -#   %a.btn.btn-warning.download
+    -#     %span.btn-title Download
+    -#     %p     User Guide
+    -#     %small (1.4 MB .zip)
+    -#   %p.center
+    -#     or,
+    -#     - if @muni
+    -#       =link_to 'go to the User Guide page', guide_municipality_path(@muni)
+    -#     - else
+    -#       =link_to 'go to the User Guide page', guide_path
 
 
-    %div.col-md-4.download-area.highlighted
+    %div.col-md-4.col-md-offset-4.col-xs-12.download-area.highlighted
       %h4 Data & Metadata
       = link_to 'https://s3.amazonaws.com/files.housing.ma/housing_ma_data_download.zip', class: 'btn btn-default' do
-        Download (1.7 MB zipped CSVs)
+        Download (1.7 MB zipped CSV)
 
       %p Data include:
       %ul
@@ -62,16 +60,16 @@
         %small (1.7 MB zipped CSVs)
 
 
-    %div.col-md-4.download-area.normal
-      %h4 Data Processing Scripts
-      %a.btn.btn-default
-        Download (0.2 MB .zip)
-      %p
-        These scripts (instructions included) were used by our
-        analysts in creating the housing dataset (above) from
-        ACS and other raw data.
+    -# %div.col-md-4.download-area.normal
+    -#   %h4 Data Processing Scripts
+    -#   %a.btn.btn-default
+    -#     Download (0.2 MB .zip)
+    -#   %p
+    -#     These scripts (instructions included) were used by our
+    -#     analysts in creating the housing dataset (above) from
+    -#     ACS and other raw data.
 
-      %a.btn.btn-default.download
-        %span.btn-title Download
-        %p     Processing Scripts
-        %small (0.2 MB .zip)
+    -#   %a.btn.btn-default.download
+    -#     %span.btn-title Download
+    -#     %p     Processing Scripts
+    -#     %small (0.2 MB .zip)
