@@ -627,6 +627,9 @@ ul.contact {
 #built {
   position: relative;
   left:     10px;
-  bottom: -110px;
+  bottom:  -150px;
   opacity:   0.2;
+  img {
+    width: 50px;
+  }
 }
