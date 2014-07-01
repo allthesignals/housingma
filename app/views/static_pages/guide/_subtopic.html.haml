@@ -1,4 +1,2 @@
-%h3{id: "#{subtopic.slug}"}
-  %em #{subtopic}
-
+%h3.guide-subtopic{id: "#{subtopic.slug}"} #{subtopic}
 = render partial: 'static_pages/guide/field', collection: subtopic.fields

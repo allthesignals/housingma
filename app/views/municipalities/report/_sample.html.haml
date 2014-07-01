@@ -1,3 +1,71 @@
+%div.modal.fade{id: "footnote-1"}
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}} &times;
+        %h4.modal-title 1
+      %div.modal-body
+        Regional Growth Projections
+        %a{href: 'http://mapc.org/projections'} mapc.org/projections
+
+%div.modal.fade{id: "footnote-2"}
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}} &times;
+        %h4.modal-title 2
+      %div.modal-body
+        Insert URL and Report Title
+
+%div.modal.fade{id: "footnote-3"}
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}} &times;
+        %h4.modal-title 3
+      %div.modal-body
+        Low vacancy rates can result in upward pressure on housing prices and rental rates. In consultation with Barry Bluestone at the Dukakis Center at Northeastern University, we estimate a natural vacancy rate of 1.5% for ownership units and 7.0% for rental units.
+
+%div.modal.fade{id: "footnote-4"}
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}} &times;
+        %h4.modal-title 4
+      %div.modal-body
+        %p
+          A
+          %strong household
+          includes all the people who occupy a housing unit as their usual place of residence. A
+          %strong householder
+          is the person, or one of the people, in whose name the home is owned, being bought, or rented. A
+          %strong family
+          includes a householder and one or more people living in the same household who are related to the householder by birth, marriage, or adoption. See 
+          %a{href: "www.census.gov/glossary"} www.census.gov/glossary.
+
+%div.modal.fade{id: "footnote-5"}
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}} &times;
+        %h4.modal-title 5
+      %div.modal-body
+        %p
+          %strong Elderly
+          includes people 62 and over.
+          %strong Elderly households
+          have an elderly householder.
+
+%div.modal.fade{id: "footnote-6"}
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}} &times;
+        %h4.modal-title 6
+      %div.modal-body
+        %p
+          Reported building permits are an imperfect measure of housing growth. In some cases, they overestimate the net increase in housing units if not all permitted projects are ultimately constructed or if demolition of preexisting units is required. In other cases, they may underestimate new growth due to lack of reporting or because adaptive reuse is not captured in the data.
+
 
 %h1#introduction Introduction
 
@@ -18,11 +86,7 @@
 
 %p For the purposes of this statute, affordable housing is defined as a unit that could be purchased or rented by a household making up to 80% of the area median income (AMI). 
 
-
-
 %h1#demo Demographics
-
-
 
 %p Housing needs and preferences change over time. Young professionals and seniors on fixed incomes may prefer smaller, more affordable units that are easier to maintain. Families with children may want larger units with more bedrooms and open space.  This section describes the population of #{@report.muni} by age and how it is projected to change.
 
@@ -35,7 +99,14 @@
   #{ Calc.new(@report.enroll_chg).number_increase(tense: :past) }, or
   #{ Calc.new(@report.enroll_chg, (@report.enrolled - @report.enroll_chg)).percent_text }
 
-%p MAPC, the regional planning agency for Metro Boston, has prepared population and housing demand projections for 164 cities and towns in Metropolitan Boston1, and the University of Massachusetts Donahue Institute has prepared population projections for the balance of the cities and towns in the state2. Both sets of projections include two scenarios: a Status Quo scenario based on continuation of recent trends in migration, housing occupancy, and location preference; and a Stronger Region scenario that assumes increased attraction and retention of young workers and slightly increased preference for urban settings and multifamily housing. The Status Quo scenario found that continuation of current levels of in-migration and housing production would lead to a declining workforce and economic stagnation over the coming decades.  In contrast, the increased migration rates of the Stronger Region scenario could fuel job growth of 7% between 2010 and 2040.  As a result, MAPC recommends use of the Stronger Region scenario as the basis for housing planning, and the assumptions and outputs of that work have been incorporated into the Commonwealth’s multifamily housing production goal of 10,000 multifamily units per year, and have been adopted by the Massachusetts Department of Transportation as the basis for long-term transportation planning.
+%p
+  MAPC, the regional planning agency for Metro Boston, has prepared population and housing demand projections for 164 cities and towns in Metropolitan Boston
+  %span.super
+    %a{data: {toggle: 'modal', target: "#footnote-1"}} 1
+  , and the University of Massachusetts Donahue Institute has prepared population projections for the balance of the cities and towns in the state.
+  %span.super
+    %a{data: {toggle: 'modal', target: "#footnote-2"}} 2
+  Both sets of projections include two scenarios: a Status Quo scenario based on continuation of recent trends in migration, housing occupancy, and location preference; and a Stronger Region scenario that assumes increased attraction and retention of young workers and slightly increased preference for urban settings and multifamily housing. The Status Quo scenario found that continuation of current levels of in-migration and housing production would lead to a declining workforce and economic stagnation over the coming decades.  In contrast, the increased migration rates of the Stronger Region scenario could fuel job growth of 7% between 2010 and 2040.  As a result, MAPC recommends use of the Stronger Region scenario as the basis for housing planning, and the assumptions and outputs of that work have been incorporated into the Commonwealth’s multifamily housing production goal of 10,000 multifamily units per year, and have been adopted by the Massachusetts Department of Transportation as the basis for long-term transportation planning.
 
 %p
   With the aging of the Baby Boomers, Massachusetts is growing older. The senior population is expected to
@@ -67,14 +138,20 @@
 
 %h1#demand Demand
 
-%p Housing demand is a function not only of population, but also the number and type of households that the population forms.  As years pass, some households form, move into the community, or grow larger, while others grow smaller, seek different housing options, or move out. Net housing demand is the number of units needed to accommodate additional households and maintain healthy vacancy rates among owner and renter-occupied housing units. This section looks at the current distribution of household types in #{@report.muni}, projected household changes, and net housing unit demand through 2030.
+%p
+  Housing demand is a function not only of population, but also the number and type of households that the population forms.  As years pass, some households form, move into the community, or grow larger, while others grow smaller, seek different housing options, or move out. Net housing demand is the number of units needed to accommodate additional households and maintain healthy vacancy rates among owner and renter-occupied housing units.
+  %span.super
+    %a{data: {toggle: 'modal', target: "#footnote-3"}} 3
+  This section looks at the current distribution of household types in #{@report.muni}, projected household changes, and net housing unit demand through 2030.
 
 %p Key findings:
 
 %ul
   %li
     total households in #{@report.muni}
-    #{ Calc.new(@report.hh_00, @report.hh_10).percent_change_increase(tense: :past) } between 2000 and 2010, from #{@report.hh_00} to #{@report.hh_10},4
+    #{ Calc.new(@report.hh_00, @report.hh_10).percent_change_increase(tense: :past) } between 2000 and 2010, from #{@report.hh_00} to #{@report.hh_10},
+    %span.super
+      %a{data: {toggle: 'modal', target: "#footnote-4"}} 4
 
   %li
     average household size
@@ -87,7 +164,10 @@
     family households with children make up #{@report.hhf_c_p}% of #{@report.muni} households,
 
   %li
-    single person households and elderly5 single person households make up #{@report.hh1_p}% and #{@report.hh1_65o_p}% of #{@report.muni} households, respectively,
+    single person households and elderly
+    %span.super
+      %a{data: {toggle: 'modal', target: "#footnote-5"}} 5
+    single person households make up #{@report.hh1_p}% and #{@report.hh1_65o_p}% of #{@report.muni} households, respectively,
 
   %li
     total households in #{@report.muni} are projected to
@@ -205,7 +285,10 @@
 %h3#supply-housing-permits Housing Permits 2000 - 2012
 
 %p
-  One way to measure whether or not a municipality is on track to meet future demand is to compare recent permitting activity to future projected demand. If annual permitting for single or multifamily housing units is historically lower than projected annual demand, this indicates a need to increase the rate of single or multifamily permitting in the future.1 From 2000 to 2012, #{@report.muni} permitted #{@report.sf_units12} single family and #{@report.mf_units12} multifamily housing units annually.  By comparison, #{@report.muni} faces an annual projected demand of #{@report.sf_demand_2020_ann} single family units and #{@report.mf_demand_2020_ann} multifamily units.
+  One way to measure whether or not a municipality is on track to meet future demand is to compare recent permitting activity to future projected demand. If annual permitting for single or multifamily housing units is historically lower than projected annual demand, this indicates a need to increase the rate of single or multifamily permitting in the future.
+  %span.super
+    %a{data: {toggle: 'modal', target: "#footnote-6"}} 6
+  From 2000 to 2012, #{@report.muni} permitted #{@report.sf_units12} single family and #{@report.mf_units12} multifamily housing units annually.  By comparison, #{@report.muni} faces an annual projected demand of #{@report.sf_demand_2020_ann} single family units and #{@report.mf_demand_2020_ann} multifamily units.
 
 
 %h1#afford Affordability
@@ -327,10 +410,4 @@
 
 %h2 Affordability Gap
 
-%p Units that are affordable to low income households are not necessarily occupied by low income households. This mismatch between households’ incomes and the units they occupy can exacerbate affordability problems. To measure the extent to which affordability is a supply problem versus a distribution problem, we calculate the affordability gap. The gap is the difference between the number of households at a given income level and the number of units affordable to households at that income level. A positive gap indicates a shortage of units at a given income level, even if households and units were perfectly matched by incomes and costs. Table 2 shows the gap #{@report.muni} renter and owner households face at 50% AMI, 50 to 80% AMI, and above 80% AMI.
-
-%p [[Table based on Table 17 in Everett Housing Production Plan.]]
-
-%p
-  %strong Table 2.
-  Low income households in #{@report.muni} by household income and household size.
+%p Units that are affordable to low income households are not necessarily occupied by low income households. This mismatch between households’ incomes and the units they occupy can exacerbate affordability problems. To measure the extent to which affordability is a supply problem versus a distribution problem, we calculate the affordability gap. The gap is the difference between the number of households at a given income level and the number of units affordable to households at that income level. A positive gap indicates a shortage of units at a given income level, even if households and units were perfectly matched by incomes and costs. #{@report.muni} households at less than  50% AMI, 50 to 80% AMI, and above 80% AMI, face affordability gaps of #{@report.affgapvli}, #{@report.affgapli}, and #{@report.affgapmod}, respectively.

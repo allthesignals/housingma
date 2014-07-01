@@ -427,6 +427,18 @@ table.data {
 .topic      { background-color: #EEE }
 .subtopic   { background-color: #FFF }
 
+table.guide { 
+  max-width: 700px;
+  th {
+    width: 120px;
+    font-weight: 700;
+    text-align: right;
+  }
+  td {
+    text-align: left;
+  }
+}
+
 span.moe {
   color:       #AAA;
   margin-left: 2px;
@@ -459,6 +471,11 @@ ul.similar, ul.neighbors {
   }
 }
 
+
+span.super {
+  vertical-align: super;
+  font-size: 80%;
+}
 
 
 /* Static Pages */
@@ -511,6 +528,15 @@ ul.contact {
   width:90%;
   height: 90%;
 }
+
+
+/* User Guide */
+
+.guide-topic       { background-color: none !important; }
+.guide-subtopic    { font-size:  140%; }
+.guide-field-alias { margin-top: 30px; }
+
+
 /* Footer */
 
 .footer {
