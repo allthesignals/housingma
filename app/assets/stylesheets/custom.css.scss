@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Oswald:700,400,300|Lato:400,300);
+@import url(http://fonts.googleapis.com/css?family=Oswald:700|Lato:400,300|Merriweather:400,300);
 
 /* basic typography */
 
@@ -37,33 +37,13 @@ body {
 p { font-size: 16px; }
 
 
-.centerDiv {
-  width:  60%;
-  height: 240px;
-  margin: 0 auto;
-  border: 1px solid #F00;
-
+.logo {
+  position: relative;
   text-align: center;
+  img {
+    display: inline-block;
+  }
 }
-
-.div1 {
-
-  width:  50%;
-  min-width: 320px;
-  height: inherit;
-  border: 1px solid #0F0;
-  float:  left;
-}
-
-.div2 {
-
-  width:  50%;
-  min-width: 320px;
-  height: inherit;
-  border: 1px solid #00F;
-  float:  left;
-}
-
 
 img.whats-inside {
   max-height: 150px;
@@ -79,6 +59,8 @@ img.whats-inside {
   font-size: 64px;
   font-family: 'Oswald', sans-serif;
   font-weight: 700;
+  margin-top: -10px;
+  margin-bottom: -5px;
 }
 
 .subtitle {
@@ -131,9 +113,12 @@ img.whats-inside {
 .navbar {
   background-color: #FFF;
   border-bottom: $light-border;
+  font-weight: 400;
 }
 
-
+#services {
+  a.dropdown-toggle { }
+}
 
 
 /* Home   */
@@ -141,7 +126,7 @@ img.whats-inside {
 .tagline {
   background-color: $orange;
   color: #FFF;
-  margin-top: 50px;
+  margin-top: 40px;
   padding: 3px 0 10px;
   h2, h3, h4 { 
     text-align: center;
@@ -417,13 +402,13 @@ input {
 
 table {
   width: 100%;
-  font-size: 90%;
+  font-size: 1em;
   thead {
     border-top:    $light-border;
     border-bottom: $light-border;
     vertical-align: bottom;
   }
-  th { font-weight: 500; }
+  th { font-weight: 400; }
   td, th {
     padding: 10px;
     border: $light-border;
@@ -519,6 +504,36 @@ span.super {
   font-size: 80%;
 }
 
+
+/* Service: Basic Needs Assessment */
+
+.report {
+
+  h1,h2,h3 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-family:   'Merriweather', serif;
+    font-weight:   300;
+    max-width:     40em;
+    font-size:     1.2em;
+    line-height:   1.94em;
+    margin-bottom: 20px;
+    text-align:    justify;
+  }
+
+  li {
+    font-family:   'Merriweather', serif;
+    font-weight:   300;
+    font-size: 1.2em;
+    line-height: 1.94em;
+    max-width:     40em;
+  }
+
+
+}
 
 /* Static Pages */
 
