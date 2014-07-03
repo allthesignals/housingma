@@ -173,6 +173,7 @@ img.whats-inside {
   h4 {
     font-weight: bold;
     font-size: 22px;
+    letter-spacing: 0.7px;
   }
   img {
     margin: 10px 0;
@@ -235,12 +236,13 @@ input {
 .input-group-btn {
   button {
     position:  relative;
-    bottom:     4px;
+    bottom:    3px;
     font-size: 25px !important;
     height:    56px !important;
+    // border-bottom: none;
     span {
       margin-left: 4px;
-      top:        3px;
+      top:         3px;
     }
   }
 }
