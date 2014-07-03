@@ -139,8 +139,6 @@
           output.push({ series: year, values: findTheseYears })
         });
 
-        console.log("Chart 1: ", output);
-
         return output;
       }
 
@@ -235,7 +233,8 @@
         returnedColumns.forEach(function(field) {
           var stripAlias = field.alias.replace(" that are cost burdened", "");
           stripAlias = stripAlias.replace("% Households with income ", "");
-          // stripAlias = stripAlias.replace("")
+          stripAlias = stripAlias.replace("< ", "");
+          stripAlias = stripAlias.replace(">", "");
           output.push({name: stripAlias, value: field.value });
         });
 
@@ -256,6 +255,14 @@
           return query.indexOf(d.title) !== -1
         });
 
+        returnedMuni.forEach(function(field) {
+          field.alias = field.alias.replace("Total Units that are subsidized housing", "subsidized housing")
+        });
+
+        returnedNeighbors.forEach(function(field) {
+          field.alias = field.alias.replace("Total Units that are subsidized housing", "subsidized housing")
+        });
+
         output.push({
           name: returnedMuni[0].alias + ", " + data.municipality.name,
           value: returnedMuni[0].value
@@ -265,6 +272,7 @@
           value: returnedNeighbors[0].value
         });
         
+
         return output;
       }
 
@@ -333,15 +341,6 @@
 
     chart.draw(get_data_for('housing_demand_by_age_group'));
 
-    var chart = d3.select('#visualization4')
-      .append('svg')
-      .chart('BarChart')
-      .height(300)
-      .yAxisLabel("Percent")
-      .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
-
-    chart.draw(get_data_for('cost_burden_by_income'));
-
     var chart = d3.select('#visualization5')
       .append('svg')
       .chart('BarChart')
@@ -350,6 +349,15 @@
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
 
     chart.draw(get_data_for('subsidized_housing_inventory'));
+
+    var chart = d3.select('#visualization4')
+      .append('svg')
+      .chart('BarChart')
+      .height(300)
+      .yAxisLabel("Percent")
+      .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
+
+    chart.draw(get_data_for('cost_burden_by_income'));
 
     var chart = d3.select('#visualization6')
       .append('svg')
@@ -372,14 +380,11 @@
     var saveImages = function(callback) {
       var zip = new JSZip();
       var img = zip.folder("images");
-
-      console.log("1");
+      
 
       $("svg").each(function(index, svg) {
-        var simg = new Simg(svg);
-        console.log("2");
-        simg.toImg(function(image) {
-          console.log("3");
+        var simg = new Simg(svg);        
+        simg.toImg(function(image) {          
           var filedata = Simg.getBase64Image(image);
           var filename = "figure-" + index + ".png"
           img.file(filename, filedata, {base64: true})
@@ -387,31 +392,26 @@
 
       });
 
-      setTimeout(function(){
-        console.log("4");
+      setTimeout(function(){        
         if(callback) callback(zip);
       }, 500);
       
     }
 
-    var saveZip = function(zip) {
-      console.log("5");
+    var saveZip = function(zip) {      
       var content = zip.generate({type:"blob"});
       saveAs(content, "example.zip");
     }
 
     // log("7");
 
-    var downloadSvgs = function () {
-      console.log("6");
-      saveImages(function(zip) {
-        console.log("7");
+    var downloadSvgs = function () {      
+      saveImages(function(zip) {        
         saveZip(zip);
       });
     }
 
-    $("#export").on("click", function() {
-      console.log("8");
+    $("#export").on("click", function() {      
       downloadSvgs();
     });
   });
