@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Oswald:700|Lato:400,300|Merriweather:400,300);
+@import url(http://fonts.googleapis.com/css?family=Oswald:700|Lato:400,300|Merriweather:400,400italic,300);
 
 /* basic typography */
 
@@ -166,6 +166,10 @@ img.whats-inside {
   color: #FFF;
   padding: 0 50px;
   text-align: center;
+  p {
+    font-size: 1.2em;
+    line-height: 1.4em;
+  }
   h4 {
     font-weight: bold;
     font-size: 22px;
@@ -191,14 +195,15 @@ img.whats-inside {
 }
 
 #quote {
-  font-family: serif;
+  font-family: 'Merriweather', serif;
+  font-weight: 400;
   background-color: #BBBBBE;
-  color: #FFF;
-  padding-top:    40px;
-  padding-bottom: 10px;
+  color:            #FFF;
+  padding:    50px 70px 20px 70px;
+
   h3 {
-    font-size: 35px;
-    line-height: 42px;
+    font-size:      2em;
+    line-height:    1.5em;
     padding-bottom: 25px;
   }
   p {
