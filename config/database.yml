@@ -37,7 +37,7 @@ commondata:
 housing_data:
   adapter:  postgresql
   encoding: unicode
-  database: hppbackup
+  database: housing_data
   host:     localhost
   pool: 5
 

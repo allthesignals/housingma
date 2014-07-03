@@ -74,7 +74,7 @@ d3.chart("BaseChart").extend("BarChart", {
 
         chart.areas.yAxisLayer
             .selectAll("text")
-            .style("font", "12px 'gill sans'")
+            .style("font", chart.font_size + "px '" + chart.font + "'")
 
         var xAxis = d3.svg.axis()
           .scale(chart.xScale)
@@ -89,7 +89,7 @@ d3.chart("BaseChart").extend("BarChart", {
               .attr("transform", "translate(0," + chart.height() + ")")
               .call(xAxis)
               .selectAll("text")
-              .attr("style", "font: 12px 'gill sans'; text-anchor: middle")
+              .attr("style", "font: " + chart.font_size + "px '" + chart.font + "'; text-anchor: middle")
               .call(chart.wrap, 60)
 
         chart.areas.legend =
@@ -242,6 +242,9 @@ d3.chart("BaseChart", {
     chart.layers = {};
 
     chart.areas.legend = {};
+
+    chart.font = "gill sans";
+    chart.font_size = 12;
 
     this._tickValues = [];
     this._yAxisLabel = "Y-Axis";
@@ -954,7 +957,7 @@ d3.chart('BaseChart').extend('GroupedBarChart', {
 
         chart.areas.yAxisLayer
             .selectAll("text")
-            .style("font", "12px 'gill sans'")
+            .style("font", chart.font_size + "px '" + chart.font + "'")
 
         var xAxis = d3.svg.axis()
           .scale(chart.xScale)
@@ -969,7 +972,7 @@ d3.chart('BaseChart').extend('GroupedBarChart', {
               .attr("transform", "translate(0," + chart.height() + ")")
               .call(xAxis)
               .selectAll("text")
-              .attr("style", "font: 12px 'gill sans'; text-anchor: middle")
+              .attr("style", "font: " + chart.font_size + "px '" + chart.font + "'; text-anchor: middle")
               .call(chart.wrap, chart.xScale.rangeBand())
 
         chart.areas.legend =
@@ -1204,7 +1207,7 @@ d3.chart("BaseChart").extend("LineChart", {
 
         chart.areas.yAxisLayer
             .selectAll("text")
-            .style("font", "12px 'gill sans'")
+            .style("font", chart.font_size + "px '" + chart.font + "'")
 
         var xAxis = d3.svg.axis()
           .scale(chart.xScale)
@@ -1215,7 +1218,7 @@ d3.chart("BaseChart").extend("LineChart", {
               .attr("transform", "translate(0," + chart.height() + ")")
               .call(xAxis)
             .selectAll("text")
-              .attr("style", "font: 12px 'gill sans'; text-anchor: middle")
+              .attr("style", "font: " + chart.font_size + "px '" + chart.font + "'; text-anchor: middle")
               .call(chart.wrap, 50)
 
         chart.areas.legend =
@@ -1526,7 +1529,7 @@ d3.chart('BaseChart').extend('StackedBarChart', {
  
         chart.areas.yAxisLayer
             .selectAll("text")
-            .style("font", "12px 'gill sans'")
+            .style("font", chart.font_size + "px '" + chart.font + "'")
 
         var xAxis = d3.svg.axis()
             .scale(chart.xScale)
@@ -1537,7 +1540,7 @@ d3.chart('BaseChart').extend('StackedBarChart', {
               .attr("transform", "translate(0," + chart.height() + ")")
               .call(xAxis)
               .selectAll("text")
-              .attr("style", "font: 12px 'gill sans'; text-anchor: middle")
+              .attr("style", "font: " + chart.font_size + "px '" + chart.font + "'; text-anchor: middle")
               .call(chart.wrap, chart.xScale.rangeBand())
 
         chart.areas.legend =
