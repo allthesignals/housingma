@@ -74,7 +74,7 @@ d3.chart("BaseChart").extend("BarChart", {
 
         chart.areas.yAxisLayer
             .selectAll("text")
-            .style("font", chart.font_size + "px '" + chart.font + "'")
+            .style("font", chart.font_size + " '" + chart.font + "'")
 
         var xAxis = d3.svg.axis()
           .scale(chart.xScale)
@@ -88,8 +88,8 @@ d3.chart("BaseChart").extend("BarChart", {
               .classed('x axis',true)
               .attr("transform", "translate(0," + chart.height() + ")")
               .call(xAxis)
-              .selectAll("text")
-              .attr("style", "font: " + chart.font_size + "px '" + chart.font + "'; text-anchor: middle")
+            .selectAll("text")
+              .attr("style", "font: " + chart.font_size + " '" + chart.font + "'; text-anchor: middle")
               .call(chart.wrap, 60)
 
         chart.areas.legend =
@@ -118,7 +118,7 @@ d3.chart("BaseChart").extend("BarChart", {
             .attr("dy", ".71em")
             .attr("x", 0)
             .attr("y", 0)
-            .attr("style", "font: 12px 'gill sans';")
+            .attr("style", "font: "+ chart.font_size + " '" + chart.font + "';")
             .text(function(d) { 
               return d;
             })
@@ -244,7 +244,7 @@ d3.chart("BaseChart", {
     chart.areas.legend = {};
 
     chart.font = "gill sans";
-    chart.font_size = 12;
+    chart.font_size = "12px";
 
     this._tickValues = [];
     this._yAxisLabel = "Y-Axis";
@@ -971,8 +971,8 @@ d3.chart('BaseChart').extend('GroupedBarChart', {
               .classed('x axis', true)
               .attr("transform", "translate(0," + chart.height() + ")")
               .call(xAxis)
-              .selectAll("text")
-              .attr("style", "font: " + chart.font_size + "px '" + chart.font + "'; text-anchor: middle")
+            .selectAll("text")
+              .attr("style", "font: " + chart.font_size + " '" + chart.font + "'; text-anchor: middle")
               .call(chart.wrap, chart.xScale.rangeBand())
 
         chart.areas.legend =
@@ -1001,7 +1001,7 @@ d3.chart('BaseChart').extend('GroupedBarChart', {
             .attr("dy", ".71em")
             .attr("x", 0)
             .attr("y", 0)
-            .attr("style", "font: 12px 'gill sans';")
+            .attr("style", "font: "+ chart.font_size + " '" + chart.font + "';")
             .text(function(d) { 
               return d;
             })
@@ -1218,7 +1218,7 @@ d3.chart("BaseChart").extend("LineChart", {
               .attr("transform", "translate(0," + chart.height() + ")")
               .call(xAxis)
             .selectAll("text")
-              .attr("style", "font: " + chart.font_size + "px '" + chart.font + "'; text-anchor: middle")
+              .attr("style", "font: " + chart.font_size + " '" + chart.font + "'; text-anchor: middle")
               .call(chart.wrap, 50)
 
         chart.areas.legend =
@@ -1247,7 +1247,7 @@ d3.chart("BaseChart").extend("LineChart", {
             .attr("dy", ".71em")
             .attr("x", 0)
             .attr("y", 0)
-            .attr("style", "font: 12px 'gill sans';")
+            .attr("style", "font: "+ chart.font_size + " '" + chart.font + "';")
             .text(function(d) { 
               return d.series;
             })
@@ -1539,8 +1539,8 @@ d3.chart('BaseChart').extend('StackedBarChart', {
               .classed('x axis', true)
               .attr("transform", "translate(0," + chart.height() + ")")
               .call(xAxis)
-              .selectAll("text")
-              .attr("style", "font: " + chart.font_size + "px '" + chart.font + "'; text-anchor: middle")
+            .selectAll("text")
+              .attr("style", "font: " + chart.font_size + " '" + chart.font + "'; text-anchor: middle")
               .call(chart.wrap, chart.xScale.rangeBand())
 
         chart.areas.legend =
@@ -1569,7 +1569,7 @@ d3.chart('BaseChart').extend('StackedBarChart', {
             .attr("dy", ".71em")
             .attr("x", 0)
             .attr("y", 0)
-            .attr("style", "font: 12px 'gill sans';")
+            .attr("style", "font: "+ chart.font_size + " '" + chart.font + "';")
             .text(function(d) { 
               return d.name;
             })
