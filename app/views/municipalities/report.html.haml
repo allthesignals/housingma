@@ -381,7 +381,7 @@
         simg.toImg(function(image) {
           console.log("3");
           var filedata = Simg.getBase64Image(image);
-          var filename = "figure-" + index + ".png";
+          var filename = "figure-" + (index + 1) + ".png";
           img.file(filename, filedata, {base64: true})
         });
 

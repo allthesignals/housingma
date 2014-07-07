@@ -29,7 +29,7 @@ class Municipality < ActiveRecord::Base
     regions.first
   end
 
-  default_scope { includes(:housing_data) }
+  default_scope { includes(:housing_data).order(:name) }
   
   # scope
   def nearest(lim=10)
