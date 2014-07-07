@@ -10,4 +10,9 @@ module ApplicationHelper
     muni_page ? municipality_path(muni_page) : root_path
   end
 
+  # Styles the current path
+  def cp(path)
+    "disabled" if current_page?(path)
+  end
+
 end

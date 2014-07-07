@@ -24,7 +24,7 @@ class Calc
 
 
   def self.new(*args, &block)
-    # super = the Calc object
+    # super = Calc.new()
     CalcDelegator.new(super)
   end
 
