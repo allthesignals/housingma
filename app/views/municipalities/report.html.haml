@@ -379,7 +379,7 @@
 
     var saveImages = function(callback) {
       var zip = new JSZip();
-      var img = zip.folder("images");
+      var img = zip.folder("#{@report.muni} Charts");
       
 
       $("svg").each(function(index, svg) {
@@ -398,7 +398,6 @@
       
     }
     var saveZip = function(zip) {
-      console.log("5");
       var content = zip.generate({ type: "blob" });
       saveAs(content, "#{@report.muni} Charts.zip");
     }
