@@ -2,7 +2,11 @@
   %div.col-md-12
     %div.logo
       = image_tag 'logo.jpg'
-      %h1.title Housing MA
+      %h1.title
+        Housing MA
+        %a{data: {toggle: 'modal', target: "#beta"}}
+          %small
+            Beta
 %h3.center.subtitle
   Housing data, visualizations, and interpretation for Massachusetts
 
@@ -60,6 +64,24 @@
 %div.row#quote
   %div.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
     %h3
-      The Housing MA portal tool took our housing needs assessment planning period from weeks to hours. I cannot recommend this tool enough.
+      The Housing MA tool saved us weeks of research and thousands of dollars. I cannot recommend this tool enough.
     %p
       &mdash; Municipal Official, Town of Municipality
+
+
+%div.modal.fade#beta
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}} &times;
+        %h4.modal-title
+          We're not done yet!
+      %div.modal-body
+        %p
+          This application is in the beta stage, meaning we're still developing the language and policies, and fixing a few bugs.
+        %p
+          The "Beta" link you just clicked will be removed when we're done.
+        %p
+          That said, feel free to look around and start using the site!
+        %p
+          Thank you.
