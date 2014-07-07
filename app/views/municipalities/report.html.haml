@@ -233,8 +233,8 @@
         returnedColumns.forEach(function(field) {
           var stripAlias = field.alias.replace(" that are cost burdened", "");
           stripAlias = stripAlias.replace("% Households with income ", "");
-          stripAlias = stripAlias.replace("< ", "");
-          stripAlias = stripAlias.replace(">", "");
+          stripAlias = stripAlias.replace("< ", "Less than ");
+          stripAlias = stripAlias.replace(">", "Greater than ");
           output.push({name: stripAlias, value: field.value });
         });
 
