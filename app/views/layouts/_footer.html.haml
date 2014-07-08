@@ -5,7 +5,7 @@
       %div.links
         =link_to 'Home',             root_path
         =link_to 'About',            about_path
-        =link_to 'Help',             help_path
+        -# =link_to 'Help',             help_path
         -# =link_to 'User Guide',       guide_path
         
         - if @muni
@@ -13,7 +13,7 @@
         - else
           =link_to 'Download', download_path
 
-        =link_to 'Terms of Service', terms_path
+        =link_to 'License & Terms', terms_path
         =link_to 'Github',  'http://github.com/MAPC/housingma', target: '_blank'
 
   %div.row
