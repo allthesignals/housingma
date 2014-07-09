@@ -171,7 +171,7 @@ d3.chart("BaseChart").extend("BarChart", {
           this.attr('x', function(d) { return chart.xScale(d.name); })
             // .attr("title", function(d) { return d.name })
             .attr("class", "bar")
-            .attr("data-content", function(d) { return  "Estimate: " + d.value + '%' })
+            .attr("data-content", function(d) { return d.value })
             .attr("data-legend", function(d) { return d.name })
             .attr('y', function(d) { return chart.yScale(0); })
             .attr('width', chart.xScale.rangeBand())
@@ -499,8 +499,8 @@ d3.chart('BaseChart').extend('GroupedBarChart', {
 
         chart.areas.legend =
           chart.areas.legend
-          .selectAll(".legend")
-          .data(chart.x1Scale.domain())
+            .selectAll(".legend")
+            .data(chart.x1Scale.domain())
             .enter().append("g")
             .attr("class", "legend")
 
@@ -554,7 +554,7 @@ d3.chart('BaseChart').extend('GroupedBarChart', {
             .enter()
           .append("rect")
             .attr("title", function(d) { return d.name })
-            .attr("data-content", function(d) { return  "Estimate: " + d.value + '%' })
+            .attr("data-content", function(d) { return d.value })
             .attr('class', 'bar')
             .attr("data-legend", function(d) { return d.name })
             .attr("width", chart.x1Scale.rangeBand())
@@ -891,7 +891,7 @@ d3.chart("BaseChart").extend("LineChart", {
             .attr("cx", function(d) { return chart.xScale(d.year) })
             .attr("cy", function(d) { return chart.yScale(d.value) })
             .attr("title", function(d) { return (d.year) })
-            .attr("data-content", function(d) { return "Estimate: " + d.value + "%" })
+            .attr("data-content", function(d) { return d.value })
             .attr("fill", "black")
             .on("mouseover", function(d, i) {
               d3.select(this)
