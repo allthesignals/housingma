@@ -327,7 +327,7 @@
       .append('svg')
       .chart('GroupedBarChart')
       .height(300)
-      .yAxisLabel("Percent");
+      .yAxisLabel("Households");
 
     chart.draw(get_data_for('housing_projections_by_age'));
 
@@ -335,6 +335,7 @@
       .append('svg')
       .chart('GroupedBarChart')
       .height(300)
+      .yAxisLabel("Household Demand")
       .colors(['#F37B70', '#1C164E', '#1F77B4', '#00AFB2']);
 
     chart.draw(get_data_for('housing_demand_by_age_group'));
