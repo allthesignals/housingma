@@ -11,7 +11,7 @@
     %div.col-md-4.service#profile
       %h4 Housing Data Profile
       
-      = image_tag 'profile.png', class: 'service'
+      = link_to image_tag('profile.png', class: 'service'), profile_municipality_path
 
       %a.btn.btn-lg.btn-warning{href: profile_municipality_path} Select
       %ul
@@ -31,7 +31,7 @@
     %div.col-md-4.service#report
       %h4 Basic Needs Assessment
       
-      = image_tag 'report.png', class: 'service'
+      = link_to image_tag('report.png', class: 'service'), report_municipality_path
 
       %a.btn.btn-lg.btn-success{href: report_municipality_path} Select
       %ul
@@ -52,7 +52,7 @@
     %div.col-md-4.service#download
       %h4 Data Download
       
-      = image_tag 'download.png', class: 'service'
+      = link_to image_tag('download.png', class: 'service'), download_municipality_path
 
       %a.btn.btn-lg.btn-primary{href: download_municipality_path} Select
       %ul
@@ -61,9 +61,9 @@
         %li
           Dig deeper and perform your own analyses.
         %li
-          Includes metadata and user guide.
+          Includes metadata.
       %a.btn.btn-default{href: download_municipality_path}
-        View datasets and guide
+        View data download
         &nbsp;
         %span.glyphicon.glyphicon-arrow-right
 

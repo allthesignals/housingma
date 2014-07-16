@@ -1,10 +1,12 @@
-%h4 #{field.alias}
-%p
-  %strong Field Code:
-  #{field}
-%p
-  %strong Methodology:
-  = field.methodology
-%p
-  %strong Source:
-  = field.source
+%h4.guide-field-alias #{field.alias}
+
+%table.borderless.guide
+  %tr
+    %th Field Code
+    %td= field
+  %tr
+    %th Methodology
+    %td= field.methodology || "&mdash;".html_safe
+  %tr
+    %th Source
+    %td= field.source || "&mdash;".html_safe

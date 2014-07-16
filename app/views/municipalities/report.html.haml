@@ -2,10 +2,10 @@
 
 %div.container
   %h1
-    Housing Needs Assessment for #{@report.muni}, MA
+    Basic Housing Needs Assessment for #{@report.muni}, MA
 
   %div.row
-    %div.col-md-10
+    %div.col-md-10.report
       = render partial: 'municipalities/report/sample'
       - # render partial: 'municipalities/report/topic_area', collection: @report.topic_areas
     
@@ -24,8 +24,8 @@
       %br
       %br
       %p
-        %strong Some assembly required:
-        The charts cannot be exported as images with the Word document. To retrieve the complete report, export both the Word document and the charts. Insert the charts into the Word document where indicated.
+        %strong Some assembly required.
+        The charts cannot be automatically included in the downloaded Word document. For the complete report, export both the Word document and the charts. Insert the charts into the Word document at the indicated points.
 
     - # render partial: 'scrollspy/scrollspy', locals: { content: @report, export: true }
     = render partial: 'scrollspy/sample'
@@ -376,14 +376,14 @@
 
     var saveImages = function(callback) {
       var zip = new JSZip();
-      var img = zip.folder("images");
+      var img = zip.folder("#{@report.muni} Charts");
       
 
       $("svg").each(function(index, svg) {
         var simg = new Simg(svg);        
         simg.toImg(function(image) {          
           var filedata = Simg.getBase64Image(image);
-          var filename = "figure-" + index + ".png"
+          var filename = "figure-" + (index + 1) + ".png";
           img.file(filename, filedata, {base64: true})
         });
 
@@ -394,10 +394,9 @@
       }, 500);
       
     }
-
-    var saveZip = function(zip) {      
-      var content = zip.generate({type:"blob"});
-      saveAs(content, "example.zip");
+    var saveZip = function(zip) {
+      var content = zip.generate({ type: "blob" });
+      saveAs(content, "#{@report.muni} Charts.zip");
     }
 
     // log("7");
